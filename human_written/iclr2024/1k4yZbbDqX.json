@@ -1,0 +1,43 @@
+{
+  "title": "InstaFlow: One Step is Enough for High-Quality Diffusion-Based Text-to-Image Generation",
+  "keywords": [
+    "Diffusion Models",
+    "Generative Models",
+    "Acceleration"
+  ],
+  "pdf_url": "/pdf/c8effdf54ff21df270ca21b94da3dda252b71ed7.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The results of this paper are truly captivating. It manages to generate images of impressive quality with just one or two steps. The quality showcased in the figures is highly satisfying. In addition, the paper provides a detailed account of various experiments and the corresponding performance metrics, which adds greatly to its value.",
+      "waeknesses": "While the paper demonstrates impressive results, it appears to be a straightforward application of RECTIFIED FLOW. I was unable to discern any clear novelty in the algorithms or methods presented. If I'm wrong please kindly let me know the difference.\n\nThe model that claims to operate in 1 step actually resembles a configuration of two UNets linked together, and thus feels closer to a 2-step process. Additionally, when the refined model from SDXL is not applied, the results show a noticeable degradation in high-frequency details.",
+      "questions": "Given that RECTIFIED FLOW is trained based on its own trajectory, are there any issues that arise from this approach?\n\nMethods like DDIM inversion also seem like they could be applicable in a flow-based context. I am curious about the results in cases where a small number of steps, close to 2, are used."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "The writing style of the paper is extremely clear.\nIt provides a very good introduction to the framework of rectified flows for a reader without deep knowledge of the topic, and overall the manuscript is quite self-contained. \nThe conducted experiments provide a sufficient support for the motivation of the method. I find the evaluation thorough enough.\nThe results achieved in the paper are definitely interesting for the broad community of ML researchers and practitioners due to the achieved combination of required computational resources for the model training and inference and its performance.",
+      "waeknesses": "1. First of all, this submission is more an extension of the previous work [1] rather than an independent work. The novelty of the presented ideas is definitely limited: all parts of the pipeline were actually introduced previously, and the submitted work applies the same pipeline to the coupling learned by SD model instead of independent coupling of noise and images. The proposed results are definitely valuable for applications. However, they look more like a technical exercise on top of the [1]. Overall, I find this work too incremental although helpful for practitioners.\n1. While the idea of Stacked U-Net is interesting, the paper lacks the study if this type of architecture is actually better than increasing the depth (or the number of channels) of the conventional U-Net model.\n1. The paper provides the results for latent models only. Taking the empirical nature of this work into account, I suggest adding any of the open cascaded models to the comparison to see, e.g. DeepFloyd IF [2].\n\n[2] https://github.com/deep-floyd/IF",
+      "questions": "1. Please, address the limitations discussed above.\n1. The training pipeline described in the Appendix D, looks pretty complicated. \n    1. Why was it necessary to change the batch size (step 2), and why wasn't more common learning rate tuning applied instead? \n    1. What is the reasoning behind switching from L2 to LPIPS objective (step 4) instead of training with a combination of L2 and perceptual loss from the very beginning of the distillation phase? \n    1. How were switching points for steps 2 and 4 selected?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper is well-written, and the experiments conducted are both sufficient and convincing. The InstaFlow achieves amazing performance (1-step inference with reasonable quality in approximately 0.09 seconds).",
+      "waeknesses": "While this model demonstrates impressive performance, it does involve a trade-off between inference speed and generation quality. From the supplementary document of InstaFlow, we can still observe various artifacts, which may be inherited from the 2-Rectified Flow (e.g., many faces are already distorted in the rectified model). Nevertheless, as the authors also mentioned, this model can be used for generating quick reviews, and then larger models can be employed for further generating high-quality images.",
+      "questions": "I don't have further questions regarding the experiments since they're satisfactory to me.\nHowever, given that this work involves practical applications, I encourage the authors to consider sharing the source code and pretrained models, as this would undoubtedly be of great benefit to the community."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. Well organized and clarified.\n2. The contribution is great. Making the conditional diffusions work with one or very few steps will greatly boost the development of diffusion community. \n3. The comparison experiments are carefully and fairly set up, and I appreciate that.",
+      "waeknesses": "I have several questions about this paper, and I hope the authors to clearly clarify them.\n\n1. **Storage Overhead**: In my opinion, it seems that either the distillation process or the reflow process actually requires us to create a relatively large (noise, image) pair dataset in advance, which would cause the additional storage overhead.\n\n2. **Intrinsic Difference between the so-called distillation and reflow process**: The distillation step aims to make the model predict the same as target computed by the ODE process of Stable Diffusion at the zero-timestep. While the reflow process seems to only change to make the distillation applied to all possible timesteps. \n\n3. **Noise Scheduler**: The noise scheduler of SD requires a normal diffusion noise scheduler. The reflow requires the \"linear\" (I call it \"linear\" just for convenience) scheduler. Wouldn't that cause trouble? Besides, the SD Unet requires time embedding, what time embedding do you use?\n\n4. Why do you choose to predict \"x1-x0\" instead of \"x1-xt\"? Do you have any considerations about this?",
+      "questions": "I tend to accept the paper, considering its theoretical and technical contributions. However, I have several questions about this paper and hope the authors answer them for me to make the final decision."
+    }
+  ]
+}
