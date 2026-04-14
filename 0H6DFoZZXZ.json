@@ -1,0 +1,52 @@
+{
+    "title": "Language Control Diffusion: Efficiently Scaling through Space, Time, and Tasks",
+    "authors": [
+        "Edwin Zhang",
+        "Yujie Lu",
+        "Shinda Huang",
+        "William Yang Wang",
+        "Amy Zhang"
+    ],
+    "keywords": [
+        "planning",
+        "diffusion",
+        "language",
+        "RL",
+        "reinforcement"
+    ],
+    "pdf_url": "/pdf/ee2387c8b2761c03dc93e3d87ca20d1e8901ea22.pdf",
+    "reviews": [
+        {
+            "reviewer": "Official Reviewer 1",
+            "rating": "6: marginally above the acceptance threshold",
+            "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+            "strengeths": "1. The proposed method is simple and effective, achieving scalability in the spatial, time, and task dimensions.\n2. By employing a hierarchical decision-making approach, the algorithm reduces the model size and inference time.\n3. The authors experimentally demonstrate that vanilla Diffuser fails to successfully replan in high-dimensional state spaces when using a Variational Autoencoder (VAE). This provides insights for researchers interested in using Diffuser for planning tasks with image state spaces.",
+            "waeknesses": "1. In Section 4.5 of the experiments, the parameter sizes of MLP and Transformer are significantly smaller than the parameters of Diffusion. This may introduce unfairness in the experiments. Additionally, I did not notice a detailed explanation of how the authors perform inference using MLP and Transformer. Since the authors employ a Diffusion planning paradigm as HLP, it may be worth considering a better comparison with planning-based MLP (e.g., model-based RL) and Transformer (e.g., Decision Transformer).",
+            "questions": "1. The experimental results seem to indicate that HULC plays an important role in the success of LCD. Do the authors believe that the performance of LCD necessarily relies on a well-trained HULC baseline? Can LCD still achieve excellent performance with a simple goal-conditioned policy and a well-designed RL encoder representation? Alternatively, if a HULC baseline is used, can a Transformer with a parameter size comparable to the Diffusion HLP achieve similar performance?"
+        },
+        {
+            "reviewer": "Official Reviewer 2",
+            "rating": "5: marginally below the acceptance threshold",
+            "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+            "strengeths": "+ The proposed approach achieves SOTA performance on a recently proposed language robotics benchmark\n+ The method is well-motivated and reasonable",
+            "waeknesses": "The weakness comes from a combination of lack of originality and broadness of the experiments. While the approach is very reasonable (applying language-conditioned latent diffusion in the abstracted state and action space for high-level planning), its general idea is similar to the ones in the literature (e.g., [1]). The major differences are the use of diffusion models and the specific choice of temporal abstraction. Based on this, I would like to see more experiment evidence, e.g., beyond the CALVIN benchmark, or real-world experiments (as in SPIL).\n\n[1] Parrot: Data-Driven Behavioral Priors for Reinforcement Learning",
+            "questions": "See \u201cweaknesses\u201d"
+        },
+        {
+            "reviewer": "Official Reviewer 3",
+            "rating": "6: marginally above the acceptance threshold",
+            "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+            "strengeths": "1. The paper is clearly written and easy to follow.\n2. The proposed hierarchical approach makes intuitive sense to scale the control diffusion models.\n3. The authors provide both theoretical guarantees and experimental results.",
+            "waeknesses": "1. The authors stated that the proposed algorithm avoids \"the usage of a predefined low level skill oracle\". Isn't the low-level controller also adopted by LCD in this work? Do the authors refer to the imitation learning setting where we only access to the trajectories instead of the controller?\n2. Can the authors comment more on the difference between the proposed method and previous text-to-video works, such as [1, 2]? Again, the authors mentioned that \"they again avoid the issue of directly generating low level actions by using a low-level controller or an inverse dynamics model which we are able to directly solve for\", but I didn't see the the downside of leveraging low-level controllers.\n3. Besides, I would like to know if these text-to-video methods are directly comparable to LCD in experiments.\n4. It is not very clear to me what dom(P(s'|s, a)) measures and the intuitive sense behind it. For terms that are not commonly used in RL theory, it would be better to state its definition and intuition of the proof/bound. It is also not clear what the circle means in the definition of the low-level policy.\n5. The theorem comes before the practical instantiation of the algorithm. The gaps between theory and practice should be explicitly analyzed.\n\n[1] Learning Universal Policies via Text-Guided Video Generation.\\\n[2] VIDEO LANGUAGE PLANNING.",
+            "questions": "Please see the weaknesses above."
+        },
+        {
+            "reviewer": "Official Reviewer 4",
+            "rating": "6: marginally above the acceptance threshold",
+            "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+            "strengeths": "This paper is well-structured and technically sound. The core idea is to pretrain a state encoder and then utilize the latent diffusion model to instantiate high-level policy, generating high-level goals by following the language instruction. The generated goals are then fed into the low-level policy network to obtain the final action.  The empirical results show performance improvements over the previous approaches. The authors also provided many empirical insights of the utilization of diffusion model for visual decision making tasks, which is valuable.",
+            "waeknesses": "1. It appears that some crucial descriptions of the model are missing. For instance, there is little mention in the paper about how the state encoder is trained. After going through HULC[Mees et al., 2022a], I just noticed that the encoder is possibly the one in HULC model. Therefore, the author considers both the encoder and LLP to be pretrained. I suggest the author add the corresponding description because it is currently hard to find out this from the logical flow of the paper. It is still important to clarify the training objective and the structure of the state encoder and low-level policy.\n\n2. The novelty of the paper is limited, as it is a combination of diffusion model and HULC.\n\n3. The assumption of the dataset being optimal is very strong in real-world settings, which limits the applicability of the proposed method. \n\n4. The textual encoder -  T5-XXXL model in this paper - is quite large, which increases the inference time. Is it possible to use the textual encoder in CLIP?",
+            "questions": "1. It seems low-level policy and the state encoder are coupled in HULC, is it possible to pretrain both modules separately via different objectives?\n\n2. What is the total number of parameters in LCD?\n\n3. Learning state mapping functions and latent planning models separately seems quite reasonable in RL tasks, is there a way to combine a pre-trained encoder on a more extensive visual dataset, similar to models like VQ-VAE used in Stable Diffusion, for state feature extraction, rather than pre-training the encoder solely on robot tasks?"
+        }
+    ]
+}

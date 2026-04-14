@@ -1,0 +1,60 @@
+{
+    "title": "Boosting Vanilla Lightweight Vision Transformers via Re-parameterization",
+    "authors": [
+        "Zhentao Tan",
+        "Xiaodan Li",
+        "Yue Wu",
+        "Qi Chu",
+        "Le Lu",
+        "Nenghai Yu",
+        "Jieping Ye"
+    ],
+    "keywords": [
+        "Vision Transformers",
+        "Re-parameterization",
+        "Lightweight Models"
+    ],
+    "pdf_url": "/pdf/f669c82db24753f05848f03ca1491e10580fb946.pdf",
+    "reviews": [
+        {
+            "reviewer": "Official Reviewer 1",
+            "rating": "8: accept, good paper",
+            "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+            "strengeths": "-1- The motivation of this paper is clear.\n\n-2- The pyramid multi-branch topology, i.e., n-th rep-branch with $L_n$ basic units is interesting.",
+            "waeknesses": "-1- In the Sec 3.2 Main Architecture, authors use P-WNS to denote the architecture with Width of N rep-branch, what about the different $L_N$ in every rep-branch in the P-WNS? And there is only 1$\\times$1 (without K$\\times$K) in linear projection, the accuracy gaps in different configurations of \"pyramid multi-branch topology\" seems minor (Figure 2a).\n\n-2- About the baseline performance. Table 1 reports the performance improvement on ViT-B, with the distillation phase in pre-training. Why the proposed TDRL should be combined with distillation? Why not use a stronger and simpler baseline such as DeiT-B (can obtain 81.8 top-1 accuracy on ImageNet)?",
+            "questions": "In Sec 3.2, the authors claim that \"The linear operation in transformers focuses more on intra-token semantic mining rather than inter-token spatial exploration. Linear stacking is inherently appropriate to transformer networks.\" I think the authors should explain this in more details. I am confused why Linear stacking is inherently appropriate to transformer networks."
+        },
+        {
+            "reviewer": "Official Reviewer 2",
+            "rating": "6: marginally above the acceptance threshold",
+            "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+            "strengeths": "The paper is generally well-written, clearly structured, and quite easy to follow.\nThe target issues of the paper are meaningful and worth exploring. The motivation is clear.\nThis submission gives a valuable implementation of such an idea.",
+            "waeknesses": "1. To some extent, this paper lacks novelty. The intra-branch fusion and inter-branch fusion are commonly seen techniques in the re-parameterization of CNN networks, as shown in Sec 3.1. This paper only applies this technique to ViTs. Although the targeted module is changed from convolutions to linear projections, this modification is straightforward. This paper uses an additional batch normalization to modulate Q^{'} and K^{'} and names this operation a distribution rectification operation. This operation is quite simple.\n\n2. In Table 1, TDRL only outperforms D-MAE-Lite for 0.3 (78.7 vs. 78.4). The advantage does seem not significant.",
+            "questions": "See weakness."
+        },
+        {
+            "reviewer": "Official Reviewer 3",
+            "rating": "8: accept, good paper",
+            "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+            "strengeths": "1. To the best of my knowledge, the proposed method, TDRL, is the first one tailoring for the reparametrization of the linear layer, and thus for ViTs. This is important, particularly for the tiny models, because pure ViTs lag behind the ConvNets and hybrid models due to the lack of inductive bias and inadequate capacity. Reparametrization, training with extra parameters but shrinking back at the inference stage, is a good way to fit more knowledge into the models without incurring extra inference costs.\n\n2. TDRL seems to be a generic method and can be applied to many architectures, e.g., VanillaNet, and different tasks, e.g., DDPM, with linear layers.\n\n3. With the help of varied-depth branches and feature rectification, TDRL achieves promising results on classification and dense prediction tasks, especially the latter.",
+            "waeknesses": "1. All the experiments are conducted with tiny or small models and a few pre-training epochs. I am curious whether TDRL would still be beneficial for larger models and when using larger epochs, since reparametrization works for ConvNets with various capacities. This might further strengthen the paper.\n\n2. I noticed that the gain from TDRL is considerably larger on dense prediction tasks. Do the authors have any explanation for it? Is it due to the use of BN in TDRL since some dense prediction tasks favor architectures with BN? If so, can the authors isolate the contributions of reparametrization and BN?\n\n3. Certain parts of the presentation could be further improved. For example, Fig. 1c does not help grasp how to do intra/inter-branch merging.",
+            "questions": "See the weakness."
+        },
+        {
+            "reviewer": "Official Reviewer 4",
+            "rating": "8: accept, good paper",
+            "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+            "strengeths": "1. The paper looks into reparameterization technique for ViTs performance improvement. The technique that is common in CNN but overlooked in ViTs\n2. The proposed TDRL architecture seems to ensure diverse feature spaces among branches, enhancing the model's representation capabilities. TDRL seems to me a modular design that can replace any linear layer in ViTs",
+            "waeknesses": "1. The authors experiment on the vanilla ViT-Tiny model. It is not clear what would be the impact of this TDRL module if applied in other tiny transformers such as Swin-tiny etc.\n2. The introduction of multiple branches and added nonlinearity might lead to overfitting, especially on smaller datasets. I don't see the authors discussing anything around it",
+            "questions": "1. Can you discuss on the computational complexity of the TDRL architecture?"
+        },
+        {
+            "reviewer": "Official Reviewer 5",
+            "rating": "6: marginally above the acceptance threshold",
+            "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+            "strengeths": "The paper is technically sound and easy to understand. The method of reparameterization on the linear layer is shown to be useful and easy to implement.\n\nThe experimental results are rich and show the effectiveness of the proposed method.",
+            "waeknesses": "The way of merging a stack of linear layers with BN has already been studied by [1].\n\nYou mentioned several times that BN can be used in between layers for nonlinearity, and the proposed re-parameterization method is nonlinear. Why does BN have nonlinearity? Isn't the proposed method a linear ensemble re-parameterization structure?\n\nWhy is the experimental setting based on MIM? What is the performance of training ViT with the proposed method on ImageNet directly? What is the performance of training vanilla ViT with MIM?\n\n[1] VanillaNet: the Power of Minimalism in Deep Learning.",
+            "questions": "See weaknesses above."
+        }
+    ]
+}
