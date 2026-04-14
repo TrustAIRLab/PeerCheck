@@ -1,0 +1,46 @@
+{
+  "title": "Graph-based Virtual Sensing from Sparse and Partial Multivariate Observations",
+  "keywords": [
+    "Spatio-temporal data",
+    "time series",
+    "virtual sensing",
+    "imputation",
+    "graph neural networks",
+    "deep learning"
+  ],
+  "pdf_url": "/pdf/1f134ca075964391b30baa22a0bf6a338d01598c.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "3: reject, not good enough",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "1. The problem of spatial interpolation through deep learning is generally meaning for and important.\n2. The authors acknowledge traditional spatial interpolation methods such as Kriging\n3. Real-world dataset used for experiments.",
+      "waeknesses": "1. The claim that Kriging or similar approach won't work due to sparse sensors lacks sufficient justification. The proposed solution can be solved by multivariate Kriging. The authors should at least show the results on such a well-known spatial solution and compare it with their solution.\n\n2. The graph of sensors is built by measuring similarities between node embeddings. However, it is unclear how to learn such embeddings and why it is not affected by sensor sparsity. If two sensors are too far away their values have no correlation. The edge defined in under such a case would be meaningless. \n\n3. There is no demonstration of a successful prediction of missing values on a spatial map.",
+      "questions": "1. Why Kriging would not work in this case is not adequately justified. The semi-variogram function can be selected from a variety of options depending on the assumptions. As long as the two locations are not farther than a threshold (the range) apart, they can be assumed to have correlations. \n\n2. Another traditional model that might solve this problem is Markov random field. Why not considering it in the baseline?\n/?？\n3. How to define the graph edges based on (static) embedding? What information do you used to learn it?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "①\tThe GgNet proposed in the article effectively addresses the limitations of traditional methods in the context of sparse sensor coverage by inferring signal values at unmonitored locations through learning dependencies between variables and positions.\n②\tThe article provides numerous details in the appendices to help readers gain a more comprehensive understanding of the framework. For instance, Appendix B and C offered a detailed description of the experimental settings and baseline parameter details.\n③\tThe author employed effective training method. They masked an additional small fraction of data points, at random, in the training channels, which can enforce robustness to random missing value.\n④\tThe experimental baseline selection is quite comprehensive and reasonable, including KNN, BRITS, SAITS, and GRIN, along with various progressively more advanced recurrent RNN. These choices in baselines contribute to a more comprehensive and reliable set of experimental results.",
+      "waeknesses": "①\tThis article lacks a thorough analysis of the experimental results and a comprehensive interpretation of the data. It primarily presents the experimental outcomes in tables without providing detailed explanations.\n②\tThe article did not include an overview diagram of the overall model structure, which made it difficult for readers to comprehend the architecture of the model.\n③\tThe experiment evaluated accuracy-related metrics such as MAE and MRE but did not provide information on the computation time and performance on large datasets. As a result, readers cannot assess the efficiency of this model.\n④\tThe experimental training methods have the potential to enhance the robustness of the network, but in the end, no robustness test results for the model were provided.\n⑤\tThe experiment did not conduct tests of this framework with different data types of other domains, which makes it difficult to assess the comprehensiveness of its application in various fields.",
+      "questions": "①\tWhy is GgNet only applicable to transductive learning settings in its current form? What are the limitations? How to extend GgNet to support inductive learning?\n②\tHow does the efficiency of Ggnet compare to other models? What is the impact of missing data in the dataset used in the experiment on the experimental results? Can you offer a more detailed explanation of the results?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "•\tThe problem formulation of multivariate virtual sensing in sparse scenarios is itself an original and significant contribution, as it addresses a practical challenge across various domains. The introduction of GgNet leverages a nested graph structure to capture dependencies between covariates and relations across locations, is highly original. The combination of graph-based modeling and deep learning techniques to address the problem is innovative and distinguishes this work from prior methods in the field. \n•\tThe technical content, methodology, and experimental design are well-supported with empirical evidence. The thoroughness of the experimental evaluation, conducted across multiple datasets, with different degrees of sparsity and temporal resolutions, enhances the paper's quality. The extensive experimentation, use of real-world datasets, and evaluation further emphasize the paper's significance.",
+      "waeknesses": "•\tThe paper, while generally well-structured, could benefit from more explicit and detailed explanations in certain technical aspects. For instance, the paper could provide a more comprehensive explanation of the nested graph structure used in GgNet, which is a key component of the proposed method.",
+      "questions": "•\tThe paper mentions the computational time for GgNet and other baselines but does not discuss scalability. How does GgNet's performance scale with more extensive sensor networks or larger datasets?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper is well-presented and well-organized.\n2. The paper proposed a new model GgNet aiming to reconstruct the target values at certain locations.\n3. Extensive experiments are conducted to validate the proposed model, and the results seem promising.",
+      "waeknesses": "1. This paper has a lot of assumptions, for example, it assumes the covariates are always available, and the mutual dependencies between target and covariates are invariant and can be leveraged at all locations. Here are some concerns: we cannot guarantee that those assumptions hold for all cases (at least, there should be more examples or references to support them), and if they do not hold, does the proposed method still work?\n2. It seems the method requires the latent representations of locations where the target values need to be reconstructed are close, so is it possible to deal with the cases where the latent representations of locations are remote?\n3. The model somewhat lacks novelty, it seems the final model just combines several existing models.",
+      "questions": "Please address the questions above."
+    }
+  ]
+}

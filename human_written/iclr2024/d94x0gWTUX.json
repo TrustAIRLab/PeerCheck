@@ -1,0 +1,36 @@
+{
+  "title": "Tool-Augmented Reward Modeling",
+  "keywords": [
+    "Reward Model",
+    "Large Language Model",
+    "Tool Learning",
+    "Augmented Language Model"
+  ],
+  "pdf_url": "/pdf/65b055ecf7ec43b68562fc8ca3ce916f8c400085.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "(1) The paper addresses an important issue in reward modeling by introducing a tool-augmented approach to enhance the effectiveness of RMs.\n\n(2) The proposed methodology of integrating external tools into RMs is innovative and practical, allowing for dynamic decision-making and reasoning processes.\n\n(3) The experimental results demonstrate significant improvements in preference ranking and outperformance of Themis compared to baseline RMs, validating the effectiveness of the approach.",
+      "waeknesses": "The description of the method is not very clear. My understanding is that the reward model first generates some explanations based on the inputted question and answer, and then connects a fully connected layer to the final hidden state to produce a scalar reward.",
+      "questions": "1. Why is there a significant difference between the results of Themis (Vicuna-7B + LoRA) and Themis in table1?\n2. Does beta=0, w=0 in table1 mean RM (Vicuna-7B)?\n3. I understand that all the values in table2 are accuracies, so why is the binary classification accuracy lower than 50 for RM (Vicuna-7B, Zero-shot)?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- Having a level of reasoning and interpretability is great feature to have for reward models\n- The experiments and provided implementation details look comprehensive",
+      "waeknesses": "1- How to trust tools is an important aspect to consider here. At least in the examples, it looks like there is a risk of biasing the reward model and generative model to outputs of specific tools being used. This could be concerning as tools are not necessarily unbiased.\n\n2- It is not entirely clear how GPT-4 is used to generate RM training data. Note that GPT-4 itself is a system if the proposal is to use GPT-4 to train RM, one can argue why not directly train RM on GPT-4 data or use GPT-4 directly as reward model.\n\n3- When alpha in eq. 2 is set to zero, we converge to typical tool use via simple prompting right? the RM is still a pretrained model and can be prompted to use tools even without explicit loss terms on tool use. Is this understanding correct?\n\n4- Model size of 7B is quite small to capture knowledge to compete with the tools used in this paper. I think a more realistic setup would be to take a larger model and the gap between say Wiki tool and that result could look very different.\n\n5- I think the write-up could improve, especially for Sec 3.1, I had difficulty understanding exactly how GPT-4 was used and how training data was prepared",
+      "questions": "(see above)"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "**Strength 1**: The idea of augmenting reward models with tools is very interesting, novel, and timely.\n\n**Strength 2**: The proposed method provides a nice and logical way for tools to be included in the reward design process.\n\n**Strength 3**: This paper provides some interesting experiments such as application to RLHF and scaling experiments.",
+      "waeknesses": "**Weakness 1**: One of my main concerns is lack of experiments on standard reward modeling datasets. There are many datasets not included in the paper such as the Anthropic HH dataset, Stack Overflow, OpenAI WebGPT, and ChatGPT comparisons datasets. They do conduct analysis on a small portion of the HH dataset, but not on the provided testing set. In addition, they show worst test accuracy than is reported in some other papers that only use conventional reward modeling [1]. Since the main claim of the paper is that by using tools they can improve the accuracy of reward models, I think their method should be validated on these popular datasets.\n\n[1] Dong, Hanze, et al. \"Raft: Reward ranked finetuning for generative foundation model alignment.\" arXiv preprint arXiv:2304.06767 (2023).\n\n**Weakness 2**: Little Hyperparameter study. THEMIS introduces various hyperparameters, but the sensitivity of model performance to these hyperparameters is not discussed.\n\n**Weakness 3**: This paper does not discuss a significant limitation of this method: the difficulty of creating the dataset. The dataset creation process consists of various complex steps, involves tool selection and design of heuristics. This seems to be difficult to scale to large scale preference datasets.\n\n\n**Weakness 4**: I think that this paper could use a more in depth discussion of related works. In particular, various works have attempted to use similar tools such as a compiler in the reward design process [2,3,4,5] and [4] use it to guide the reward model training. Discussing these works could help better frame the contribution of this work.\n\n[2] Le, Hung, et al. \"Coderl: Mastering code generation through pretrained models and deep reinforcement learning.\" Advances in Neural Information Processing Systems 35 (2022): 21314-21328.\n\n[3] Shen, Bo, et al. \"Pangu-coder2: Boosting large language models for code with ranking feedback.\" arXiv preprint arXiv:2307.14936 (2023).\n\n[4] Bukharin, Alexander, et al. \"Deep Reinforcement Learning from Hierarchical Weak Preference Feedback.\" arXiv preprint arXiv:2309.02632 (2023).\n\n[5] Shojaee, Parshin, et al. \"Execution-based code generation using deep reinforcement learning.\" arXiv preprint arXiv:2301.13816 (2023).",
+      "questions": "How exactly do you get the scalar reward from the reward model? Is this done with a separate output layer?"
+    }
+  ]
+}

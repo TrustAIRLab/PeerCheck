@@ -1,0 +1,37 @@
+{
+  "title": "Approximating Nash Equilibria in Normal-Form Games via Stochastic Optimization",
+  "keywords": [
+    "game theory",
+    "stochastic optimization",
+    "nash equilbrium",
+    "normal-form game",
+    "x-armed bandits"
+  ],
+  "pdf_url": "/pdf/6116af6dc392a3153d1462f038b9dac4f8305ca6.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The paper is generally well-written.\n2. The formulation of the loss function which allows for unbiased sampling is a solid novel technical contribution. As the authors note, this is a step towards enabling computation of Nash equilibria in large-scale settings (in spite of theoretical hardness results), which is quite important for operationalizing game theory in the real world. \n3. The paper provides numerical evidence supporting that the loss function is \"easy\" to optimize in many benchmark games of interest, and that it is competitive with other SOTA approaches.",
+      "waeknesses": "1. The empirical section (6.2) could use some additional explanation/discussion. The baselines that are compared against should be explicitly stated in the body text (and cited appropriately) instead of just stating that they are the baselines used in Gemp et al. 2022's simulations.\n2. The flow of Section 6 generally could be improved (one suggestion is provided below).",
+      "questions": "1. There is a typo in the definition of the projected-gradient (it should be $\\Pi_{T\\delta^{d-1}}(z) = z - \\frac{1}{d} \\mathbf{1}^\\top z \\mathbf{1}$)\n2. In Section 6, it is confusing to introduce SGD first and then the bandit algorithm and then immediately have a subsection discussing the bandit algorithm, especially since it is stated that \"in the next section, we find it performs well empirically in games previously examined by the literature.\" Perhaps it makes sense to include the SGD experiments before any discussion of the bandit approach."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper proposes a new loss function for approximating Nash equilibria in normal-form games that is amenable to unbiased Monte Carlo estimation. This allows for the use of powerful sample-based stochastic optimization techniques, eliminating the need to read all the payoffs.\n2. The loss function upper-bounds the exploitability of an approximate equilibrium. The authors provide theoretical proofs and present empirical results.\n3. The proposed approach enables the scaling of equilibrium-finding techniques to larger games than was previously possible. The paper presents experiments on games with up to 286 actions.\n4. Two algorithms are analyzed: vanilla SGD and a bandit-based method. The bandit approach offers theoretical guarantees, such as a high probability bound on exploitability.",
+      "waeknesses": "1. The loss function only captures fully mixed equilibria. The authors address this by considering quantal-response equilibrium. As a result, a zero loss can only serve as an approximation to a Nash equilibrium.\n2. There is limited empirical evaluation on real-world games. Most experiments involve small synthetic games from previous research. It's possible that more complex games may expose certain limitations.\n3. SGD encounters issues with saddle points in certain games, which is a common challenge in non-convex optimization.",
+      "questions": "1. How well does the approach scale to larger real-world games with structures like symmetry? Are techniques such as grouping actions necessary?\n2. Have the authors attempted more advanced optimization methods like Momentum SGD or Adam to address saddle points?\n3. What heuristics could be employed to guide equilibrium selection when multiple equilibria exist?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "I have not read the papers about how to solve an NE efficiently before. However, this paper is quite clear in this presentation, such that I have now obtained a whole picture of this problem. The problem setup is clearly introduced. The solution is illuminated step by step, which is clear and intuitive. It is worth mentioning that the authors give several illustration figures (e.g., Figures 1 and 2) to help the readers understand the paper better, which is very good. The experiments are also sufficient and complete. Moreover, this work offers the community a new and principled way of solving NEs efficiently, and many more stochastic optimization algorithms can be leveraged in this field.",
+      "waeknesses": "I do not see major weaknesses in this work, though I am not an expert in this field.",
+      "questions": "I do not have any questions, as the presentation of this work is quite clear and intuitive, along with some illustrations to help readers understand it well."
+    }
+  ]
+}

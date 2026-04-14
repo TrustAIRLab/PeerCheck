@@ -1,0 +1,34 @@
+{
+  "title": "AutoCast++: Enhancing World Event Prediction with Zero-shot Ranking-based Context Retrieval",
+  "keywords": [
+    "world event prediction",
+    "large language models"
+  ],
+  "pdf_url": "/pdf/b67112bce40646098831e6264ccaee229c495bed.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The proposed system shows remarkable performance presenting a limited impact from the model size.\nThe only tasks where it does not excel are the numerical ones, but it's anyway a close call with a baseline that is almost two times larger.",
+      "waeknesses": "While the exclusion of baselines relying on new LLMs including data post mid 2021 is understandable, the ablation studies seem to suggest that relying on LLM for retrieval reranking and summarisation play a huge role in the performance of the system.\nWhat would be convincing is to build/revamp the baselines considered using the GPT3 pre-trained version that the authors leverage in their experiments.\nThis would surely make the submission much stronger and convincing.",
+      "questions": "Which GPT3 version was considered in the work?\nWhat is the impact of binning numerical questions? Is the binning applicable also to the baselines? If yes how would results change?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "3: reject, not good enough",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- Ablation study is done to evaluate the effectiveness of different components of the system.\n\n- Their proposed system achieved 48% improvement on multiple choice forecasting questions, which is significant.\n\n- Even the smaller version of their proposed system (with 0.2 and 0.8 billion parameters) outperforms larger baselines (with 2.8 billion parameters).",
+      "waeknesses": "- Limited reproducibility: The source code associated with the research paper is unavailable, so it is not possible to reproduce the results.\n\n- In ablation study, no specific experiment has been conducted to demonstrate the isolated effectiveness of the Alignment Loss component.",
+      "questions": "Please see the weakness section."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1.The logic of the paper is sound.  \n2.The description of the methodology is relatively clear.",
+      "waeknesses": "1.The writing of the paper needs to be further improved and all the symbols need to be interpreted.  \n2.The work focuses on a single textual modality, so why mention multiple data sources, multiple modalities in the introduction section?  \n3.N_q is a subset of D. Why are the elements in N_q n and not d?  \n4.The dataset used is too small and results on more as well as larger datasets are needed to be validated.",
+      "questions": "See above."
+    }
+  ]
+}

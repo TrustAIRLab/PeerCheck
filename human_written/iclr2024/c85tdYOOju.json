@@ -1,0 +1,43 @@
+{
+  "title": "Decoupling Weighing and Selecting for Integrating Multiple Graph Pre-training Tasks",
+  "keywords": [
+    "Multi-tasking learning",
+    "Graph Neural Networks",
+    "AutoML"
+  ],
+  "pdf_url": "/pdf/bc9c832286849ad35a954c6185a8707f85d6ac15.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The proposed WAS decouples the selecting and weighting to avoid performance reduction caused by task conflicts. They calculate weights based on output distributions instead of losses to address the non-comparability between different loss functions.\n2. The proposed method can automatically select the number and type of suitable pre-training tasks for different downstream instances.\n3. The authors conduct extensive comparison experiments, and the proposed WAS performs better on both node-level and graph-level tasks. In addition, they visualized the evolution processes of selecting tasks and updating weights, which proves the decoupling of selection and importance weighting.",
+      "waeknesses": "1. The authors should add more ablation experiments to demonstrate the effectiveness of the proposed model, such as the role of different updating methods in decoupling the selecting and weighting outputs, and the role of reweighting after selection. \n2. The comparison model in A5 needs more description to distinguish it from A1, such as whether Random-Select and ALL use learned weights.",
+      "questions": "Please refer to Weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "S1. The authors of the paper have done a good job in providing a compelling motivation for their research. Their thorough analysis of different pre-training tasks combined with a detailed examination of several datasets showcases their comprehensive approach. Furthermore, their assessment of task importance and compatibility provides valuable insights, shedding light on the central issue at hand.\n\nS2. In terms of addressing the research concerns, the authors have carefully identified and highlighted them. These concerns have been formulated into four well-defined research questions that give readers a clear roadmap of the study's objectives. On a broader note, the manuscript is well-organized, with a structured flow that facilitates easy comprehension, making the writing lucid and clear to the audience.\n\nS3. With respect to the empirical aspect of the study, the authors have presented an exhaustive set of experimental results. These results showcase outcomes that are indeed promising.",
+      "waeknesses": "W1. The concept of instance is not well defined. Different pre-training tasks may have different definitions of instances fundamentally (eg. at a node-level, subgraph/graph-level, edge-level etc). Having a common and converged definition may not work well. Furthermore, downstream task could also have different definitions of instances.\n\nW2. While 4 questions are clear in the identification of the 4 steps/issues to address, the solutions are quite standard. E.g. using Gumbel-Softmax sampling for Bernoulli distribution,  the weighting scheme and the Siamese network architecture are all well known tools.\n\nW3. The compatibility issue, or interferences among tasks have been observed in previous work in other areas or problem settings [a,b,c]. Some discussion on this aspect, and its particular challenges in graph context, would further strengthen the motivation of the paper. \n\n[a] Zeyuan Wang, Qiang Zhang, HU Shuang-Wei, Haoran Yu, Xurui Jin, Zhichen Gong, and Huajun Chen. 2022. Multi-level Protein Structure Pre-training via Prompt Learning. In The Eleventh International Conference on Learning Representations.\n[b] Sen Wu, Hongyang R Zhang, and Christopher Ré. 2020. Understanding and improving information transfer in multi-task learning. arXiv preprint arXiv:2005.00944 (2020).\n[c] Tianhe Yu, Saurabh Kumar, Abhishek Gupta, Sergey Levine, Karol Hausman, and Chelsea Finn. 2020. Gradient surgery for multi-task learning. Advances in Neural Information Processing Systems 33 (2020), 5824–5836.",
+      "questions": "Please see weaknesses"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. In this paper, the authors introduce a new framework, namely WAS, for task selecting and importance weighing to integrate multiple graph pre-training tasks.\n\n2. The authors show the limitations of existing weighing-only schemes and demonstrate the importance of task selecting process.\n\n3. The authors have performed extensive experiments to demonstrate the effectiveness of the proposed method. \n\n4. This paper is clearly written and easy to follow.",
+      "waeknesses": "1. In Table 1, 2, and 3, the authors do not compare the proposed WAS framework with existing frameworks that only focus on weighing (i.e., AutoSSL, ParetoGNN, AUX-TS, and AGSSL). However, in Table 4, WAS is compared with these methods. This makes the experimental settings not consistent.\n\n2. The complexity of the proposed has not been studied. Although the proposed method can achieve some performance improvement, it may take more training/inference time, due to combining multiple pre-training tasks. The authors need to have some analysis about the complexity of the proposed method.\n\n3. The authors also need to perform experiments to analyse how many tasks are selected for each instance on average.",
+      "questions": "1. On average, how many tasks are usually selected for each instance?\n\n2. From Figure 6(d), we can observe that the following 4 tasks have the largest weights, i.e, EP, AM, IG, and CP. How about we only use these 4 tasks and learning the their weights for prediction?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The paper is well-written and easy to follow.\n\n2. The evaluation is conducted on both graph-level and instance-level tasks.\n\n3. The idea on solving the compatibility issue of multiple tasks is new and insightful.",
+      "waeknesses": "1. The motivation of focusing on graph-structured data is unclear.\n\n2. Compared to the baseline methods for multi-task learning on instance-level, the improvement from WAS is marginal. On the largest graphs in the experiment (ogbn-arxiv), it achieves worse performance compared to baseline method.\n\n3. Besides the empirical results, the theoretical analysis is still needed to answer why both selecting and weighing is needed,  and why there is compatibility issue (i.e., why some tasks shouldn't be selected).",
+      "questions": "1. The proposed method does not treat graph-structured data specially, nor is it tailored for graph modeling. Why is it positioned for pre-training on graphs, instead of for general pre-training?\n\n2. Any in-depth understanding of the relationship for the selected tasks? Are they independent?"
+    }
+  ]
+}

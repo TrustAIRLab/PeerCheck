@@ -1,0 +1,49 @@
+{
+  "title": "Error Feedback Reloaded: From Quadratic to Arithmetic Mean of Smoothness Constants",
+  "keywords": [
+    "error feedback",
+    "greedy sparsification",
+    "distributed optimization",
+    "communication complexity",
+    "machine cloning",
+    "weighted error feedback",
+    "quadratic mean",
+    "arithmetic mean",
+    "large stepsizes"
+  ],
+  "pdf_url": "/pdf/4646272f3ec362b2dc58601156130afb86614d72.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The paper is very well written, in particular, the narrative that led the authors to the results is instructive and plausible. The claimed convergence theory is rather exhaustive and applies under quite general assumptions (Assumptions 1-3 only require bounds on the smoothness constants and a lower bound on the optimal function value; a version of the results that leads to linear convergence uses Assumption 4, Polyak-Lojasiewicz inequality, which is a rather weak condition for linear convergence). The improvement in the admissible stepsize for EF21 will be potentially relevant for distributed optimization with largely varying smoothness constants. Furthermore, the authors also provide versions of their algorithms in the stochastic setting (EF21-SGD) and a setting of partial participation (EF-21PP).",
+      "waeknesses": "From their theory and experiments, it remains unclear whether the Improvement of the results are coming from the provably larger admissible step size or from different weighting of the clients (as in EF21-W) -- the experiments only seem to compare EF21 with the original stepsize to EF21-W with the improved stepsize (similarly, EF21-W-SGD vs. EF21-SGD).\nFurthermore, the novelty of the underlying ideas is not sufficiently discussed. In particular, the usage of differently weighted clients’ gradients based on Lipschitz constants seems to be very related to similar ideas used in importance sampling fro stochastic optimization. (e.g., Zhao, P., & Zhang, T., \"Stochastic optimization with importance sampling for regularized loss minimization\", ICML 2015). Ideally, a discussion of the connection of their work with this body of literature should be part of the paper.",
+      "questions": "- Can you provide experiments that clarify whether the improvement of the results in the setting of largely varying smoothness constants is coming from larger admissible step size or from the different weighting of the clients?\n- Please include a discussion of the connection between the idea underlying EF21-W and importance sampling."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "3: reject, not good enough",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. This paper proposes a new weighted version of EF21 with better theoretical guarantees. \n\n2. Experiments show that the proposed EF21-W outperforms the baselines.",
+      "waeknesses": "1. It seems that the proposed EF21-W is simply a method that uses the local smoothness constants to obtain a weighted average of the local gradients sent by the workers, which actually has nothing to do with EF21. I mean, if we totally remove the communication compression and EF21 parts, we could still obtain a distributed gradient descent algorithms with weighted average of gradients on the server side and the same improvement in the theoretical results (from quadratic mean to arithmetic mean of the smoothness constants). Adding communication compression and EF21 seems too deliberate to me and prevents the paper from presenting the core idea in a clean and crispy manner.\n\n2. The experiments seem too simple and small to me. I mean, the linear/logistic regression models on libsvm datasets could be easily trained in a short time on some modern and cheap hardware such as a normal laptop, which doesn't require distributed training or communication at all. I understand these experiments are meant to verify the theoretical results, but the experiment settings are just too simple and synthetic, which makes the experiments seem meaningless to me.\n\n3. The proposed algorithm, EF21-W is far from practical, since in real-world complicated models and training tasks, typically it is very difficult to obtain the smoothness constants, while the smoothness constants are essential for EF21-W.",
+      "questions": "1. If we simply re-weight the gradients with $w_i$ in the gradient averaging without using communication compression or EF21, would we obtain the same improvement in the theoretical results (from quadratic mean to arithmetic mean of the smoothness constants)?\n\n2. For the more complicated models or tasks, such as neural networks, how to obtain the smoothness constants and apply EF21-W?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "This paper proposed an intuitive algorithm based on EF21, improving the convergence rate in cases of high variance in smoothness constants, taking the readers through the journey of discovering the algorithm. The process of discovery is clearly described in the paper with simple and effective examples. The math presented in the main paper is enough to clarify the core idea behind the algorithm, and more detailed explanations can be found in the appendix. After taking the readers through the discovery process, the paper presents with 2 sets of experiments conducted on the new algorithm, accompanied by clear figures illustrating the improvement of the algorithm over the original EF21.",
+      "waeknesses": "This paper did not discuss the choices of compressor used in the experiments, as in the original paper of EF21. In the EF21 paper, experiments were conducted on fine-tuning k and the step sizes, which is overlooked in this paper. \n\nThis paper conducted experiments under specific settings with limited explanation for the parameters chosen, such as the number of clients in each experiment.",
+      "questions": "Why is top1 compressor chosen to be employed in all experiments? If the algorithm is designed for a specific setting, can that be clearly described in the paper?\n\nWhy is the number of clients set to be 1000 in the logistic regression experiments, and set to be 2000 in the linear regression experiments? Is it chosen for a specific problem setting? Will the algorithm behave differently with different number of clients?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. Improves theoretical understanding of existing popular approach.\n2. Presentation is very clear, and easy to follow\n3. Contribution is meaningful, because it further promotes the use of EF21 under certain cases.",
+      "waeknesses": "1. Did not propose a newer version of EF21 that outperforms the original one (probably not a weakness, but more of a hope)",
+      "questions": "N/A"
+    }
+  ]
+}

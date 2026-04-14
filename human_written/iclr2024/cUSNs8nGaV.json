@@ -1,0 +1,40 @@
+{
+  "title": "GlucoBench: Curated List of Continuous Glucose Monitoring Datasets with Prediction Benchmarks",
+  "keywords": [
+    "diabetes management",
+    "continuous glucose monitors (CGM)",
+    "glucose trajectory prediction",
+    "artificial pancreas systems",
+    "public datasets",
+    "standardized tasks",
+    "benchmark models",
+    "glycemic control"
+  ],
+  "pdf_url": "/pdf/43f545b8172aa5500f599f53c7466c1b3897e5d0.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- Originality: the paper demonstrates an initiative in public data repository of ML application in CMG research\n- Significance: The initiative of creating a public data repository of CGM research documented in the paper is of great value to the both clinical and ML research communities for experiment reproduction, bench-marking new methods and potential application adoption.  \n- Quality: The paper is well-written with inspiring research questions. Model comparisons are performed on multiple datasets with inspiring research questions and discussion on results in part 5.\n- Clarity: The paper is well-organized with problem formulation, related work, dataset and data tasks description, benchmarking protocols and detailed discussion.\n- Code repository is provided with the paper submission",
+      "waeknesses": "- Cross validation results will be preferred than simple train/test/validation splitting in benchmark model performance comparison.\n- Automated machine learning (AutoML) could also help in benchmarking performance across all datasets with more ML models and pre-processing pipelines.",
+      "questions": "1. How will new datasets be added to the repository?\n2. How could other researchers contribute to the repository?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1) The paper addresses the important issue of model generalization to new patient populations, providing evidence of the challenges associated with individual-level variation.\n2) The key strength of the manuscript is it presents a valuable resource for the diabetes research community by offering public CGM datasets, standardized tasks, benchmark models, and detailed performance analysis. It also provides valuable insights into the factors affecting glucose prediction, including dataset size, patient populations, and time of day. It highlights the varying impact of covariates on model performance across different datasets.\n3) I believe the study follows rigorous principles of reproducibility, ensuring that results are consistent across different data splits and model re-runs. It also focuses on fair comparisons by considering out-of-the-box model performance.",
+      "waeknesses": "Some terms and concepts in the manuscript, such as ARIMA, Latent ODE, and Bayesian optimization, may be challenging for readers without a deep background in machine learning and statistics. Also, the choice of benchmark models might not be exhaustive, and the paper could benefit from a more extensive discussion of the models' suitability for different scenarios.",
+      "questions": "I recommend authors consider below suggestions/limitations:-\n1) Are there any potential biases in the selection of the public datasets, and how might they impact the generalizability of the results? Authors should discuss about the quality of the selected CGM datasets assessed, and what criteria were used to determine data quality.\n2) The paper discusses the impact of covariates on model performance. Can you provide insights into which specific covariates had the most influence on the predictions and whether their quality was uniform across all datasets? And, how does the decision to omit certain models due to their lack of support for covariates affect the overall model comparison?\n3) Perhaps authors should consider including, at least, in the supplemental material about any potential risks or challenges in directly applying the findings from the study to clinical settings especially when translated into practical clinical applications for healthcare providers and individuals with diabetes.\n4) The paper mentions not considering additional model-specific tuning for benchmark models. Could such optimizations significantly enhance the models' performance, and why were they excluded from the evaluation?\n5)  How diverse were the patient populations in the selected datasets in terms of demographics, disease severity, or other relevant factors, and how might this diversity affect the results and generalization?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The authors provide systematic benchmark results of different CGM models on multiple CGM datasets. Their evaluation methods seem to be reproducible and fair.\n2. They provide diverse analyses of the benchmarking results, including the impact of dataset size, generalization of the models, and impact of time of day.",
+      "waeknesses": "1. The writing of some parts is not clear and easy to understand. For example, when describing Task 2, it is not clear what “uncertainty” actually means here.; the caption of Figure 3 is also not clear enough about what the “green block” refers to with more than one green element in the figure; on Page 8, the authors did not provide an exact definition of in-distribution and out-of-distribution test, making the readers have to guess what it means by the authors.\n2. I am concerned about the level of contribution of this work. Many of the conclusions of the paper are not novel. For example, people should already know “Healthy subjects demonstrate markedly smaller errors” and “using simpler shallow models when data is limited”.",
+      "questions": "1. What is the motivation for some analysis you did in the paper? For example, what is the motivation for exploring the impact of time of day on accuracy? Why should researchers care about the analysis you did in Section 5, especially under the context of CGM?\n2. How is this work different from other review papers mentioned in related works?"
+    }
+  ]
+}

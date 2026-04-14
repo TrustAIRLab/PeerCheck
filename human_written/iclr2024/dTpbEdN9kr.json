@@ -1,0 +1,46 @@
+{
+  "title": "Human Motion Diffusion as a Generative Prior",
+  "keywords": [
+    "diffusion",
+    "prior",
+    "composition",
+    "generation",
+    "motion",
+    "generative"
+  ],
+  "pdf_url": "/pdf/713790c2a80588d36bcaaefffcf9b8f9c4117583.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Overall, the paper is well-written with a clear and well-motivated introduction.\n\nThe proposed method outperforms previous specialized techniques in the respective task. The experimental designs are comprehensive and show visually appealing results.",
+      "waeknesses": "1. For the generation of long sequences, I don't think it makes sense to essentially generate each interval completely independently. A better option would be to use an autoregressive generation method similar to TEACH, but with the smarter option of combining each subsequence. Would it be possible to compare this with a scheme similar to EDGE [1]? Also, the paper admits that a comparison with DiffCollage is not possible due to a lack of publicly available code resources. Their implementation is simple. This may be optional, but would further support the paper.\n \n2. Regarding multiplayer motion generation, considering that MRT is an old paper, it could be considered to include a discussion and comparison with [1,2,3]. MRT focuses on deterministic prediction, and for the evaluation, is the prediction from ComMDM sampled once? A better comparison would be to use [2] as a baseline, to check the performance of diverse prediction and to measure diversity.\n\n[1] Tseng et al. EDGE. Edge: Editable dance generation from music. CVPR 2023\n\n[2] Xu et al. Stochastic Multi-Person 3D Motion Forecasting. ICLR 2023\n\n[3] Peng et al. Trajectory-Aware Body Interaction Transformer for Multi-Person Pose Forecasting. CVPR 2023\n\n[4] Liang et al. InterGen: Diffusion-based Multi-human Motion Generation under Complex Interactions. Arxiv 2023",
+      "questions": "1. The comparison with TEACH is not very fair either. Is it possible to have the same setting with TEACH but using DoubleMDM, e.g. noising the start and end intervals as diffusion inversions and then performing DoubleMDM with additional transition frames? In this case, you can use accuracy measurements instead of current metrics such as FID. This is because current metrics are more of a test of the quality of the movement and whether the movement is consistent with the text. It is also important to determine if the transition is good by measuring smoothness and accuracy.\n\nOverall, the author's response to the concerns is needed to make the final decision. I am also happy to increase the rating if my concerns are addressed."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "I want to highlight the following strengths:\n- The main strength I see is that the methods presented work well without the need of generating more data (or consuming large amounts of unavailable data). This is a strong benefit, since the field of human motion generation is still lagging in terms of data availability. The authors demonstrate in all 3 cases that they can satisfy the task at hand requiring small amounts of extra data/training.\n- I see major novelty in the methods developed for long sequence generation and 2 person generation. Both methods have interesting new ways to combine different generations from diffusion models (one over time and one in space). Adding to it that the method doesn't require a lot of extra training, these proposed methods seem solid and novel to me.\n- The paper is well written, with good experiments on all fronts. The author's explanation of each method is easy to follow. I want to particularly highlight figures 3 and 4, where the choice of colors and graphics makes it very intuitive to understand.",
+      "waeknesses": "My only concern is on the fine-tuned motion control part. The task seems very similar to controlled motion generation. In that case, there is a body of literature in this subject, many of which uses diffusion models for controlled motion generation. The authors failed to include these methods and compare against them. Of course these methods have different data requirements, but they seem to achieve the same goal. I put a list of these methods below. I ask the authors to explain why they did not include these methods in their comparisons? I'm still happy with the paper and I think the authors could make a case while still including these works, but I would like to hear from the authors on these choices.\n\n- Jiaxi Jiang, Paul Streli, Huajian Qiu, Andreas Fender, Larissa Laich, Patrick Snape, and Christian Holz. Avatarposer: Articulated full-body pose tracking from sparse motion sensing. ECCV, 2022.\n- Du, Y., Kips, R., Pumarola, A., Starke, S., Thabet, A., & Sanakoyeu, A. (2023). Avatars grow legs: Generating smooth human motion from sparse tracking inputs with diffusion model. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 481-490).\n- Castillo, Angela, et al. \"BoDiffusion: Diffusing Sparse Observations for Full-Body Human Motion Synthesis.\"",
+      "questions": "See weaknesses"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "1. The paper presents compelling quantitative and qualitative results, setting a new state-of-the-art benchmark with a significant lead.\n\n2. This article broadens the scope of existing text-driven motion generation from three perspectives. The conclusions and experiments associated with these extensions are valuable contributions to the research community.\n\n3. The paper is well written, ensuring that its content is readily comprehensible to its readers.",
+      "waeknesses": "1. The authors should conduct a user study to quantitatively compare the visual results of TEACH with the proposed method for long sequence generation. Model parameters and inference speed should also be provided for a more comprehensive performance comparison between the two.\n\n2. Dual-person motion generation lacks comparative experiments, for example, with InterGen \\[1\\]. This paper introduces the InterHuman benchmark, a large-scale dataset for dual-person motion, and provides more comparative references in the article\n\n\\[1\\] Han Liang, et al. InterGen: Diffusion-based Multi-human Motion Generation under Complex Interactions",
+      "questions": "Please kindly refer to the weaknesses mentioned above."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The motivation of limited long sequence data, multi-person interaction and detailed control is valid and convincing.\n- The proposed method is sound and interesting. \n- The experiments are comprehensive and the results on all three tasks are very good especially for the qualitative results.",
+      "waeknesses": "- Despite the good results, technically, there are not much contributions. The main contribution is the way of using/finetuning a pre-trained motion diffusion model for three different tasks. However, in each of those tasks the adaptation is straightforward. They are either engineering ticks such as soft or hard masking or  the use of existing techniques such as the interpolation mechanism from Ho & Salimans, (2022).\n\n- The proposed ComMDM is constrained to two persons only. It is hard to scale to multiple persons.\n\n- It is also unclear how the DiffusionBlending can be used to blend more than 2 joints.",
+      "questions": "For the DiffusionBlending, is the interpolation applied to the final motion or the intermediate feature as the CommMDM?"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Uncertainty Quantification via Stable Distribution Propagation",
+  "keywords": [
+    "propagating distributions",
+    "uncertainty",
+    "uncertainties",
+    "aleatoric",
+    "epistemic",
+    "moment matching",
+    "total variation",
+    "sampling-free",
+    "deterministic",
+    "variational inference",
+    "propagation",
+    "probabilistic neural networks",
+    "variance propagation",
+    "Cauchy",
+    "Cauchy distribution",
+    "Gaussian",
+    "analytical",
+    "data uncertainty",
+    "alpha stable"
+  ],
+  "pdf_url": "/pdf/15a305fcc44fb161532065b647dc099ab1772f45.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The method proposed by the authors is simple and easy-to-use\n- Some elements of the presentation are polished, including the figures and the motivation\n- The method can be combined with other UQ approaches such as PNNs and thus improve the performance of a wide range of methods\n- The experimental results suggest that the method has the potential to improve the performance of existing approaches",
+      "waeknesses": "- I think some parts of the presentation can be further improved. In particular, while the methods section explains how to propagate uncertainties between layers, it would help to explain how the method is applied to an entire neural net, i.e., what is the recipe needed to go from the formulas in the methods section to getting uncertainties from a general neural network. Perhaps an algorithm float could be helpful for that. Perhaps pseudocode in the appendix would help. Right now, it requires the reader to think for themselves.\n- The theory only works for certain types of activations and distributions. This should be acknowledged and discussed a more clearly in the paper.\n- The computational considerations remain somewhat unclear to me. In the experiments section, training a resnet appears to take 30x longer. There a simpler mar-SDP method that is faster, but it is unclear to me where it is evaluated and what are the pros/cons of going between SDP and mar-SDP. Also, the methods section seems to suggest that computational cost is not a big concern (saying things like \"the Jacobian easy to compute\"), but it's not clear to me why that is the case, especially given the empirical results.\n- The experiments are on very simple datasets (UCI, MNIST). I wonder if the computational cost is something that makes it hard to test on bigger datasets.\n- The experimental results are not entirely convincing. On the UCI table, while directionally things look right, the numbers are often within error bars. The baselines are also not very convincing: in the UCI table, the MC method is known to not be very good in practice. There are probably stronger baselines such as deep ensembles (Lakshminarayanan et al., NeurIPS 2017), or post-hoc recalibration (Kuleshov et al., ICML 2018), or more recent methods for quantile estimation (Si et al, ICLR 2022). (Perhaps SDP can be combined with these methods)? The second experiment has even fewer baselines, and the table is missing error bars (although they seem to be in the figure).",
+      "questions": "- How is the method applied end-to-end to a neural net?\n- Can the authors provide a more detailed discussion of computational considerations?\n- What are the effects of assumptions on the distribution and the activation type?\n- How does the method compare to stronger baselines?\n- Can the method be combined with other UQ methods?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "* A novel method for an important problem of uncertainty quantification, and namely, via distribution propagation\n* The idea of local linearisation elegantly works for ReLU as a simple transform of mean and variance\n* Theoretical evaluation of the proposed method\n* Extensive evaluation from different angles including robustness to noise and adversarial attacks",
+      "waeknesses": "* Comparison to other models seems a bit limited. DVIA is only used in a toy example due its prohibited cost, Section 4.1 only has 2 baselines, none of which include, for example, Bayesian neural networks. \n* Presentation sometimes left me unclear what was intended to be said. For example, I didn't understand the setting of pairwise probability estimation for classification in Section 3.5\n\nSpecific comments:\n1.\tEnd of the first paragraph. PNN is not defined. \n2.\tSection 1. What is Y?\n3.\tRef 16 does not have authors\n4.\tI believe Section 2 is missing an important, one of the first works in the area. Hernández-Lobato, J.M. and Adams, R., 2015. Probabilistic backpropagation for scalable learning of Bayesian neural networks. In International conference on machine learning (pp. 1861-1869).\n5.\tTable 1. It is not very clear what marginal moment matching with several references means. Did the authors try all these references and report the best results among them?\n6.\tElaboration of the idea of pairwise probability of correct classification is required in Section 3.5\n7.\tSection 4.1. It would be good to have description of MPIW similar to PICP\n\n\nMinor:\n1.\tSection 3.4. End of the first paragraph. “wrt. the the” -> “wrt. the”",
+      "questions": "Could you please elaborate on learning with SDP for the classification case? I.e. on \"we propose computing the\npairwise probability of correct classification among all possible pairs in a one-vs-one setting\". What is the \"pairwaise probability of correct classification\"? How does one-vs-one setting works for multiclass classification problems?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- This a simple method that leads to improved performance in some settings.\n- Theorem 1 guarantees the simple formula propagating distributions is optimal in the total variation distance.",
+      "waeknesses": "- Theorem 1 has limited applicability. It may not even be applicable to some of the authors' own methods.\n    - As far as I can tell, Theorem 1 only works for univariate Gaussian distributions. Thus, this optimal approximation result does not apply to propagating the full covariance (including the SDP proposed in this paper).\n    - As a compromise for computation efficiency, Section 3.3 proposes linearizing the entire network, including the ReLU activation. The covariance of the output distribution is computed by simply multiplying the Jacobian on the input covariance. Thus, the optimal approximation result in Theorem 1 does not apply either.\n    - If the above are true, it is better to be upfront about it in the main text and state explicitly which method does Theorem 1 apply.\n- Some evaluation metrics are not easy to compare. For example, Table 3 reports the prediction interval coverage probability (PICP, the higher the better) and the mean prediction interval width (MPIW, the lower the better). Each method has different PICP and MPIW which makes it hard to distinguish which one is the best. Since the network outputs a probability distribution, it might be better to report the test log likelihood, which captures the prediction accuracy and the length of the prediction interval simultaneously in a single metric.",
+      "questions": "- Can this method be applied in randomized smoothing (e.g., Cohen et al. 2019) in adversarial robustness? Computing the output distribution in this paper is very similar to smoothing the input with random noise. I wonder if the technique can be used to speed up randomized smoothing, which currently uses Monte Carlo estimates."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper is well-structured and easy to follow.\n2. The set of experiments is quite diverse (however see Weaknesses section)\n3. The authors' focus on specific examples, like the propagation of Gaussian and Cauchy distributions, adds clarity to their explanations.\n4. The introduction of local linearization as an optimal approximation based on the total variation distance is a novel approach.\n5. The paper has a good balance between theoretical and practical sides, making it useful for both researchers and practitioners.",
+      "waeknesses": "My main concern is the small number of layers used in the tests. In practice, most times, we use networks with up to hundreds of layers, but this paper only used up to 6 layers. So, it's hard to know how well the method will work for bigger networks. Especially not clear, how accurate and reliable will be the propagation of covariance in the case of Gaussian.\n\n---\n\nThere are other concerns:\n\n\n- There are typos:\n1. The term \"PNN\" is used without explaining it first in the Introduction.\n2. On Page 5, the phrase \"the the\" is repeated by mistake.\n\n- Experiments:\n1. Table 2 used very small networks with only 4 layers. The biggest networks in the extra section have only 7 layers. This doesn't help us understand how the method works on big (practical) networks.\n2. There's no code provided.\n\n- References:\n[16] - No authors were mentioned in the paper.",
+      "questions": "1. How to choose the distribution which to propagate? \n2. Figure 3 -- which measure of uncertainty was used?"
+    },
+    {
+      "reviewer": "Official Reviewer 5",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The approach can be applied to pre-trained networks with various activation functions and scales reasonably,\nat least compared to common baselines. \n- It can propagate both Gaussian, as well as, Cauchy distributions (and other $\\alpha$-stable distributions)\n- It can also estimate full covariance matrices instead of having to rely on marginal independence approximations\n- The paper is well-written and explores a large range of experiments.",
+      "waeknesses": "- The experiments are diverse but still rely on rather shallow network architectures. A somewhat deeper model,\nResNet-18 is only used for a runtime comparison.\n\n\n### Minor\n- The theoretical part of the paper only discusses uncertainty in terms of input/output/predictive uncertainties,\nwhile in Section 4 suddenly the terms epistemic and aleatoric uncertainty appear without any prior introduction to them.\n- Section 1, first paragraph. The abbreviation PNN has not been introduced at that stage of the paper \n- UCI and Iris are never cited",
+      "questions": "- How are the Table 1 and Table 3 baselines tables to be read if they refer to multiple baselines?\n- How does the method perform with deeper networks? E.g., the ResNet-18 used in Sec4.3? It would be interesting to see \n(i) a comparison of this depth where SDP is still viable, and (ii) a deeper setup to which only marginal MM and marginal SDP."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Accelerated Convergence of Stochastic Heavy Ball Method under Anisotropic Gradient Noise",
+  "keywords": [
+    "optimization theory",
+    "convergence analysis",
+    "heavy-ball momentum",
+    "learning rate schedule",
+    "near-optimal convergence rate"
+  ],
+  "pdf_url": "/pdf/7183d88867c41da746f2fda76c76da8d8d070f8c.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The contrast between SGD and SHB does seem plausible. I checked the proof briefly and found no obvious mistakes.",
+      "waeknesses": "1. The upper bound of SHB seems very similar (and worse by a logarithmic factor) than the quadratic setting in [Can et al. (2019)](https://arxiv.org/pdf/1901.07445.pdf). I would suggest adding a detailed comparison. Also the convergence rate is sublinear, which is not very satisfactory.\n2. The batch size is required to be of order $\\Omega(1/\\epsilon)$, which does not seem realistic, as $\\epsilon$ is usually exponentially small.",
+      "questions": "My foremost concern is the comparison with previous literature, which I discussed in the `Weaknesses` part."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "This paper for the first time shows that in the anistorpic setting for the quadratic objective function, the stochastic HB method can achieve accelerated rate. This is a novel contribution.",
+      "waeknesses": "The paper should delve further into the circumstances under which the anisotropic setting is applicable to machine learning models. The content of Theorem 1 may seem redundant as its proof is not contingent on stochasticity; it essentially establishes a lower bound for gradient descent (GD), a well-known result. Therefore, its inclusion in the paper is somewhat unclear. It would be more appropriate to allocate space to discuss the technical innovations of the main theorem's proof within the main body of the paper. Additionally, there are several typographical errors in the proofs, including indexing, which should be rectified.",
+      "questions": "In the paper you mentioned that this rate achieved for the objective in the large enough batch regime. However the acceleration is oblivion to the mini-batch size. So I was wondering why you emphasise on this in the paper."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper is well-written and easy to follow. The motivation and main results are clearly presented, with enough intuition given after each result. The technical results seem solid and are supported by empirical evidence.",
+      "waeknesses": "There is still a gap between real-life SGD applications and the analysis. Most SGD applications are for nonconvex (even nonsmooth) problems, where Hessian may even not exist and the notion of condition number is uncommon.",
+      "questions": "1. Assumption 3 seems to suggest \"noise is small in the coordinates that result in ill-conditioning\". What do you think is the difficulty in extending it to commonly used assumptions (e.g., bounded variance)?\n2. In your first experiment, It seems that SGD performs worse when $M$ gets large. To me it feels that it is because your range of grid search for $\\eta_t$ is invariant for all batchsizes. I'm curious whether SGD performs better when you multiply the stepsize by $\\sqrt{M}$.\n3. Nonconvex models are actually used in the second experiment. Although the authors claim that the strongly convex quadratic optimization model approximates the landscape near local optimum, Figure 1 actually suggests that benefits of momentum are significant at the beginning of the training procedure. Could you elaborate more on this?\n4. Some recent researches show that even without decay of learning rate [1], momentum SGD also outperforms SGD using large batch size. What do you think might contribute to this phenomenon?\n5. I would suggest the authors remove (or delay to the end of the appendix) proofs for auxiliary results, most of which are well-known results. Some notations should be properly defined (such as $\\mathbf{X} \\succeq \\mathbf{Y}$ and Hessian norm $\\\\|\\cdot\\\\|_\\mathbf{H}$)\n\n**Minor typos and stylistic issues**\n\n1. Algorithm 1. Line 6\n\n   $m$ => $M$\n\n2. Experiment\n\n   initialize $\\mathbf{w}^0$ from $(-1,1) \\Rightarrow (-1,1)^d$.\n\n3. Proof of Lemma 3 \n\n   $\\succ$ should be $\\succeq$\n\n4. Page 29\n\n   genarality => generality\n\n**References**\n\n[1] Wang, R., Malladi, S., Wang, T., Lyu, K., & Li, Z. (2023). The marginal value of momentum for small learning rate sgd. *arXiv preprint arXiv:2307.15196*."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The paper is well-written, and proofs are neat and easy to follow. \n\nThe paper formally established a lower bound for SGD tailored for the scope of investigation, which served as a concrete comparison benchmark for SHB method.\n\nThe paper presents novel theoretical results of SHB for quadratic loss. The result implies $\\tilde{O}(\\sqrt{\\kappa})$ acceleration in comparison to SGD when batch size is big. The results is also nearly optimal in comparison to heavy ball method in deterministic setting. \n\nThe experiment results matches with the theoretical bound: acceleration guarantee with large batch size. The advantage of SHB with large batch size is also well-motivated in practice. \n\nThe analysis follows the classical bias variance decomposition paradigm. The novelty is to quantifying bias and variance with some linear operator, and then analyze the property of those linear operators.\n\nAlthough the scope of theoretical investigation is limited at quadratic loss with anisotropic gradient noise, the author justified the broad implication of such assumptions to real applications.",
+      "waeknesses": "Potential minor typos:\n\npg5: eqn 3.11: missing - sign before $\\beta$. (Same typo appears at pg 21 under the proof of Lemma 13 at two places)\n\npg6: Algorithm 1 line 6, batch size $M$ instead of $m$ being consistent \n\npg27: the equality applies (C.18) and (C.21): the last row of the matrix $2d$.\n\n\nEverything is rigorous, but the notation might be a bit overly complicated for what was actually being used in order to establish Theorem 2. For example: number of stages $n_{\\ell}$, the stage lengths $\\set{ k_1, \\cdots,  k_{n_{\\ell}} }$. Theorem 2 actually set all stages the same length, and each stage has the same learning rate.",
+      "questions": "No"
+    }
+  ]
+}
