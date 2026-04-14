@@ -1,0 +1,41 @@
+{
+  "title": "MgNO: Efficient Parameterization of Linear Operators via Multigrid",
+  "keywords": [
+    "neural operator; multigrid; universal approximation; boundary condition"
+  ],
+  "pdf_url": "/pdf/8121e48328244ea075cd2f4bbe107bf7651f88f6.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The paper is very clearly written, the ideas are solid and the numerics are strong. I like the spirit of an architecture where neurons become operators: this appears very natural and the right thing to do.\n\n- Using a multigrid (or in general multiscale) representation of operators is also the right thing to do. Similar ideas go back to efficient wavelet approximations of operators of Beylkin, Coifman, and Rokhlin. It is nice to see this done explicitly and clearly it yields strong performance.\n\n- The experiments are very well executed.",
+      "waeknesses": "- Many of the ideas might have already been present in MgNet; it would be nice to see a comment.\n\n- It is not clear to me what (9) is stating since you don't state the typical values of c. How should we use / interpret (9)?\n\n- The motivation via exact encoding of boundary conditions is sound but I would also say quite easy to implement with other neural operators. For example the FNO by default works on the torus but via zero padding could be easily adapted to Neumann or Dirichlet boundaries (though not as easily as MgNO).",
+      "questions": "- Why is there no comparison with FNO in Figure 7 (Helmholtz)? It might be nice to compare / combine with https://arxiv.org/pdf/2301.11509\n- The sentence \"Regarding our training setup, we adopted a meticulous approach.\" is strange."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The authors introduced a novel formulation for neural operators that characterizes neuron connections as bounded linear operators within function spaces. This eliminates the need for traditional lifting and projecting operators, simplifying the architecture.\n\n2. The MgNO architecture, which leverages multigrid structure and multi-channel convolutional form, efficiently parameterizes linear operators while accommodating various boundary conditions. This approach enhances both accuracy and efficiency.\n\n3. Empirical evaluations demonstrate superior performance of MgNO across multiple partial differential equations (PDEs), including Darcy, Helmholtz, and Navier-Stokes equations. This indicates the effectiveness and versatility of the proposed approach.",
+      "waeknesses": "The limitations and drawbacks of the proposed methods are not explicitly mentioned",
+      "questions": "1. The proposed method may not scale well to larger datasets or more complex problems. Any remark for this?\n\n2. Is it possible to extend the universal approximation theorem to encompass general Banach spaces for X and Y?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The neural operator proposed in this paper uses the multi-scale method to get a better parameterization of the weights. It is applied to the spatial domain hence it seems like it won't significantly increase the complexity. From the experimental results, MGNO works quite well compared to other models, which provides convincing evidence that MGNO can be useful.",
+      "waeknesses": "1. I am confused about the discretization of the input. It seems like the input still needs to be discretized (Eq.(6)) and the multigrid is applied to the spatial domain. Then I suppose the performance and the efficiency of MGNO are affected by the mesh size $h=1/d$. The performance of MGNO with respect to $d$ is missing in the paper.\n\n2. What about the parameterization with multi-channel inputs? Can this V-cycle be applied to multi-channel inputs? If there is no easy extension, I believe the significance of this work is compromised.",
+      "questions": "1. What is the dependence of $n$ with $\\epsilon$ in Theorem 3.1?\n2. Why are the approximation capabilities so important? It might be a necessary condition for neural operators to learn but is definitely not sufficient. In my understanding, FNO is good at working with different resolutions which probably is not caused by its approximation capability."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper provides novel insights and novel methodology of neural operators.\nThe numerical results on different popular PDEs with various boundary conditions look compelling.",
+      "waeknesses": "I do not see particular weakness for this paper. See below for some comments.",
+      "questions": "I do not have specific questions but the following general comments for the authors:\n\n1. just being curious, can something similar to Theorem 3.1 be said about deep networks as defined in Section 3.2? How the network depth may play a role here?\n2. it would be helpful to discuss also the limitation of the proposed approach."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Towards Understanding Factual Knowledge of Large Language Models",
+  "keywords": [
+    "Large Language Models",
+    "Resource and Evaluation",
+    "Interpretability",
+    "NLP Application"
+  ],
+  "pdf_url": "/pdf/025c1d2beaec72d3724b68ca610dd61083362fdc.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- This paper investigates factual knowledge in LLMs, which is a well-motivated problem.\n- A comprehensive benchmark covering different aspects of factual knowledge is proposed, particularly suitable for prompting.",
+      "waeknesses": "Dataset Design: _“...multi-choice questions are a simple but good proxy to evaluate the potential of advanced abilities of LLMs…”_: I think this claim should be supported by prior work. I tend to disagree with this statement as Chen and Durrett (2019) concludes that, for some datasets, multiple-choice questions could be easily gamed (i.e., spurious correlations between questions and labels).  Link: https://arxiv.org/pdf/1904.12106.pdf\n\nA significant number of related papers have not been cited. There are numerous strands of prior work that investigate the factual knowledge and reasoning abilities of large language models (LLMs), including multi-hop reasoning, temporal and geographical questions, new entities, and complex inference. (I’m listing a few of them here)\n- Did Aristotle Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies (https://arxiv.org/abs/2101.02235) \n- SituatedQA: Incorporating Extra-Linguistic Contexts into QA (https://arxiv.org/abs/2109.06157)\n- A Dataset for Answering Time-Sensitive Questions (https://arxiv.org/abs/2108.06314)\n- Entity Cloze By Date: What LMs Know About Unseen Entities (https://arxiv.org/abs/2205.02832)\n- RealTime QA: What's the Answer Right Now? (https://arxiv.org/abs/2207.13332)\n- StreamingQA: A Benchmark for Adaptation to New Knowledge over Time in Question Answering Models (https://arxiv.org/abs/2205.11388)\n- Can LMs Learn New Entities from Descriptions? Challenges in Propagating Injected Knowledge (https://arxiv.org/abs/2305.01651)\n- FreshLLMs: Refreshing Large Language Models with Search Engine Augmentation (https://arxiv.org/abs/2310.03214)",
+      "questions": "- _“...but in Pinocchio, we only need to judge the factuality of the question.”_ Does this mean all supporting facts are not included in the questions?\n\nMinor:\n- The terms “Multifaceted” and “multifacted” are used interchangeably. Is this a typo?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. An annotated dataset of 20k that can evaluate factuality of large language models.\n2. Work is presented well with experiments and conclusions.",
+      "waeknesses": "1. Data is derived from existing datasets but the motivation for transformation is not clearly specified\n2. Most conclusions of the experiments are already made in isolation prior to this work. The novelty in experiments and conclusion should be well specified.",
+      "questions": "Already in the summary"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "Identifying the drawbacks of LLMs in terms of the learned factual knowledge is important. The proposed benchmark contains questions from different aspects, which could encourage researchers to find the specific issues of LLMs and explore how to address them.",
+      "waeknesses": "1. Data leaky may happen. Note that the questions and answers are annotated based on the text of previous public datasets. The pretraining data of evaluated LLMs is likely to contain the text. This may cause data leaky, and LLMs might have memorized/learned shortcuts to answer the question. It makes the evaluation results on the benchmark less convincing.\n\n2. Overclaimed contribution (as well as title) to the research question. I think the main contribution of this paper is the newly proposed benchmark. In the experiment, the authors research the extent and scope of factual knowledge within LLMs. However, the authors only test LLMs on the benchmark. There are no baselines (LLMs, datasets) as a comparison. Only showing accuracy numbers is not sufficient to give the answer to this research question.",
+      "questions": "1. May I ask how you design the seven aspects for evaluation? Any high-level intuition?\n\n2. Can 92.4% annotation accuracy (as well as 85.6% inter-annotator agreement rate) promise the quality of the dataset? Does that mean when the test accuracy of LLMs is larger than ~= 85%, it's meaningless to use this benchmark for evaluation?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "This work presented a comprehensive benchmark for testing LLMs' factual and commonsense knowledge.\n\nThis work annotated 20K factual questions from seven diverse tasks, which provides a good testbed for the community.\n\nThe analyses presented are solid and insightful.",
+      "waeknesses": "~Actually, I am satisfied the most part of this paper and willing to raise my score if the author can cover the following points:~\n\nSome points in the main results could be verified through better experiment settings, such as the point that \"LLMs without instruction tuning underperform those with instruction tuning by 16.0%\". It's better to conduct a peer-to-peer comparison since the instruction tuning is not the only factor of the two groups. For example, we can compare LLaMA with Alpaca and Vicuna, OPT vs. OPT-IML, T5 vs. Flan-T5, BLOOM vs. BLOOMz. I am not saying that we need to compare all of them, but the comparison could be made between the instruction tuning model and its backbone. \n\nFor the \"Using the CoT method, we observed a relative boost in performance in LLMs subjected to\ninstruction tuning and RLHF\", the tested models may not have strong CoT ability. It's good to see LLaMA-2 or GPT-4 and other recent models that claim to have strong reasoning abilities. Since CoT is not a generic ability that every LLM has. \n\nBesides, you can include an additional metric to report the cases that LLMs failed to generate meaningful answers. Since LLM may refuse to answer according to security or other customized policies, treating all unanswered questions as wrong predictions may be unfair. \n\nSec-4.2 could be improved, especially the discussion around temporal analysis, \" GPT-3.5-Turbo exhibits superior performance when dealing with outdated data as compared to updated data.\", I think the numbers are close, and it may not be sufficient to support the claim. \n\nThere are some missing references for testing LLM's factuality. \n\nSelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models\nFActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\nFacTool: Factuality Detection in Generative AI -- A Tool Augmented Framework for Multi-Task and Multi-Domain Scenarios",
+      "questions": "See weaknesses"
+    }
+  ]
+}

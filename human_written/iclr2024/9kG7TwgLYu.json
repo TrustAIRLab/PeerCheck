@@ -1,0 +1,38 @@
+{
+  "title": "Time Fairness in Online Knapsack Problems",
+  "keywords": [
+    "fairness",
+    "online knapsack",
+    "learning-augmented algorithm",
+    "Pareto-optimality",
+    "robustness",
+    "consistency"
+  ],
+  "pdf_url": "/pdf/96c76f2e0833b9eeebe37122dd2b06a8a07f42b1.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "Originality: Online knapsack is well studied, but this paper is the first to study the fairness aspect of the problem under adversarial sequences.\n\nResult Quality: The investigation is thorough. The authors combine ideas from mathematics, economics, and experimentation effectively to produce nice theoretical contributions that are driven farther and validated by experimentation.  \n\nWriting Quality / Clarity: I am a non-expert in this field. I found the paper well-written. I was especially pleased with the clear introduction.\n\nSignificance: The result is a good quality contribution for ICLR.",
+      "waeknesses": "Originality:  If I understand correctly, there are previous papers that study fairness in OKP when the sequence is not adversarial. Not necessarily a weakness of this paper, but an observation that is relevant about the originality of the study.\n\nSignificance: Like most papers at ICLR, this paper is probably of interest to a small subcommunity at the conference. I believe this is true of most papers at the conference, so it is not a negative comment towards a paper.",
+      "questions": "Are there any Pareto-optimality claims to be made about the learning-augmented algorithms that you describe in the later part of the paper?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1.The studied problem is generally well-motivated, i.e., it aims to include the fairness constraint to the online knapsack problem. The motivation is clear, although I think the example given in the paper is not convincing. See the weakness below.\n2.The paper is solidly technical. Although the basic idea of the algorithm comes from the classical threshold algorithm of OKP, the proposed algorithm contains sufficient new ideas and analysis.\n3.The results included in the paper are rich. The authors provide a lower bound for the studied problem. In addition, the authors show that randomness can further improve the ratio. Furthermore, the learning-augmented algorithm is also considered in the paper.",
+      "waeknesses": "1.The main weakness is that the motivation of the definition of \\alpha-CTIF is not clear. I agree that \\alpha-CTIF is a well-defined definition. I have taken a quick look at the proof of Theorem 4.3, and I also understand that such a definition plays an important role in the analysis. But the practical meaning of such a relaxation is not clear. For example, when \\alpha=0 or epsilon, what does \\alpha-CTIF stand for? This part is important since the main purpose of the work is to make the OKP’s algorithm fair. Thus, finding a suitable fairness notion is critical.\n2.It seems that the authors try to claim that fairness is important in the online knapsack problem by Example 1.1. But Example 1.1 is just a typical example of the online knapsack problem, and it does not reflect the importance of fairness. One may need to find another example to convince people about the importance of fairness.",
+      "questions": "Please see weakness above."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper is well written and the results are technically sound. The notion of alpha-CTIF is new. In the deterministic case, both a lower bound on the achievable competitive ratio and an alpha-CTIF online deterministic algorithm achieving this lower bound are given.",
+      "waeknesses": "1. The definition of alpha-CTIF does not come naturally to me. Since this definition is new, I would appreciate more motivation behind its use.\n2. Numerical experiments are conducted on a limited number of instances, and therefore not very informative.",
+      "questions": "The authors mention that the notion of alpha-CTIF can be potentially adaptable to other online problems. How should one genearlize this notion to other problems? Can they give some examples?"
+    }
+  ]
+}
