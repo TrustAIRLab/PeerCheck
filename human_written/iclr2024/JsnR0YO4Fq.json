@@ -1,0 +1,48 @@
+{
+  "title": "Exploring Weight Balancing on Long-Tailed Recognition Problem",
+  "keywords": [
+    "long-tailed recognition",
+    "imbalanced learning",
+    "weight decay",
+    "regularization",
+    "neural collapse",
+    "simplex ETF",
+    "machine learning",
+    "learning theory"
+  ],
+  "pdf_url": "/pdf/3ae2b38ba7dd01bddd55e50e50c6dd2c31ef5330.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The problem of imbalanced classification is undeniably a highly practical and crucial research issue in the field of machine learning.\n2. The authors provided an analysis of weight balancing to a certain extent and offered insightful perspectives on the topic.",
+      "waeknesses": "1. This paper appears to resemble an appendix on Weight Balancing to some extent and the technical innovation is rather limited.\n2. Given that Weight Balancing is not the best-performing method in the field of imbalanced learning, the significance of this paper in the field remains debatable.\n3. Considering that Weight Balancing involves implicit constraints at the parameter level (compared to direct correction in other long-tail classification methods), its extension to address broader distribution shift issues should hold greater value.\n4. Sec 5.1\"the second stage of WB is equivalent to multiplicative LA\". Why not just use explicit LA?\n\n\nupdate: After reading the authors' response and other reviewers' comments, I would like to increase my score to weak accept.",
+      "questions": "See above"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The problem formulation is well motivated and sensible. Developing a theory for weight balancing in LTR has been under-researched in the literature. This work makes a timely contribution to this important topic.\n2. The technical contributions in Sec. 4 and 5 are solid. Both theorems 1 and 2 are well presented and their rigorous proof have been included in the Appendix. The generalized result of Theorem 2 (Theorem 3 in Appendix) is commendable. \n3. In addition to the theoretical analysis, this paper also reported extensive experimental results as supporting evidence. Those figures and tables have greatly facilitated the understanding of the underlying theory.",
+      "waeknesses": "1. The difference between weight balancing (WB) and weight decay (WD) needs to be make clearer. Sec. 3 only reviews WB and overlooks WD. Historically, WD was proposed much earlier than WB. It will be a good idea to include some review of WD in Sec. 3, I think. Note that WD is already present in Table 1 on page 4 (right after Sec. 3).\n2. For those who are less familiar with two-stage training of LTR, it might be a good idea to include a concise review of two-stage training methods in the Appendix. Note that CVPR2022 and ICLR2020 have different formulation of two-stage training. Please clarify that the model analyzed in this paper is based on the CVPR2022 work even though it cited the ICLR2020 as the original source of two-stage training.\n3. There are many acronyms in this paper. It might be a good idea to provide a table summarizing them in the Appendix A.1 (Notation and Acronym).",
+      "questions": "1. What do blue and red colors in Table 4 and Table 9 highlight? Some explanations can be added to the caption of those tables. \n2. Table 1 includes experimental results for WD without and with fixed batch normalization (BN). Any plausible explanation for these results? Why does BN further improve the performance of WD?\n3. In Table 5, the accuracy performance of LA (N/A) is noticeably higher than add/mult for the category of \"many\". Why does LA only work for the Medium and Few classes?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. This paper provides an in-depth analysis of the reasons behind the success of WD in long-tail scenarios, demonstrating thoughtful insights. From the perspective of neural collapse and the cone effect, it explains the WD well.\n2. This paper has a well-organized structure which makes it easy for readers to understand the research.\n3. Extensive experimental results confirm the validity of the analysis.",
+      "waeknesses": "1. The paper only discusses the related work of NC and WD but the related work of the long-tail is also necessary.\n2. Some concerns which I will mention in the following section.",
+      "questions": "1. What's the meaning of O in Eq.3 and could the author explain more about Theorem 2?\n2. Could the author explain why the WD&FR&ETF performs worse than the WD&ETF on the ImageNet-LT dataset in Table 13? And are there any experiments conducted on large-scale datasets, such as iNaturalist 2018?\n3. Existing long-tail solutions often rely on expert systems to improve the performance of tail classes, such as RIDE[1] and SADE[2]. Is the proposed method in this paper compatible with them?\n\n[1] Wang, Xudong, et al. \"Long-tailed recognition by routing diverse distribution-aware experts.\" arXiv preprint arXiv:2010.01809 (2020).\n[2] Zhang, Yifan, et al. \"Test-agnostic long-tailed recognition by test-time aggregating diverse experts with self-supervision.\" arXiv e-prints (2021): arXiv-2107."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. As an experimental and analytical paper, the logical flow of the entire article is smooth, providing a good reading experience.\n2. Weight Decay, as a simple yet effective model, is thoroughly explained in this paper with targeted explorations and explanations at each step. The argumentation is well-grounded and convincing.\n3. The feasibility of single-stage training is explored based on the analysis of the original method, which represents a certain breakthrough.",
+      "waeknesses": "1. The analysis solely based on one particular model method has certain limitations, as it lacks consideration of other methods. Exploring why Weight Decay performs exceptionally well indeed raises a thought-provoking question in the long-tail domain. However, the favorable properties of Weight Decay have already been extensively explored in balancing datasets, and its effectiveness can be considered widely recognized.",
+      "questions": "1. Besides the analysis metrics mentioned in the paper, what other commonly used metrics exist? Why was the choice of metrics in the paper considered?\n2. If we consider balanced datasets, the analysis in the paper can still hold true. The only difference lies in the performance based on the sota models. What distinguishes this type of analysis from conventional methods when dealing with long-tailed data distributions? What are the innovative aspects of this paper?"
+    }
+  ]
+}

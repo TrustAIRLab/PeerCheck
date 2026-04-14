@@ -1,0 +1,40 @@
+{
+  "title": "Davidsonian Scene Graph: Improving Reliability in Fine-grained Evaluation for Text-to-Image Generation",
+  "keywords": [
+    "text-to-image generation",
+    "text-to-image evaluation",
+    "Davidsonian semantics",
+    "large language models",
+    "scene graphs",
+    "visual question answering",
+    "question generation",
+    "benchmark"
+  ],
+  "pdf_url": "/pdf/713250bdf458c9b54444d2bf78bfd594a06adead.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "This paper introduces Davidsonian Scene Graph (DSG) to improve the faithfulness of the text-to-image evaluation. Compared to previous QG/A methods, this framework generates  atomic questions with full semantic coverage and valid question dependency. The authors implement QG step as a Directed Acyclic Graph (DAG) where the nodes represent the unique questions and they explicitly model semantic dependencies with directed edges. Additionally, they collect a fine-grained human-annotated benchmark called DSG-1k including 1,060 diverse prompts with a balanced distribution to facilitate research in this area.",
+      "waeknesses": "1.\tThis paper improves the existing QG/A methods with Davidsonian Scene graph, which is generated based on LLMs. The approach of the work could be enriched with more details and techniques. \n\n2.\tAblation on separate steps of DSG should be presented. For example, without establishing dependencies, measure the changes of consistency between VQA score and the human 1-5 Likert Scores.\n\n3.\tApart from TIFA and VQ2A, more methods could be compared, including CLIPScore and caption based approaches.",
+      "questions": "1.\tIn 4.1, to validate the question dependencies, authors evaluate manually on 30 samples and automatically on the full TIFA160. However, the consistency of manual and automatic evaluation is not presented.\n\n2.\tThe comparison of runtime among different methods should be added. \n\n3.\tIn table 3, for Instruct-BLIP, the Spearman’s ρ of DSG is lower than that of TIFA, authors should explain this phenomenon briefly."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper has strong motivation. It first analyses the drawbacks of previous QG/A methods, then proposes some principles for the generated questions, and lastly introduces a three-step prompting method to resolve it.\n\nThe experimental results are strong enough to support the effectiveness of the proposed method in the proposed uniqueness, valid dependency, and human alignment.\n\nThe paper is well-written, and the related work is sufficient.",
+      "waeknesses": "The VQA model is not good enough and hinders the final alignment to humans in T2I evaluation.",
+      "questions": "Can a better VQA model lead to better alignment in Tables 3, 4, and 6?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "* This work reveals the issues of existing QG/A methods in terms of the QG step, which is well-motivated and the proposed four desired properties of QG are reasonable.\n* The experiments demonstrate that the proposed DSG achieves solid improvement over existing QG/A frameworks in terms of correlation with human evaluation, which advances the reliability of automatic T2I alignment evaluation.\n* This work is transparent about its limitations, shedding light on directions for future studies to work on.\n* The paper is well-written and easy to follow.",
+      "waeknesses": "### The design of DSG and DSG-1k\n* It is not well-explained which part of DSG is designed to address the **Atomic Question** and **Full Semantic Coverage** properties. Why the QG methods of TIFA and VQ^A cannot achieve these two properties?\n* Some categories are under-represented in the DSG-1k dataset. According to Table 9, six categories have less than 30 examples and VQA-Human correlation is not computed for these categories.\n\n### Evaluation\n* There is no ablation study showing which design choice in DSG contributes to each of the four properties.\n* It is unclear whether DSG correlates better with humans, compared with TIFA and VQ^A, in each fine-grained category.\n* The relationship between the claimed desired question properties and the final VQA-Human correlation is not well demonstrated. In other words, the relationship between Precision/Recall/Atomicity/Uniqueness in Table 2 and Spearman/Kendall correlation in Table 3 is unclear.\n* There is no comparison with TIFA and VQ^2A in terms of precision and recall in Table 2.",
+      "questions": "* It is stated on page 4 that DSG only involve binary yes/no questions. Why are there multi-choice questions in the human annotation UI in Figure 10?"
+    }
+  ]
+}

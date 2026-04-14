@@ -1,0 +1,33 @@
+{
+  "title": "COPlanner: Plan to Roll Out Conservatively but to Explore Optimistically for Model-Based RL",
+  "keywords": [
+    "Model-based RL; Model-predictive control; Model rollouts; Model error"
+  ],
+  "pdf_url": "/pdf/ab26bab3b3100a3584256214927a1fa490451162.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "This paper is easy to follow and the proposed approach is also simple and flexible to use on existing model based RL methods. The authors have done extensive experiments and ablations to show their strengths in sample efficiency and model performance. I think the part of the success of this paper attributes to the good uncertainty estimation.",
+      "waeknesses": "The good uncertainty estimation comes with the cost of extra computation, in Appendix D.6, there is an above 20\\% increase for MBPO variant and around 40\\% increase for the DreamerV3 variant. The test time comparison should also be discussed.",
+      "questions": "Where do the authors see the main factor for the extra computation cost?  Is it the uncertainty calculation for all action candidates through the ensemble of dynamic models?\n\nWhat options is available for trading off computation cost for uncertainty estimation performance?\n\nIn Figure 7, while the proposed method reached lower loss, this does not imply that the method achieved better exploration, which the authors claim in related work section, how can this be demonstrated?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The paper is easy to understand.\n2. The idea of using the variance over predicted states of the ensemble members to approximate the model uncertainty either penalty or reward seems interesting to me.\n3. The proposed framework outperforms baselines in almost all experiments.",
+      "waeknesses": "1. Lack of comparisons to some framework.  In section 3.2, the paper mentions some previous methods to estimate uncertainty samples after generations or to decrease model error by re-weighting or discarding samples with high uncertainty. This should require a comparison to demonstrate using variance through model ensemble.\n2. Lack of visualization of experiments. The results are all basically tables, line plots.",
+      "questions": "1. It's still not quite clearly to me how Conservative rate and Optimistic rate are selected. What's the intuition here about why they are always different than each other in every experiment settings? Are they selected according to Action candidate number, and Planning horizon as well?\n2. Following the weakness, experiments for comparison and more visualizations are necessary."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "-\tIncreasing learning efficiency of model-based reinforcement learning agents is an important research direction, particularly in light of hardware deployment under costly data generation\n-\tCombining optimistic exploration of uncertain high-reward behaviors with conservative model rollouts to improve information quality of samples is a very promising research direction\n-\tMPC-style action selection provides several benefits over direct policy evaluation\n- The approach is evaluated against several baseline agents on OpenAI Gym as well as DeepMind Control Suite environments, with both proprioceptive and visual tasks for the latter",
+      "waeknesses": "-\tGenerally, the paper would benefit from a stronger selection of established baselines. E.g., for proprioceptive DMC model-free MPO/DMPO/D4PG or model-based DreamerV3, for visual DMC DrQ-v2 as a model-free baseline\n-\tThe visual control experiments should be run for more than 1M steps as agents have not converged on the Acrobot/Finger/Quadruped tasks. Comparing with Dreamer-v1 Figure 10, agents would be expected to converge and solve the tasks at approximately 2M steps.\n-\tThe Dreamer-v2 scores in Figure 9 appear to be significantly lower than the ones provided by the original authors on GitHub – which Dreamer implementation was used to obtain these scores?\n-\tThe task selection for proprioceptive DMC consists of relatively easy tasks and some of the “MuJoCo”/Gym tasks have not been run to convergence\n-\tThe hyperparameter study in Appendix D.4 is interesting, but should be extended to more environments to observe clearer trends\n-\tSome highly related work is missing. E.g., the optimistic exploration of uncertain future returns for visual control has previously been investigated in [1], also building on the Dreamer-v2 agent, while optimistic finite-horizon exploration under nominal reward functions was studied in [2]. Additionally, work such as POLO [3] would be relevant.\n\n[1] T. Seyde, et al. \"Learning to plan optimistically: Uncertainty-guided deep exploration via latent model ensembles,\" CoRL 2021.\n\n[2] P. Ball, et al. \"Ready policy one: World building through active learning,\" ICML 2020.\n\n[3] K Lowrey, et al.  \"Plan online, learn offline: Efficient learning and exploration via model-based control,\" ICLR 2019.\n\n\nMinor:\n\n-\tThe DMC tasks are MuJoCo-based, so “MuJoCo” task description should be replaced by “Gym”",
+      "questions": "-\tAction selection by optimizing over a 5-step rollout without terminal value function is surprising. Do you have intuition for why this short-term reasoning is sufficient? \n-\tThe original Dreamer-v3 paper also evaluated on proprioceptive DMC environments - why not use Dreamer-v3 as a proprioceptive baseline as well?\n-\tThere are several task-specific parameter choices for proprioceptive control. How impactful are these? Ideally a single set of hyperparameters would be used throughout."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Epitopological learning and Cannistraci-Hebb network shape intelligence brain-inspired theory for ultra-sparse advantage in deep learning",
+  "keywords": [
+    "Sparse Training",
+    "Network Science",
+    "Epitopological Learning",
+    "Network Automata",
+    "Network Percolation",
+    "Hyperbolic Network"
+  ],
+  "pdf_url": "/pdf/412cf94f4a0ac5183d635f2cd88565c0004ca7d6.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "Originality: I am not very familiar with the literature in this community, but from what I can tell the authors cite existing literature well and distinguish their approach adequately from other methods in the field.\nQuality: the paper is well written, and the empirical results are well done: they are thorough, include meaningful baselines, and cover a nice variety of datasets.\nClarity: the paper was well written\nSignificance: I am not familiar enough with this sub-field to judge, but given the result, this appears to be a solid step in the right direction, and is likely relevant to the subcommunity.",
+      "waeknesses": "While I understand the space constraints, having something like Table1 or Table2 in the main text (maybe in reduced form) would be nice.",
+      "questions": "No questions"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper is well-written and all the methodological details are described clearly.\n2. CHT is a new 4-step training methodology for deep learning that uses ESML to learn ANNs with ultra-sparse hyperbolic topology.\n3. CHT has been shown to surpass fully connected networks on VGG16 and ResNet50.\n4. CHT could be used in a wide range of real-world applications, such as image classification, natural language processing, speech recognition, recommender systems, and medical diagnosis.",
+      "waeknesses": "1. For the node structure, this paper only compares CHT with fully connected graph, the author should take other graph structure into consideration, like ER, BA, WS graph. \n2. Compared with SOTA models, the performance of CHT is not competitive.",
+      "questions": "1. What's the inspiration of current architecture? \n2. Did you do extra experience on other graph structure? \n3. In Table 2 on page15. Why some accuracy result is not the best but still highlighted?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The paper is praised for its density and detail.\n- The methods employed in the paper bring unique perspectives to sparse training.\n- The paper is commended for conducting various experiments, with promising results.\n- The inclusion of detailed experiment descriptions is noted as a positive aspect, providing transparency and allowing readers to understand the methodology.\n- The inclusion of visual illustrations is a positive aspect, aiding in the comprehension of dense presentation.",
+      "waeknesses": "- Simplifying the language could enhance accessibility to a wider audience.\n- Some results lack standard deviation reporting, raising questions about the reliability and robustness of those specific findings.\n- Addressing the legibility issue by enlarging text within figures would enhance the overall effectiveness of these visuals.",
+      "questions": "The proposed method appears effective in scenarios where neural networks are overparameterized. Does it maintain its efficacy when applied to non-overparameterized neural networks characterized by limited depth and width? Particularly, how does it perform in relation to a large dataset?"
+    }
+  ]
+}

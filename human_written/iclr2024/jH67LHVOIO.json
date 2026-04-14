@@ -1,0 +1,35 @@
+{
+  "title": "LitCab: Lightweight Language Model Calibration over Short- and Long-form Responses",
+  "keywords": [
+    "calibration",
+    "hallucination",
+    "large language model"
+  ],
+  "pdf_url": "/pdf/060aede7175d70a3fe37974ccb7cb976fcfa6486.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- Originality: The authors propose LITCAB, a lightweight calibration mechanism that only adds and trains a single linear layer on top of the LLMs12. The authors also construct CAT, a new benchmark for evaluating calibration across different answer lengths.\n- Quality: The paper compares several baselines of calibration on datasets of different output length - phrase, sentence, and paragraph.\n- Clarity: The paper is easy to follow and understand.\n- Significance: The paper addresses the calibration problem for LLM and improves upon SOTA open-sourced LLMs on open-ended QA tasks.",
+      "waeknesses": "- It is not clear to me how to select the incorrect answers. This could be important as different selection strategies may affect the performance of the final model.\n- It is not clear why adding a linear layer on the last hidden state is the best option. Other options include LoRA or prefix tunning, which also only requires a fraction of parameters to tune. More evaluation results should be presented to justify the model choice of LITCAB.",
+      "questions": "- How did you select/generate incorrect answers for the QA tasks?\n- The confidence of a sentence is the geometric mean of all its tokens. However, different tokens contribute differently to semantics. For instance, think about \"The 2023 Oscar best actress is Michelle Yeoh\" as the answer to \"Who wins the 2023 Oscar best actress?\". Only the last two tokens decide the correctness of the sentence. How did you handle the different importance of tokens?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "* A lightweight alternative to supervised model calibration is important given that our models are increasing in size.\n\n* Calibration benchmarks for long-form responses have not yet been introduced before.",
+      "waeknesses": "* Presentation-wise, parts of the paper have coherence issues because it is convoluted with two different ideas that are not properly tied up together. The paper starts to be read as having Litcab as the major contribution and curating the CaT benchmark, a minor contribution, to evaluate Litcab. However, the final page (Section 6.6 and Table 3) is dedicated to using CaT to benchmark how well-calibrated the LLMs are. Litcab is not used in this section, which makes it somewhat irrelevant to answering the main hypothesis of the paper.\n\n* The CaT benchmark has two major shortcomings. Firstly, the motivation for creating CaT is to be able to evaluate calibration for long-form responses. However, CaT consists of five datasets with short-form responses and only one with long-form responses. There are a couple of datasets that could have been included, such as ELI5, WebGPT, ASQA, and QAMPARI (which is not passage-level but contains multiple claims). Secondly, it is important for a proposed benchmark to have both proposed (a) baselines and (b) evaluation metrics. However, the proposed baselines could not be evaluated in all cases (specifically passage-level) using their metrics. This makes it difficult to assess the calibration capability of Litcab at the passage level.\n\n* I think it would help the paper if there were extrinsic evaluations to support Litcab's usage in a real-world task setup. Self-consistency is now commonly used because the original paper showed promising results on arithmetic and commonsense reasoning benchmarks. How would the use of Litcab fare on those datasets?\n\n* The paper mentions that Litcab has the \"advantage of requiring a reduced number of data samples for training, leading to enhanced computational and data efficiency\". There is no evidence shown in the paper that supports this statement.",
+      "questions": "* How would the use of Litcab fare on arithmetic and commonsense reasoning benchmarks?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The model calibration is highly meaningful, especially for nowadays LLMs, and the proposed method can be used for most of the open-source models.\n\n2. The proposed method is simple yet effective, although it needs some training examples collected by ChatGPT and GPT-4.\n\n3. The collected datasets CAT can also be useful for evaluating the methods for LLMs calibration.",
+      "waeknesses": "1. The paper lacks discussion and comparison of some related works [1][2].\n\n- [1] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model. arXiv 2023.\n\n- [2] Eliciting Latent Predictions from Transformers with the Tuned Lens. arXiv 2023.\n\n2. There are still some efficient fine-tuning methods (e.g. LoRA) that can leverage additional training data, but the paper lacks results compared with such methods.",
+      "questions": "1. It appears that your method involves using GPT-4 to generate training data, which has also been widely used in recent research. Does this introduce potential unfairness in the comparison? If the training data cannot be generated using GPT-4 or if its quality is poor, would the method still be effective?\n\n2. The proposed method seems to have minimal differences compared to the original LM, and the experimental results also indicate that the original LM performs not very badly. Therefore, what are the main advantages of the proposed method? How does it improve LLMs qualitatively or quantitatively?\n\n3. Why do you use different thresholds (e.g., cov@50, cov@90, cov@60) for different datasets?"
+    }
+  ]
+}
