@@ -1,0 +1,35 @@
+{
+  "title": "From Pixels to Tokens: Byte-Pair Encoding on Quantized Visual Modalities",
+  "keywords": [
+    "Multimodal Large Language Models",
+    "Image Tokenizer",
+    "Token Merge"
+  ],
+  "pdf_url": "/pdf/7a64a8fb9eb1f07506754061b4099285330f19a1.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. From the results shown to us, there is some improvement.\n2. Experiment settings are clear",
+      "waeknesses": "1. Performance is poor compared to any CLIP style or even DINO style MLLM as the visual encoder.\n2. There is no projector in the experiments. This could be an extreme unfair setting compared to classical pipeline.\n3. I do not think proofs are helpful to understand what is going on in the experiments.",
+      "questions": "1. Why is there a 0.99 in L770 and L253? Is this made up?\n2. For Figure 2 (b) (c), all settings converge after ~150 iterations. I don't think they make any difference.\n3. Why vocabulary changes from 8k-> 16k, there is a performance drop? I can not find any evidence in the proof that can demonstrate this point.\n4. The proposed BPE is very similar to super pixel or clustering algorithm. Authors should discuss the difference and compare the performance. \n5. In table 5.1, authors can add another classical setting: During SFT, visual encoder is frozen."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. This BPE image tokenization approach is novel and that potentially help the transformer better understand alignment between text and image with a semantic image token.\n2. There is a theoretical analysis on how BPE tokenize benefits transformers learning in Section 3.\n3. The scaling of BPE is reflected in that the model improves when adding larger scale of data such as ShareGPT4, etc.",
+      "waeknesses": "1. The experimental evidences are kind of weak. First, it's far behind current MLLMs SOTA on public benchmarks. For example, the best presented number of proposed model is LLM+VQ+BPE with Additional scaling (SFT) , which achieves 60.6 on VQAv2, 44.0 on MMBench, and 48.2 on VizWiz, which is far behind similar size 7B LLaMA-based MLLMs.\n2. Second, the ablation is not sufficient to show the benefit of BPE image tokenizer. Only one Table results compare LLM+VQ and LLM+VQ+BPE. The details of these two models are not illustrated, e.g., what is exactly implemented for LLM+VQ.",
+      "questions": "1. The LLM+VQ+BPE is also supervised finetuned on LLaVA-One-Vision, etc data, however, is far behind LLaVA-OneVision and other models that trained on these data. Then what's the benefit of this VQ+BPE compared with previous MLLM practices?\n2. Is this VQ+BPE applied to other LLM beyond LLaMA-3.1-8B and get similar observations?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1.This paper creatively adapts byte-pair encoding (BPE) for images, aiming to make visual data work more seamlessly with text in multimodal models.\n\n2.The approach integrates structural information directly into image tokens, which could help models better understand and align visuals with text, showing solid potential in cross-modal tasks.",
+      "waeknesses": "1.Theoretical framework has several notable limitations:\n  1.1Lack of Multimodal Fusion Analysis: The paper’s theoretical analysis is focused on 2D image data alone and does not delve into how the BPE tokenizer facilitates the fusion of visual and textual information. Multimodal tasks typically require deep semantic and structural alignment across modalities, which is not sufficiently addressed in this analysis. This omission limits the theoretical support for the tokenizer’s efficacy in a multimodal model context.\n  1.2Absence of Analysis on Information Loss in Tokenization: The paper lacks a theoretical exploration of the potential information loss from BPE tokenization, such as the simplification of high-frequency visual details. There is no quantification of how the loss of these details might impact overall model performance. This gap in the analysis leaves the question of how well the BPE tokenizer preserves image details unanswered.\n\n2.A notable limitation of this paper is its focus on evaluating the BPE image tokenizer primarily through VQA-like tasks, which generally require only broad semantic alignment across modalities. While effective for assessing general multimodal comprehension, these tasks may not fully capture the demands of applications like image segmentation or image caption, where finer-grained visual detail and spatial relationships are crucial. Without evaluation on these more intricate tasks, it remains unclear how well the method handles scenarios that require detailed visual representation, potentially limiting its applicability to real-world multimodal use cases that demand high visual fidelity.",
+      "questions": "1.Applicability of the Theoretical Model: How does a simplified 2D Markov process adequately capture the complex structure of real-world image data?\n\n2.Sensitivity to Information Loss: How is the potential impact of information loss in tokenization, especially for detail-sensitive tasks, theoretically assessed?\n\n3.Task Representativeness and Generalization: How can results on VQA-like tasks ensure performance on precision-demanding tasks like image caption?"
+    }
+  ]
+}

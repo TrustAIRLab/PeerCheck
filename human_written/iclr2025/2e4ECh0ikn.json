@@ -1,0 +1,53 @@
+{
+  "title": "Talking Turns: Benchmarking Audio Foundation Models on Turn-Taking Dynamics",
+  "keywords": [
+    "Turn-taking",
+    "Conversation AI",
+    "Audio Foundation Models",
+    "Evaluation Metric",
+    "Evaluation Benchmark"
+  ],
+  "pdf_url": "/pdf/3aba29651573c99c1c330a85f9319e56824e76d3.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The originality of the work is commendable. The authors propose a novel evaluation protocol to assess the turn-taking capabilities of spoken dialog systems.\n2. The paper is well-written and provides sufficient experimental details in the Appendix.\n3. The authors plan to open source the evaluation platform.",
+      "waeknesses": "1. The evaluation protocol is highly expensive, as it requires a supervised dataset to train the judge model. This approach is not feasible if we lack a supervised dataset in other languages, such as Chinese.\n2. The filler word set for backchannel detection is heuristic and may miss some backchannel cases that are not included in the filler word set.",
+      "questions": "1. The Fisher dataset is a common dataset comparable to Switchboard. What is the performance of the supervised turn-taking prediction model on this dataset?\n2. How can your evaluation protocol be adapted or applied in scenarios where supervised datasets are not available for other languages, such as Chinese?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The definition of turn-taking is detailed and clear.\n\n2. The evaluation protocol proposed in this paper contributes to better assessing the performance of audio foundation models in dialogues, providing strong support for the development of voice dialogue systems.\n\n3. This paper reveals many issues existing in current AI dialogue systems when handling turn-taking, offering valuable references for future research.",
+      "waeknesses": "1. This study only tested a few open-source and closed-source audio FM models.\n\n2. There is a lack of comprehensive performance evaluation and summary.",
+      "questions": "NA."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "3: reject, not good enough",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The strengths of this paper are as follows:\n 1. This paper provides an automated turn-taking protocol for audio foundation models\n 2. The evaluation platform will be open-sourced.",
+      "waeknesses": "The weaknesses of this paper are as follows:\n 1. The study aims to measure precise turn-taking, but the thresholds are set to arbitrary values.\n 2. The participants introduced in Sec 3 seem biased, consisting of the authors and related individuals.\n 3. The confidence in some evaluations (Fig. 3(b), (e)) appears high, but no explanation is provided.",
+      "questions": "Here are questions for the authors:\n - The thresholds in Sec. 4.4-4.8 seem arbitrary. Is there a specific reason for choosing these values? All units appear to represent likelihoods, yet they range from negative ($threshold_3$ = -0.45) to positive values ($threshold_2$ = 0.1).\n - There are concerns about the reliability of the judge model. Since all results are based on comparisons with this model, is there concrete evidence supporting its credibility? Specifically, the conclusion that Moshi[1] is \"too aggressive\" lacks persuasiveness if it relies solely on comparisons with the judge model.\n\n[1] Defossez et al. Moshi: a speech-text foundation model for real-time dialogue"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. This paper proposes a comprehensive evaluation protocol and well-designed metrics to assess the turn-taking capabilities of spoken dialogue systems. The evaluation framework and metrics are thoughtfully developed and provide valuable insights.\n2. The paper extends the evaluation of turn-taking capabilities of spoken dialogue systems from corpus-level statistics to a more granular assessment of the timing of turn-taking events. This fine-grained approach enables a more accurate reflection of a spoken dialogue system’s turn-taking capabilities.\n3. The proposed evaluation metrics provide insights into the limitations of current systems in achieving interactive and natural conversations, highlighting areas for potential improvement.",
+      "waeknesses": "1. In Metric (E), the judge labels show low consistency with human relevance judgments, indicating that this metric may have limited reliability in assessing the model's ability to handle user interruptions effectively.\n2. My primary concern is the relatively low agreement between the majority of judge labels and human judgments, with most falling below 80%. This raises questions about the strength of the claim that the proposed metrics maintain high consistency with human decisions.\n3. GPT-4o was not evaluated.\n\nIf my above concerns are resolved, I would consider increasing my rating.",
+      "questions": "My questions are listed above."
+    },
+    {
+      "reviewer": "Official Reviewer 5",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The evaluation protocol is novel and well-motivated.\n2. The experimental analysis provides valuable insights into turn-taking capabilities of audio foundation models (FMs).\n3. The user study reveals noteworthy observations about current spoken dialogue systems.",
+      "waeknesses": "1. Turn-taking prediction models used in evaluation protocol require training, which limits scalability and applicability. \n2. The paper does not thoroughly address how its proposed evaluation protocol compares with previous turn-taking approaches, such as Ekstedt and Skantze (2022).\n\nReference\n* Ekstedt, Erik, and Gabriel Skantze. Voice activity projection: Self-supervised learning of turn-taking events. Interspeech 2022",
+      "questions": "1. What is the main difference between the proposed evaluation protocol and the previous approach by Ekstedt and Skantze (2022)? Is it impractical to apply the metrics from prior turn-taking evaluation methods to audio FMs?\n2. While the turn-taking prediction model has been evaluated on an out-of-domain task-oriented spoken dialogue corpus, could you evaluate it on additional non-task-oriented spoken dialogue datasets to assess the generalizability of the model?"
+    }
+  ]
+}
