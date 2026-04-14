@@ -1,0 +1,35 @@
+{
+  "title": "Distributional Preference Alignment of LLMs via Optimal Transport",
+  "keywords": [
+    "LLM Alignment",
+    "Optimal Transport",
+    "stochastic dominance"
+  ],
+  "pdf_url": "/pdf/30b16d790727fe378801598ee2eaa2d9335dae86.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "4: Borderline reject: Technically solid paper where reasons to reject, e.g., limited evaluation, outweigh reasons to accept, e.g., good evaluation. Please use sparingly.",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The framework of the paper is very easy to follow. \nThe proposed problem and solution's direction are interesting. \nSettings, theoretical results are adequate to support the proposed method.",
+      "waeknesses": "My main concern of this paper is the empirical results in experiment section. Table 1 shows that AOT paired/unpaired do not outperform other methods at least in 4 out 7 cases (ARC, MMLU, Winogrande, GSM8K). When they are versus each other, there is no clear winner between AOT paired and AOT unpaired. Meanwhile, I believe that with the AOT paired, when we have more information, the task must be easier, please correct me if I am wrong. I have similar concerns for their performances in Figure 2.",
+      "questions": "In Figure 3, it appears that small $\\beta$ will produce better results for all method except the IPO. Have the authors tried to test with smaller value of $\\beta$, i.e. $\\beta = 0.005$?  Is there any explanation for this trend in that figure?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: Weak Accept: Technically solid, moderate-to-high impact paper, with no major concerns with respect to evaluation, resources, reproducibility, ethical considerations.",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "**Originality**\n1. The connection to optimal transport is quite interesting.\n\n**Quality**\n\n2. The empirical results are competitive with other alignment approaches.\n3. The theoretical results are sound\n\n**Clarity**\n\n4. The paper is well-written with background appropriately introduced and clear explanations.",
+      "waeknesses": "1. There could be some more motivation for why the FSD condition is practically desirable over the conditional (on x) dominance condition of DPO from Equation (2). Is this more than a theoretical nicety?\n\n2. There is not a clear improvement in the empirical results over prior approaches, and each approach seems to enjoy success on certain benchmarks -- with the differences between performance quite small in most cases.\nThis invites the question of in what settings ATO would perform better than other approaches in the literature. \n\n3. The theoretical results do not shed much light on when ATO is likely to perform well. Uniform Convergence results are well-known in recent years to not explain generalization behavior of modern ML models. So, while nice, the insight from Theorem 2 is not super obvious to me.\n\nMinor:\n1. Please call the Santambrogio (2015) result something other than a theorem since it is not a contribution of the present work.",
+      "questions": "Since KTO also works with unpaired preference data, a more thorough comparison with KTO is warranted:\n1. Is there a unique solution that satisfies the FSD condition? If there are multiple solutions, how does ATO break ties? How does KTO break ties? \n2. Is the reason that the behavior is different from KTO that they have different inductive biases and hence converge to different policies? Or the variances of the estimators are different, even though they converge to the same?\n3. Is there a way to compare Theorem 2 with the statistical properties of KTO/DPO/RLHF? Or any reason to believe that ATO has a statistical advantage?\n\nDespite the weaknesses, I think the connection to optimal transport is interesting and the experiments are sound and comprehensive. I would be happy to adjust my score accordingly if the authors alleviate my concerns through discussion."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: Strong Accept: Technically strong paper, with novel ideas, excellent impact on at least one area, or high-to-excellent impact on multiple areas, with excellent evaluation, resources, and reproducibility, and no unaddressed ethical considerations.",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "* The paper is well-written and easy to follow.\n* The paper proposes an original preference alignment approach based on stochastic dominance and optimal transport. The connection to optimal transport is interesting and novel. In addition, the paper also provides theoretical results on the sample complexity of the empirical estimation of the objective.\n* The proposed approach can work for both unpaired and paired alignment settings.\n* Experiments are extensive on various datasets i.e., UltraFeedback for paired setting,  PKU BeaverTails, and HelpSteer for unpaired setting. The paper also provides a free LLM-judge for local Alpaca evaluations.\n* ATO achieves SOTA on AlpacaEval benchmark and competitive results on other metrics compared to DPO, KPO, and IPO.",
+      "waeknesses": "The evaluation is conducted using Llama3-70B-Instruct instead of GPT4 which is not the standard. However, as described in the paper, the usage of  Llama3-70B-Instruct  leads to approximately the same.",
+      "questions": "1. It seems that hard sorting is also comparable to soft sorting. Using normal sorting could help to improve the computational speed compared to soft sorting. Should the paper recommend hard sorting as the default variant?\n\n2. How many interactions are used for the Sinkhorn algorithm? What is the choice of the entropic regularization hyperparameter? Do these hyperparameters significantly affect the results?\n\n3. Why does the unpaired setting lead to better results than the paired setting? Do the authors have any explanation?"
+    }
+  ]
+}

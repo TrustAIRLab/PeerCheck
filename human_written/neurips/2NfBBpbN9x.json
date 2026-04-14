@@ -1,0 +1,35 @@
+{
+  "title": "Utilizing Image Transforms and Diffusion Models for  Generative Modeling of Short and Long Time Series",
+  "keywords": [
+    "Time Series",
+    "Generative Models",
+    "Long Sequences"
+  ],
+  "pdf_url": "/pdf/56f133e39f5d561c8ca74a3ce2bd48c9b3e1804a.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: Weak Accept: Technically solid, moderate-to-high impact paper, with no major concerns with respect to evaluation, resources, reproducibility, ethical considerations.",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The main idea (transforming time series to images to exploit existing image-generation methods) is quite elegant and investigated well.\n- The experiments are thorough: unconditional and conditional generation is evaluated on short and long time series benchmarks. Furthermore, the results are convincing.",
+      "waeknesses": "- One crucial point is that the proposed method involves 1-2 orders of magnitude more parameters than e.g. LS4, a close competitor (Table 16). I think this point should be more clearly emphasized and investigated in the main paper.\n  - The authors mention that in terms of wall-clock time, their method's training and inference efficiency is comparable despite the difference in size. However, this seems to be mostly a statement on how much work has been done improving efficiency of image diffusion models -- it may be possible to drastically improve efficiency of existing time series methods.",
+      "questions": "- How does the number of parameters compare between the proposed method and all the other methods you compare to, e.g. in Tables 1 and 2?\n- Were any experiments done evaluating how the proposed method compares to e.g. a parameter-matched LS4 model?\n- Similarly, were any scaling law experiments done to investigate how the performance of the proposed method improves as the size of the image diffusion model increases?\n  - For example, it would be quite interesting to find that the scaling of the image diffusion model architecture is better than the scaling of e.g. LS4 or time series diffusion architectures."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: Weak Accept: Technically solid, moderate-to-high impact paper, with no major concerns with respect to evaluation, resources, reproducibility, ethical considerations.",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- This is a simple idea that is shown to work well in most of the experimental settings\n- It allows the use of image architectures, which have been extensively investigated in the literature, for other domains\n- The paper is mostly clearly written",
+      "waeknesses": "Weaknesses:\n- The authors mention that their approach \"requires slightly higher computational resources\". They go into more detail in Appendix C.10 but I would appreciate further detail. In particular, the cost is given in terms of hours/minutes, but I cannot see anything about e.g. GPUs used or FLOPs used. Are the number of GPUs matched between methods? A comparison in terms of GPU-hours for the same GPU type would be informative. To be really confident of the improvement, ideally there would be a comparison in which the methods were compared when given equal GPU-hours. Investigating how the performance of different methods scales as training FLOPs are increased would also be very interesting.\n- It is a little unclear whether the advantage shown comes from the fact that image architectures are just better-explored than time-series architectures, or whether the inductive bias of transforming into an image shape is helpful. Can the authors comment on this? An interesting potential experiment would be to try training an image architecture with an older architecture and compare its performance.\n- A more detailed description of the Predictive and Discriminative metrics used in Section 5.1 would be helpful.",
+      "questions": "See weaknesses"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "5: Borderline accept: Technically solid paper where reasons to accept outweigh reasons to reject, e.g., limited evaluation. Please use sparingly.",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The idea of converting time sequences to images is interesting. \n2. Extensive experiments are conducted on several datasets of different tasks to evaluate the effectiveness of the proposed model. Besides, sufficient analysis and discussion make the results more convincible.  \n3. The overall organization of the paper is clear, and the writing is easy to follow.",
+      "waeknesses": "1.  The time-series to image (ts2img) transform methods and diffusion backbone used in the paper are all from other existing works, which compromise the novelty and significance of the paper. \n2. In Sec.5.1 and Sec.5.2, the ts2img transform methods used for short- and long-range generation are different. It is hard to tell whether the transform choice or the diffusion model plays a more important role. Taken together with Sec.5.5, the proposed method is only effective (i.e. outperforms others) with some specific transform method on different tasks, which conflicts with the authors’ claim that the proposed model can seamlessly process sequences with different lengths.",
+      "questions": "Please see the weaknesses part above."
+    }
+  ]
+}
