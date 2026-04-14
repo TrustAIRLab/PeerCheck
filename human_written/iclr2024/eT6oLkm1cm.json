@@ -1,0 +1,42 @@
+{
+  "title": "Annealing Self-Distillation Rectification Improves Adversarial Training",
+  "keywords": [
+    "Adversarial training",
+    "Adversarial robustness"
+  ],
+  "pdf_url": "/pdf/c52e114007c34c62dc6d40b00d310844b5e73fc1.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The proposed method ADR is intuitive and can be easily integrated into different AT methods.\n\n2. Experimental results suggest that ADR can achieve significant improvement over the baseline and superior robust accuracy to existing methods.\n\n3. The details of the method and the experiments are clearly stated, and the source code is also provided.",
+      "waeknesses": "1. While Section 3.2 provides some insightful observations, it is not very clear how they are reflected by the design of the proposed ADR. Particularly, Section 4.1 mentions that robust models should \"generate nearly random probability on OOD data\" and \"demonstrate high\nuncertainty when it is likely to make a mistake\". However, there is no direct evidence (analytical or empirical) for how ADR may help achieve these properties. Instead, it seems that the motivation for ADR mostly comes from the previous works (like those cited in Section 4.1) that suggested the importance of label rectification in AT.\n\n2. In Table 3, it is shown that using DDPM data can improve the robust accuracy of WRN-34-10 trained via AT+ADR, but at the cost of a significant decrease in standard accuracy. This may be undesired since augmenting the training set with DDPM data can improve both clean and robust accuracy for AT according to (Rebuffi et al., 2021a). There should be some explanations or discussions on this issue.\n\n3. The texts in Figure 2 may be too small, which can be difficult to read when printed out.",
+      "questions": "1. Are the robust models trained via ADR more conformed to the empirical findings in Section 3.2, as compared with vanilla AT?\n\n2. Should the rectified labels be assigned to adversarial images only, or both clean and adversarial images? Considering that different AT methods use different targets for clean and adversarial images (e.g., PGD-AT and TRADES), this can be an important question when one would like to apply ADR to other AT methods."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The experiments performed are extensive and incorporates several baseline methods for comparison.\n- Modifying self-distillation EMA (weight averaging) with annealed interpolation and softmax temperature is an interesting idea.",
+      "waeknesses": "- While the method is shown to increase the robustness and mitigates overfitting, other experimental results seem to lack significance for drawing conclusions (weight loss lanscape, effectiveness of temperature and interpolation parameters).\n- The relation to other similar methods investigated is not clear (see questions).",
+      "questions": "- In Table 2, test accuracies of ADR combined with WA and AWP are presented. From the results it seems that each method contributes a (roughly) similar amount of robustness gain. Could the authors comment on whether they consider ADR, WA, AWP to be complementary?\n- In the motivation (subsection 4.1.) it is stated that the aim is 'to design a label-softening mechanism that properly reflects the true distribution'. In the presented approach the teacher network provides the probability distribution with which the one-hot label is interpolated. Can the authors comment on why the teacher network (model weight average of student) reflects the 'true distribution'?\n- The results presented in Figure 5 show the results of a hyperparameter study for the interpolation and temperature parameter. It is concluded that annealing both parameters is beneficial for robustness. Do the authors consider the differences (e.g. in the row on $\\lambda$ annealing) significant enough to draw such conclusions?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- I appreciate the simplicity of the proposed method. It should be easy to implement and it can be used with other AT techniques.\n    \n- The paper presents a clear motivation for the proposed method with experimental results. I also find the idea behind inspiring as it is somewhat consistent with my understanding of AT, i.e., easier training (less adversarial/weaker signal) leads to better results.\n    \n- It is shown that the technique brings small additional training time.\n    \n- The paper is well-written with nice figures and a clear structure.",
+      "waeknesses": "- Considering the simplicity of the method, I think the experiments are not very extensive. More datasets (e.g., ImageNet), attacks, and especially baseline AT methods should be considered.\n    \n- The self-distillation brings high memory cost, which I believe would be a main limitation for the practical use of the proposed method.\n    \n- It seems that this work is not the first to reveal that robust models are better calibrated, yet the authors conclude this finding as one of the major contributions of this paper.",
+      "questions": "Did you use any pretrained models for initialization? I wonder how ADR works when using pretraining models."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. A lot of experiments have been done to show its effectiveness on robustness compared with other knowledge distillation methods, which makes it credible.\n2. The paper is well-organized and easy to understand.\n3. The paper has shown abunbant experimental details, with good reproducibility.",
+      "waeknesses": "1. The motivation is too easy and there seem no new insights in the manuscript.\n2. The results on Table 2 show that on WRN on three datasets, AT+ADR has a weaker performance compared with AT+WA, and AT+WA+ADR also has a weaker performance compared with AT+WA+AWP. It may demonstrte ADR doesn't work well compared with WA and AWP on large models.\n3. The comparison with RobustBench in the paper is not fair, results on AT+ADR rather than AT+WA+AWP+ADR should be used. In this comparison, ADR achieves atate-of-the-art robust performance on ResNet-18 but has a poor performance on WRN.",
+      "questions": "Because it has little novelty, its performance is now the most significant evaluation indicator. Its performance on WRN is not competitive enough. I will increase my score if better results come out.\n\n=========After rebuttal=============\nThe authors' response address most of my concerns. I thus am willing to increase the rating to 6"
+    }
+  ]
+}

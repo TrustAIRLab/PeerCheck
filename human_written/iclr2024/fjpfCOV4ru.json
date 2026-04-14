@@ -1,0 +1,34 @@
+{
+  "title": "Ito Diffusion Approximation of Universal Ito Chains for Sampling, Optimization and Boosting",
+  "keywords": [
+    "markov chains",
+    "diffusion processes"
+  ],
+  "pdf_url": "/pdf/6096e5c08f636d6144a7e20b80523e0168fe0a4a.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The results in this paper provide novel and general bounds on the approximation error for Ito chains using the corresponding stochastic differential equation. The results cover a broad range of applications in sampling, optimization, and boosting (for example, SGLD, SGD, and Stochastic Gradient Boosting) and are novel in several such applications (for example, the results cover almost arbitrary isotropic and state-dependent noise). The proof involves several new ideas and the presentation is quite clear.",
+      "waeknesses": "It would be nice if the author(s) could comment on whether Assumption 1 in Section 2 is typically satisfied/easy to verify in applications.",
+      "questions": "It would be nice if the author(s) could comment on whether Assumption 1 in Section 2 is typically satisfied/easy to verify in applications."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "Originality: The originality is high. The authors study a quite general class of Markov chains and analyze the upper bound between SDE, which is also a popular research area.\nClarity: the clarity is good. The paper sequentially introduces several auxiliary SDEs/Markov chains to eventually bridge the gap between the processes of interest: $X_k$ and $Z_t$. The motivation of each proposed auxiliary processes are clearly stated and is easy to follow for readers.\nSignificance: The theoretical contribution is quite good for this area. The authors consider non-Gaussian and state-dependent chains which is not so deeply investigated in literature. The window coupling and \"modified\" Girsanov theorem may be of independent interest.",
+      "waeknesses": "There are some mistakes and typos in proofs:\n - In Appendix, the equations in the middle of page.18 (the one after (10)), a noise matrix $\\sigma(Y_{\\bar{\\eta}k}^S)$ before $\\zeta_k^S(X_{Sk})$ is missing. The same issue appears in most of the later equations in this proof.\n - In the same equation, the last two terms have a wrong scaling w.r.t. $S$. Specifically, they should be $4\\mathbb{E}\\left[\\left\\|\\frac{1}{\\sqrt{S}}\\sum_{i=1}^{S-1} \\sigma(X_{Sk}) (\\epsilon_{Sk+i} - \\frac{1}{\\sqrt{S}}\\zeta_k^S(X_{Sk})) \\right\\|^2\\right]$ and $4\\mathbb{E}\\left[\\left\\| \n\\sum_{i=0}^{S-1}(\\sigma(X_{Sk}) - \\sigma(Y_{\\bar{\\eta}k}^X)) \\zeta_k^S(X_{Sk}) \\right\\|^2\\right]$. Consequently, some following terms should be multiplied by $S^2$ or so. (It seems not to affect the final upper bound, though. It is better to still check the whole roadmap of proofs.)\n - I wonder how the last term in the top equation on page.19 is derived ($4M_0\\|X_{Sk}-Y_{\\bar{\\eta}k}^X\\|^2$). It seems merely using Assumption 1 (4) is not enough. Or maybe there should be some additional assumptions?",
+      "questions": "The window coupling seems to be among the crucial parts in this paper. Could authors explain if this is first proposed by this paper, or already appears in literature? It is best to provide some references.\n\nThe paper gives better bounds for SGD with Gaussian/non-Gaussian cases [1]. Could authors compare the theoretical techniques used in two papers and explain where do such improvements probably come from?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "3: reject, not good enough",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "This paper studies a rather general and broad class of Markov chains and studies the convergence rates.",
+      "waeknesses": "1. The theoretical results do not provide any new insight to the community.\n2. The analysis is based on standard techniques.\n3. The paper lacks a empirical study to verify the theoretical findings.",
+      "questions": "None"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Learning from Aggregate responses: Instance Level versus Bag Level Loss Functions",
+  "keywords": [
+    "aggregate learning",
+    "asymptotic analysis",
+    "bias",
+    "variance",
+    "privacy",
+    "regularization"
+  ],
+  "pdf_url": "/pdf/9cbb8bbd5826ec38ca264d120c97a2534b4ed53c.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "A. Clarity\n     1. The content is well organized. The introduction succinctly motivates the problems and summarizes the results.\n     2. The intuitions are made explicit and are transparently described. This made the review process painless.\n     3. The main text is clutter free and the proofs of all the technical claims are included in the supplementary material. The submission, is as a result, largely self contained and has no technical gaps.\n     4. The literature review is thorough and the authors have gone the extra mile organizing the ideas and summarizing the current state of a rapidly evolving niche in ML research.\n\nB. Significance, Quality\n     1. The subject is topical since Privacy preserving ML is a burning issue and an active area of current research.\n     2. The results shed new light on the interplay between instance-level and bag-level loss. It is interesting to see that the interpolate improves generalization in a real world dataset. \n     3. The qualitative conclusions derived in the asymptotic regime are clarifying and may be useful in more \"hairy\" real world datasets.\n\nC. Originality\n     1. Mixed loss function: The idea of interpolating between the loss functions is interesting and the idea that this could result in better generalization for aggregates-based learning appears to be novel.\n     2. The authors go beyond showing empirical results and derive closed form expressions and provide compelling interpretations for them.",
+      "waeknesses": "1. This is a minor comment on terminology: regularizers in the ML context, to the best of this reviewer's knowledge, only depend on model parameters and not on the data (which includes the feature vectors). Shrinkage and variance-reduction are related but not identical, and regularization in ML refers to the former. If indeed this term is used more broadly it may be helpful to include a few clarifying sentences and/or references. \n\n2. The theoretical results are proved under the following\n      a. Random Bags\n      b. Equal Sized Bags\n      c. Non-Overlapping Bags\n\nThe introduction cites the Google(Privacy Sandbox) and Apple(SKAd) APIs as motivations for the problem but the assumptions (a),(b),(c) do not hold in this regimes. In fact, a critical feature of both (a) Google's Private Aggregation API and (b) Apple's SKAd Network is that the aggregation keys are configurable (eg. aggregate behavior of traffic from California, visiting sports content at a certain time of day) ie the bags are specified by the consumer of the API, not by random aggregations. This enables ML algorithms to effectively use these aggregates for prediction.\n\nThis is an essential part of the problem. For example, here is a quasi-technical [report published by Google](https://github.com/google/ads-privacy/blob/master/Combining%20the%20Event%20and%20Aggregate%20Summary%20Reports%20from%20the%20Privacy%20Sandbox%20Attribution%20Reporting%20API.pdf)\n\nIf there is indeed a connection/insight in the paper that this reviewer has missed, please respond to the question below.",
+      "questions": "1. Are there explicit connections/insights to be gleaned from the results in the paper and the Google/Apple approaches for aggregated-feedback?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "I think the paper is well-written and the theoretical results are presented with lots of intuitions. I think the main strength of the paper is the exact characterization of the bias and variance tradeoff. This characterization let them compare two family of losses.",
+      "waeknesses": "I think the motivation behind the definition of instance-level and bag-level losses is not clear. Another weakness is that the authors do not compare their results with the prior results on label DP. In this paper the authors use bag-level loss and then consider the noisy labels. Is that the best approach?",
+      "questions": "1- What are the use-cases of instance-level loss and bag-level loss? To me, instance-level seems more intuitive and I want to know about the scenarios in which it is preferable to use bag-level loss.\n\n2- What is the significance of non-overlapping bags? Is it because of the analysis?\n\n3- For DP variants, the authors propose first forming the bag-level loss and then applying Laplace mechanism to the aggregated labels. Is that the best approach? What is the comparison of this method with the prior work on label-DP?\n\n4- Randomness in placing the samples in bags may help in privacy amplification."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper investigates the trade-off between bias and variance by taking into account various factors that might influence the model performance, which is considered thorough.",
+      "waeknesses": "The presentation can be improved. For example, some high-level ideas on the tradeoff could be included earlier in the paper (in more detail) instead of introducing them in the latter parts of the paper which makes it hard to grasp the contribution at the beginning. More explanation on Theorem 2.5 should be discussed. For example, the intuition of the actual meaning of the fixed point or the solution of the equation systems; what quantities the bias and the variance are converging to.",
+      "questions": "Can you explain a bit more on the fixed point and the solution of the equation systems in Theorem 2.5?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- This paper is well-written and easy to follow. The mathematical notation is clear.\n- The author did a good job discussing real-world examples and related works.\n- The analyses are sound and reasonable.\n- The private aggregate learning method is a solid contribution.",
+      "waeknesses": "- Most analyses are restricted to linear models. Thus, the range of applications may be limited. Even for tabular data, gradient boosting machines may perform better than linear models. There's a gap between theory and practice: for the Boston housing dataset, the author used an MLP instead.\n- The experiment is limited to one dataset. The labels generated in this way may not be a good proxy of real-world aggregate label problems.\n- A minor issue: the title \"learning from aggregate responses\" may be imprecise since here, the author only considered the average. There are other types of aggregate information, such as max, median, and rank.",
+      "questions": "- Why non-overlapping?\n- \"The bag-level loss does not have a unique minimizer\": is this proven?\n- Why should we reduce the variance? It seems that the regularization could lead to an over-smoothed solution."
+    },
+    {
+      "reviewer": "Official Reviewer 5",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The paper is clearly written and provides a very intuitive view on the connection between the bag-loss and individual-loss.\n- The authors derived theoretical results on the SNR which has practical implications on selecting optimal bag size.",
+      "waeknesses": "- The authors did not include the proof of the theorems, which I think is essential given the paper is largely centered around Theorem 2.5. In particular, (please let me know if I'm wrong), equation (8) simplifies to $2\\alpha_{\\ast}-1$ when k=1 which is not always 0 based on the fixed point assumption.\n- There is a little incoherence between the assumption and application. The authors focused on very practical applications with DP and aggregate learning, but it's rare in those cases for the proportional regime to hold which appears to be essential to the analysis. More commonly we see d = o(n), and I also assume k could not be fixed as d grows to satisfy k-anon.",
+      "questions": "As aforementioned, I would like the authors to provide the derivation of the theoretical results in the supplementary, and address the generalizability of the results if one or few assumptions do not hold in the paper."
+    }
+  ]
+}

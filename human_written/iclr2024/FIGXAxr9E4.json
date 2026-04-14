@@ -1,0 +1,37 @@
+{
+  "title": "CLIP the Bias: How Useful is Balancing Data in Multimodal Learning?",
+  "keywords": [
+    "contrastive language image pretraining",
+    "multimodal learning",
+    "fairness",
+    "bias",
+    "data balancing"
+  ],
+  "pdf_url": "/pdf/55a9f79b33c3209a6650660246925a735d08c76a.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The paper is well motivated and clearly written.\n- Simple data balancing strategies are proposed to tackle the bias issue, demonstrating promising results.\n- Comprehensive experimental results and analysis are presented, which may benefit the reader in relevant fields.",
+      "waeknesses": "- While AB is relatively easy to mitigate, RB seems much more difficult to remove. In this regard, I would suggest the authors to shed more light on possible reasons and solutions. For example, I assume data augmentation shall be a promising workaround, and encourage the authors to explore more.",
+      "questions": "- To me, the representation and association biases respectively correspond to the distribution shift of marginal output probability p(y) and conditional output probability p(y|x). What about another widely-discussed distribution shift in domain adaptation/generalization literature, i.e., marginal input probability p(x)? Can it also be a significant bias issue in large multimodal models?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The empirical evidence of RB and AB is well supported in the experiments.\n2. The proposed data balancing algorithm is principled with theoretical analysis.\n3. The paper studies an interesting and important problem which may have a wide impact in real-world industrial applications, such as recommender systems and advertising.",
+      "waeknesses": "1. The number of sensitive attributes in the experiments is limited to only gender and occupation.\n2. Further experiments on proposed data balancing algorithm is lacking in the main text.",
+      "questions": "1. How exactly the de-correlation between sensitive attributes and proxies is implemented?\n2. In AB experiment, why adding proxies has inconsistent performance?\n3. In data balancing algorithm, how to intuitively interpret $\\alpha$ and $\\beta$? and how $s$ is determined, is it calculating from the dataset over sensitive attributes?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. Nice definition of various types of bias in data or model, this is a solid foundation to understand the problem\n\n2. Given a nice definition of bias such as gender, this work shows the effect of model training with various type settings. (More or less data, fine tuning with various length of training time) \n\n3. Tested on various datasets and backbone designs. \n\n4. The proposed balancing algorithm does seem to successfully diminish bias without compromising the quality of the model.",
+      "waeknesses": "1. I hope to see figures that are easier to interpret.\n\n- For Figure 2 (top): It seems you intend to demonstrate that even with extra training data, bias persists. I struggled to determine which bars were being compared. A similar issue occurs with Figure 3.\n- Regarding Figure 4: At first glance, without referring to the captions, all the color bars appear identical. My initial interpretation was that the results were largely uniform across the board.\n\n\n2. I find myself somewhat perplexed by the conclusions drawn from the study's results. This confusion does not necessarily point to a flaw in the research but suggests that further clarification might be beneficial. I recommend referring to the detailed queries I've raised in the question section.",
+      "questions": "1. In Section 4.1, the authors discuss various strategies, including adjusting the training set sizes and fine-tuning with or without dataset intervention. \n\n- While these strategies are standard in model training, the authors' approach underscores a well-known principle: merely increasing the size of a 'corrupted' dataset—say, by tenfold—will not address inherent issues. This scenario is a classic case of \"garbage in, garbage out.\"\n\n- Furthermore, the practice of fine-tuning a model on a specific dataset inevitably alters some pre-existing weights, adapting the model to new data characteristics. Consequently, it is not surprising that models fine-tuned on intervened sets exhibit improved bias metrics.\n\n- In summary of this question: What's new here? \n\n2. This study suggests that balancing our training datasets can mitigate bias. However, it also implies that researchers must painstakingly identify what constitutes bias and determine the features requiring adjustment. I am particularly interested in the authors' insights on how their proposed framework accommodates additional features present in real-world datasets.\n\n\n3. My concern extends to the interrelated nature of certain features, as highlighted in the occupation versus gender discussion in Section 4.2. While it is inappropriate to rely on stereotypes for inferring gender, assuming a 50/50 gender split across all professions disregards real-world disparities. It remains unclear how the proposed methods address \"association bias.\"\n- A link to “U.S. BUREAU OF LABOR STATISTICS” https://www.bls.gov/cps/cpsaat11.htm"
+    }
+  ]
+}
