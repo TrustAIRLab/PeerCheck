@@ -26,6 +26,7 @@ For each paper:
 - LLM-based reviews, including GPT-4o, Claude-3.7-Sonnet, and DeepSeek-V3, generate corresponding reviews.  
 
 All data are processed to remove personal information and ensure quality.
+To access full dataset please visit: [TrustAIRLab/PeerCheck](https://huggingface.co/datasets/TrustAIRLab/PeerCheck)
 
 
 ## Limitations
