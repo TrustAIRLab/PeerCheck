@@ -11,7 +11,6 @@ The dataset is used to support research on:
 - Review quality evaluation;
 - Human–LLM alignment in scientific assessment.
 
----
 
 ## Dataset Description
 
@@ -28,7 +27,6 @@ For each paper:
 
 All data are processed to remove personal information and ensure quality.
 
----
 
 ## Limitations
 
@@ -36,7 +34,6 @@ All data are processed to remove personal information and ensure quality.
 - LLM-generated reviews may contain biases or inaccuracies; 
 - Not intended to replace human peer review.
 
----
 
 ## Ethical Considerations
 
@@ -46,7 +43,7 @@ This study was reviewed and approved by the Ethics Review Board (No. 25-12-6) of
 
 This dataset is intended **for research purposes only** and should not be used to automate real-world peer review decisions.
 
----
+
 ## Citation
 
 If you use this dataset, please cite:
