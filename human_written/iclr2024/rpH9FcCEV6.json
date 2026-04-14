@@ -1,0 +1,43 @@
+{
+  "title": "An Efficient Membership Inference Attack for the Diffusion Model by Proximal Initialization",
+  "keywords": [
+    "MIA",
+    "Diffusion Model",
+    "Text-To-Speech"
+  ],
+  "pdf_url": "/pdf/cb41e2e98318608968c3fc0c8111e58b9f9d9922.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. This paper is well-written and clear.\n2. The idea is very simple and novel.\n3. Very good experimental results.",
+      "waeknesses": "1. The motivation of some transformations in the method is not very clear.\n2. The third contribution about the experiments is too long and redundant.\n3. There exists some grammar errors or typos, like “MIA for generation tasks … has also been extensively researched” in the related work section.",
+      "questions": "1. In Eq. (14), the motivation to ignore the high-order infinitesimal term and dt is not clear.\n2. Why the proposed method can obtain better performance than the best competitors in Tables 1-3?\n3. How to apply the proposed method to discrete-time diffusion models?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "* This paper is well-written and easy to read.\n* The experiments are conducted extensively across multiple datasets and models in the domains of images and audio, confirming the effectiveness of the proposed method. A thorough ablation study is also conducted to investigate the patterns of various parameters.\n* The results of the experiment are promising, and the experiment is convincing. The proposed method is much faster than the baseline, which is particularly useful for large-scale models.",
+      "waeknesses": "* The experimental results are promising. It would be more convincing if you could provide more details, such as the selection of all experimental parameters, including the comparative methods.\n* Eq.9 is similar to the original loss function. Is there any connection between the proposed method and the loss function? Please provide further analysis.",
+      "questions": "* Why is mel-spectrogram more robust than directly outputting audio? \n* Does the model that directly outputs audio have any other costs compared to outputting mel-spectrogram?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. This paper aligns with the scope of the conference.\n2. The paper is easy to understand, and its motivation is clear.\n3. The experiments in the paper are extensive. The proposed method is validated on multiple datasets and multiple models in both image and audio domains, demonstrating its effectiveness. Additionally, the results on the audio dataset indicate that the model with audio output exhibits greater robustness.\n4. They demonstrated the scenarios in which the proposed method can be applied (threat model in other word).",
+      "waeknesses": "1. Some of the figures in the paper are difficult to read, due to the fact that too many datasets and models are included in the same figure.\n2. The pipeline of the TTS tasks is not explained in the paper.\n3. Some details of the experimental setup are not clearly described. Specifically, in the experiment on stable diffusion, the checkpoint of BLIP and the specific prompt used are not mentioned in this paper.",
+      "questions": "1. How is the query number for the comparison methods determined? Is it possible that the comparison methods used in the article could yield better performance with a lower query number?\n2. For the TTS task, this article explores models that generate output in the form of audio and mel-spectrogram. Are there any other types of outputs for the TTS task? It is interesting to investigate whether the other outputs is robust for the TTS task."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "This paper proposed a method achieved a 5-10 times improvement compared to previous SOTA method (SecMI) and conducted extensive experiments to evaluate the proposed method. Strengths are listed below:\n\n1.\tThis paper conducted extensive experiments, including three image datasets and three audio datasets. In particular, this paper also conducted experiments on stable diffusion, including scenarios where the ground truth text was unknown.\n2.\tExperiments demonstrated that the proposed method achieved a 5-10 times improvement compared to previous SOTA method (SecMI), while also achieving better results.\n3.\tThis paper analyzed the threat model. When the diffusion model is used for some tasks such as inpainting and classification, it requires the use of intermediate results. In such cases, their method can be employed to attack the model. It’s reasonable.\n4.\tExperimental results showed that diffusion models directly outputting audio are more robust compared to models outputting mel-spectrograms. This paper recommended using models that directly output audio to enhance robustness.",
+      "waeknesses": "The paper is overall clear and sound, but I still have some minor concerns:\n\n1.\tWhen attack audio, this paper also uses these methods proposed from image attacks (NA, SecMI). The methods for attacking audio should be included as well.\n2.\tIn the loss function of the diffusion model, there is a noise term. The proposed method is based on the loss function, but the method to remove the influence of the random seed is not described clearly.\n3.\tFig. 2 is too small to read.",
+      "questions": "1. It is not clear how hyperparameters are selected for other methods.\n2. Why audio data is more robust against the proposed method?\n3. It is better to present the procedure of the proposed method in one table."
+    }
+  ]
+}

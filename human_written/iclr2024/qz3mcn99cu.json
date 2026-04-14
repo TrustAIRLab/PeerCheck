@@ -1,0 +1,35 @@
+{
+  "title": "A Recipe for Improved Certifiable Robustness",
+  "keywords": [
+    "adversarial robustness",
+    "certificated robustness",
+    "Lipschitz-based"
+  ],
+  "pdf_url": "/pdf/35918ad3945d337732cd3821325cfc558cce260b.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "* By combining technical improvements on three aspects as mentioned in the summary, the paper shows a significant empirical improvement over previous works across all the datasets (e.g., +8% on CIFAR-10). \n* This work provides suggestions on better settings for the robust training, in terms of model architecture with additional layers, building orthogonal layers with Cholesky decomposition, and data augmentation with a newer diffusion model.",
+      "waeknesses": "* The paper looks like manually searching for settings (model architecture, orthogonal layers, diffusion model). It has engineering merits. But it does not have much novel contribution by adding more dense layers and replacing the diffusion model already used in Hu et al,, 2023 with a newer diffusion model.\n* The benefits of the best choices found by the paper are not well explained. For example, the paper only explains that the Cholesky-base orthogonalization is more numerically stable and faster, but it does not explain why it can improve VRA. Therefore, the paper provides limited insights, in its current form.",
+      "questions": "* How does the Cholesky-base orthogonalization help on VRA?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. This work studies the limitation for Lipschitz-based certification and proposed new architectures to mitigate the issue.\n2. Strong empirical result: experiments showed noticeable improvement over the baseline models.",
+      "waeknesses": "The authors need to include some intuitions when designing the layers.",
+      "questions": "Can the authors include training time and inference time for the new architecuture?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "It finds that an apparent limitation preventing prior work from discovering the full potential of Lipschitz-based certification stems from the framing and evaluation setup. Specifically, most prior work is framed around a particular novel technique intended to supersede the state-of-the-art, necessitating evaluations centered on standardized benchmark hyperparameter design spaces, rather than exploring more\ngeneral methods for improving performance (e.g., architecture choice, data pipeline, etc.).\n\n\nIt discovers that the addition of large “Cholesky-orthogonalized residual dense” layers to the end of existing state-of-the-art Lipschitz-controlled ResNet architectures is especially effective for increasing network capacity and performance. \n\nThis work provides a more comprehensive evaluation to illuminate the potential of Lipschitz-based certification methods. It finds that by delving more thoroughly into the design space of Lipschitz-based approaches, it can improve the state-of-the-art VRA for deterministic certification significantly on a variety of benchmark datasets, and over a range of perturbation sizes. Combined with filtered generative data augmentation, the final results further the state of the art deterministic VRA by up to 8.5 percentage points.\n\nIt provides an overview of the existing methods used for controlling the Lipschitz constant during training, and propose its own method that can be combined with other approaches.\n\nIt discusses the role data augmentation plays in training high-capacity models. It covers DDPM, which prior work has found helpful for certified training, and proposes an alteration to the typical augmentation strategy that further boosts performance.",
+      "waeknesses": "In section 4.3, it seems to mainly discuss the comparison with RS based methods. But Table 5 shows several other works which can achieve better performance. It is better to also discuss the comparison with these works. Currently it seems that table 5 only shows the results without detailed discussions for these works.",
+      "questions": "see the weakness."
+    }
+  ]
+}

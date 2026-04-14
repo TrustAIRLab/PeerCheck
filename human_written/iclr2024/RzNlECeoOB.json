@@ -1,0 +1,36 @@
+{
+  "title": "$t^3$-Variational Autoencoder: Learning Heavy-tailed Data with Student's t and Power Divergence",
+  "keywords": [
+    "Variational autoencoder",
+    "Information geometry",
+    "Heavy-tail learning",
+    "Generative model"
+  ],
+  "pdf_url": "/pdf/456160753ce7ca91fd5d14c5ba07b1183322d395.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- An interesting and important extension on the VAE framework to meaningfully deal with heavy-tailed data.\n- A broad investigation and discussion into the underlying concepts, providing an excellent derivation of the method, and a good amount of detail extending into the appendices. \n- Hyperparameters and model choices are thought out and well-justified. The authors could have simply attached a few of the underlying ideas together without much thought, but have chosen to go the extra mile. \n- Model is shown to be highly effective compared to competitors, even on reasonably challenging image datasets where VAEs do not typically do well.\n- Very well-written paper; no grammatical issues or typos that I could detect.",
+      "waeknesses": "- Reporting p-values is not exactly ideal, especially when metrics are available. \n- No general summary to assist with implementation.\n- No examples conducted on datasets where heavy tails are known to be especially relevant (e.g. economic datasets).\n- No discussion of, or comparisons to, similar developments in the normalizing flow literature (e.g. [1] and [2]).\n\n[1] Jaini, P., Kobyzev, I., Yu, Y., & Brubaker, M. (2020). Tails of Lipschitz triangular flows. In International Conference on Machine Learning (pp. 4673-4681). PMLR.\n\n[2] Liang, F., Mahoney, M., & Hodgkinson, L. (2022). Fat–Tailed Variational Inference with Anisotropic Tail Adaptive Flows. In International Conference on Machine Learning (pp. 13257-13270). PMLR.",
+      "questions": "- Is the gamma-power divergence not the same as the Renyi divergence (up to constants)? How do they differ?\n- Can you provide an algorithm environment to show how this should be implemented at a glance? I appreciate the presentation and the derivation of the model, but any reader looking to quickly implement it is likely to have trouble if they do not thoroughly read the paper. \n- What do the MMD values themselves look like? These might be more useful to report than the p-values.\n- Since you know the densities explicitly in the synthetic tests, you could use KSD instead of MMD, as this will have much improved statistical power. Have you tried this?\n- Have you tried the model on any real datasets other than image sets?\n- Do you know how the model compares with other normalizing flow models incorporating t-distributions?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The use of Student's t-distributions as an alternative to the Gaussian prior in VAEs seem a fresh perspective. The heavy-tailed nature can indeed address some of the shortcomings of the standard Gaussian prior.\n\n- The modification of the evidence lower bound to incorporate γ-power divergence might seem appropriate given the nature of the power families.\n\n- Demonstrated superior performance on benchmark datasets, particularly on imbalanced/ longtailed version of CIFAR-100, which is a testament to the proposed model's robustness.",
+      "waeknesses": "- The transition from Eq(5) to Eq(19) is not straightforward for me. While intuitively, adopting the γ-power divergence to the KL-divergence might seem appropriate, a central question arises: Does the γ-power divergence between the two manifolds still lead to the ELBO? This needs to be addressed for better clarity.\n\n- Given that both t3VAE and the Student-t VAE integrate the Student's t-distribution into the VAE framework, a more granular comparison in the related work section would be enlightening. Highlighting the distinct features and advantages of t3VAE over the Student-t VAE would give readers a clearer understanding of its contributions.\n\n-  I noticed that the hierarchical variants of the model weren't evaluated in the experimental section. Such an evaluation might provide insights into the model's performance in different configurations. I'd be keen to see these results.\n\n- Incorporating the Student's t-distributions inherently increases the model's complexity. This can potentially introduce challenges in training and optimization. I recommend the authors delve into these potential challenges, discussing potential remedies and considerations for practitioners aiming to implement t3VAE.",
+      "questions": "See Weakness."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "(1) The idea behind $t^3$VAE (although somewhat natural) seems original and significant since it allows us to overcome (to some extent) the limitations of classical VAE.\n\n(2) The proposed solution has (as the authors show) a solid theoretical background.\n\n(3) The experimental results prove the superiority of $t^3$VAE over the state-of-the-art.",
+      "waeknesses": "(1) The authors claim that their idea is extendable to hierarchical models. Although there is a theoretical justification for this in the appendix, the paper would benefit from corresponding experimental studies.\n\n(2) Minor comments:\n\np. 2, l. 10 from bottom: the authors probably wanted to write \"likelihood\" (instead of \"log-likelihood\"),\n\np. 7, Tab. 3: $t^3$VAE $\\to$ $t^3$VAE ($\\nu=10$),\n\np. 9, l. 12: I suggest not to use the phrase \"scores highest\" (as in the case of FID \"lower is better\").",
+      "questions": "(1) Have you considered providing experimental results for hierarchical architectures?"
+    }
+  ]
+}

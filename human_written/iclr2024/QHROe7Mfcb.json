@@ -1,0 +1,34 @@
+{
+  "title": "Less is More: One-shot Subgraph Reasoning on Large-scale Knowledge Graphs",
+  "keywords": [
+    "knowledge graph reasoning",
+    "graph sampling"
+  ],
+  "pdf_url": "/pdf/4a387990b9809a07e4d8a87784f556a1a511641b.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "3: reject, not good enough",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "* The paper proposes a simple, yet somewhat novel idea. While the idea is somewhat heuristic, it is nevertheless interesting to test out its performance on this problem. \n\n* The authors perform good literature review summarizing the different categories of KG link prediction methods. \n\n* The proposal is tested empirically through several experiments.",
+      "waeknesses": "* The paper appears to use terms and phrases that make it sound quite bombastic and somewhat unscientific (see below). \n\n* Some of the language is vague and I feel like some of the technical details from the appendix would benefit the paper. \n\n* Algorithm 1 is not clearly defined (see below). \n\n* I feel like a bit more space can be allocated to the intuition behind some of the experiments (e.g. what does the degree distribution in Fig 4 imply about the method's performance qualitatively?)",
+      "questions": "* To the above point, re language usage, please fix these.\n    * E.g. it uses the term KG Reasoning while in fact solving the link prediction task (a term used only once in the whole paper!).   \n    * Repeated use of the word paradigm, even though there isn't anything that is fundamentally new theory in their proposal/approach. \n    * The use of the word 'blazes' on p.1 \n\n* p. 3, Advantage 2. Why is the exploration/exploitation relevant for the proposed algorithms? While there is some intution behind the analogy with exploitaion/exploration the algorithm doesn't really formulate the problem using this analogy. For example there is no way to trade/balance the two. So this comparison relies on broad intuition, hence this advantage is a weak one at best. \n\n* Algorithm 1. define Alpha, K, define the shape of A and D.\n\n* How is the adjacency matrix A computed in the subgraph extraction part. Since this is a KG, not a homogenous graph, there are several adjacency matrices (one for each relation). Are these combined somehow? \n\n* I think the paper would benefit from pulling some of the technical details from the supplement to the main paper, in favor of reducing some of the verbiage in the main paper. Please consider this modification."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The paper is well-motivated. It is reasonable to consider the one-shot subgraph reasoning problem.\n2. The paper is well-written and easy to follow.\n3. The paper provides a comprehensive literature review in preliminaries.",
+      "waeknesses": "1. Although the problem is interesting, the proposed methodology is not surprising. The main idea is to use PPR to calculate probability and select the top of entities and relations. The reasoning on the subgraph is following the existing methods.\n2. The paper emphasizes improved efficiency, but I did not find a comparison of efficiency between the proposed method and the existing ones.\n3. The hyperparameter searching looks inefficient.",
+      "questions": "1. The hyperparameter searching is not trivial. It would be helpful if the authors could explain more about hyperparameter searching when facing a new knowledge graph and how to select the best configuration."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1.The motivation of model design is clear and reasonable. It is unnecessary to utilize the whole KG in reasoning, only a small proportion of entities and facts are essential for answering specific queries, which is also supported by the experiments.\n\n2.Experiments cover several benchmarks. The model is tested on multiple datasets and shows very promising results.\n\n3.The paper is well-written and generally easy to follow.",
+      "waeknesses": "1.In the paper, there is some similar descriptions in the discussion. For example, in section 3, the first paragraph states, 'The design principle here is to first identify one subgraph, which is relevant to a given query and is much smaller than the original graph, and then effectively reason on this subgraph to obtain the precise prediction.' This is similar to Definition 1 in section 3, which states, 'Instead of directly reasoning on the original graph G, the reasoning procedure is decoupled into two-fold: (1) one-shot sampling of a query-dependent subgraph and (2) reasoning on this subgraph.' These are also similar to what is mentioned in the introduction, 'Thereby, the reasoning of a query is conducted by (i) fast sampling of one query-dependent subgraph with the one-shot sampler and (ii) slow reasoning on this single subgraph with the predictor.'\n \n2.In sections 4.4, a significant number of symbols, abbreviations, and technical terms are employed. Some symbols are not adequately explained, which may potentially cause difficulties for readers during their reading. For example, the supp() in 4.4Theorem 1 does not provide an explanation.\n\n3.The formulas in sections 4.3 and 4.4 are not labeled, such as (6) and (7).",
+      "questions": "1.Given that the proposed method relies on a non-parametric heuristic (PPR) for sampling, how interpretable are the final predictions and reasoning steps? Can the method provide insights into why a certain answer was chosen for a given query?\n\n2.How robust is the proposed method to noise or inaccuracies in the underlying knowledge graph? Are there any guarantees regarding the robustness of reasoning results in the presence of perturbations in the data?\n\n3.What are the potential directions for future research or extensions of this work? Are there specific aspects or challenges within KG reasoning that remain open for investigation?"
+    }
+  ]
+}

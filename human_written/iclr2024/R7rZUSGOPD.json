@@ -1,0 +1,44 @@
+{
+  "title": "PAE: Reinforcement Learning from External Knowledge for Efficient Exploration",
+  "keywords": [
+    "Reinforcement learning",
+    "exploration",
+    "intrinsic motivation",
+    "knowledge"
+  ],
+  "pdf_url": "/pdf/f45d0322cc4876f6528ee34b54eb7381043f06b7.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1.\tThis paper is attempting to bring natural language instruction to curriculum-driven RL by adding in Planner to a modified version of Actor Critic\n2.\tTheir encoders use cross-attention to align instruction knowledge with current environment state embedding to encourage selection of the most relevant knowledge and exploration of relevant states by actor. The actor is also rewarded based on the mutual information between knowledge and states.\n3.\tThe paper is well structured even though the methodology is complex.\n4.\tThe reward structure is intuitive to understand and clearly defined for each component.\n5.\tThey compare against IMPALA, RND, ICM, Amigo, L-Amigo and have consistent improvement as well as good training stability across 6 BabyAI tasks\n6.\tThe ablation studies are thoroughly done and establish the value added by the Planner.\n7.\tThe Planner generated curriculum serves as a window into agent behavior",
+      "waeknesses": "1.\tBabyAI action space is quite limited (6 actions) and simplistic, so are the tasks since they are 2D grid world tasks.\n2.\tAs pointed out by authors, current experiments have a knowledge oracle and a very specific template for knowledge peices. Also, planners can observe the whole world, which may be unrealistic for many real-world set up.\n3.\tCurrent experiments require well-defined sub-tasks as well as detection of sub-task completion. Baby AI tasks are about navigating a grid in a particular way and due to task and world structure, it is easy to detect sub-task completion.\n4.\tThis method would need sub-task and knowledge alignment so as to detect if a particular piece of knowledge lead to completion of a particular sub-task. I don’t see how it can work any other way. This is a very hard thing to obtain.\n5.\tThe evaluator currently is highly customized to BabyAI tasks.",
+      "questions": "1. I would like to hear authors thoughts on weaknesses 3, 4 and 5 to be sure of my understanding of the paper's contributions\n2. How did the authors reach the design for evaluator? What challenges if any, do the authors foresee in making the evaluator more general-purpose?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- Originality: The paper proposes a new framework addressing the issue of knowledge acquisition, integration, and updating in RL. PAE stands out with its ability to use natural language as a knowledge source and to progressively adapt the difficulty of acquired knowledge.\n- Quality: The proposed PAE framework is designed with clear objectives, tackling key challenges that arise when training agents to absorb external knowledge and improve their capabilities.\n- Clarity & Significance: The experiments conducted in multiple challenging environments provide strong evidence of the framework's effectiveness, its generalization across tasks, and superiority compared to existing methods. The paper is well-written and provides meaningful insights into the relationship between knowledge and environment states, making PAE a valuable contribution to the RL community.",
+      "waeknesses": "I believe that the main limitation of this paper is that the PAE algorithm relies on a pre-defined knowledge set, although the authors have proactively mentioned this in the limitations section. There are already quite a few LLM-based agents that do not require pre-defined external knowledge and are able to complete various tasks well by relying solely on the LLM's inherent commonsense knowledge [1] or by actively gathering, summarizing, or reflecting on dynamic knowledge throughout the task [2]. However, the experimental section does not compare these methods. Although the authors mention that these methods may have higher training/inference costs, I think that given the current popularity of LLM-based agents, this comparison is essential, and higher training/inference costs are not a compelling reason to avoid it. Otherwise, it is difficult to justify the necessity of pre-defined external knowledge and the rationality of the basic settings of this paper.\n\n---\n[1] Carta, Thomas, et al. \"Grounding Large Language Models in Interactive Environments with Online Reinforcement Learning.\" ICML 2023.\n\n[2] Chen, Liting, et al. \"Introspective Tips: Large Language Model for In-Context Decision Making.\" arXiv preprint arXiv:2305.11598 (2023).",
+      "questions": "The main questions have been mentioned in the `Weaknesses` section."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1.This work teaches agents to leverage external knowledge and approach optimal solutions faster in sparse reward environments.\n2.This work introduces LLM ideas to RL problems, which is very interesting and novel.\n3.It can be applied to the current actor-critic approaches.",
+      "waeknesses": "1.As authors pointed, the current knowledge relies on the specific template, which lacks naturalness and does not fully use the huge ability of the LLM. It is an obvious weakness for this paper.\n2.The current knowledge needs human labeling following the specific template, which is of labor consumption.\n3.I suggest the definition and description of the alignment loss can be placed in the main text, which I finally find in the supplementary.",
+      "questions": "1.The authors use the cross-attention as the alignment, how about the current alignment work like CLIP and ImageBind? Do the authors consider to use this alignment?\n2.In Figure 4, I think there is unfair to compare with most of these baselines, since they do not have or use the language guidance. The L-AMIGo is the only one considering language. Are there any other similar work that the authors can compare? The current comparison is not very strong to highlight your work."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- This paper studies an interesting topic of using natural language as external knowledge for RL agents to improve exploration in reward sparse tasks.\n\n- The writing is clear and easy to follow.\n\n- PAE showed strong performance in the experiments.",
+      "waeknesses": "- The PAE model comprises three primary components, each with distinct hyper-parameters. Managing these varied parameters can be challenging in real applications.\n\n- Since it depends on special environments and predefined knowledge template, PAE is not generalizable to a broader range of tasks.",
+      "questions": "- What is the difference in wall-clock running time between PAE and the other baseline models?\n\n- Would it be possible to extract latent knowledge from a collected dataset in a pre-training stage and replace the template-based knowledge in PAE?"
+    }
+  ]
+}

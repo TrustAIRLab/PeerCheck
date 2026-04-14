@@ -1,0 +1,36 @@
+{
+  "title": "Transformer-Modulated Diffusion Models for Probabilistic Multivariate  Time Series Forecasting",
+  "keywords": [
+    "time series forecasting",
+    "generative modeling",
+    "deep learning",
+    "diffusion model"
+  ],
+  "pdf_url": "/pdf/3f74b59edd1319072034766ee40fae695f59eed3.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. This paper is well-presented and well-organized.\n2. The paper introduces a Transformer-Modulated Diffusion Model (TMDM), uniting conditional diffusion generative process with transformers into a unified framework to enable precise distribution forecasting for MTS. \n3. Extensive experiments are conducted",
+      "waeknesses": "1. This paper states many existing work did not consider the uncertainty of data, but more SOTA should be compared and considers like cST-ML which tries to capture traffic dynamics with VAE. Please provide detailed explanations or experiments accordingly.\n2. If the time-series data is in different granularities, does this model still work?",
+      "questions": "Please address the questions above."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "s1. generic approach that will work with any point estimate model.\ns2. consistently good results against several strong baselines.\ns3. ablation studies demonstrate the impact of different components\n  as well as the ability to wrap different point models.",
+      "waeknesses": "w1. the results for CRPS_sum of the baselines (appendix, tab. 6)\n  varies from the published results.",
+      "questions": "The paper proposes a generic approach to wrap a diffusion\nmodel around any point estimate model for time series\nforecasting to make it probabilistic (s1). Most of the results\nshown in tab. 2 are pronounced improvements and almost\nall but the very last are consistently better than several\nstrong baselines (s2). Due to the ablation studies one can\nclearly see the impact of different modelling choices (s3).\n\nI only would like to discuss one point:\nw1. the results for CRPS_sum of the baselines (appendix, tab. 6)\n  varies from the published results.\n- e.g., tab. 6 reports CRPS_sum 3.92 on Exchange for TimeGrad,\n  but the TimeGrad paper reports 0.006.\n  your tab. 6 reports CRPS_sum 4.54 on Electricity for CSDI,\n  but the CSDI paper reports 0.017.\n- I think these differences need to be clearly explained, likely\n  due to different experimental conditions?\n  If so, it would be convincing to reproduce the experiments\n  of the strongest baseline papers and compare them on\n  the published settings, too."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Inspired by the conditional diffusion process for multivariate regression from Han et al. (2022), the manuscript proposes the conditional diffusion process for multivariate time series forecasting.\nTo the best of my understanding, the core contribution of the manuscript is to use the \"condition\" from a Transformer for the diffusion model, while both the Transformer and conditional diffusion model are from the literature.  \n\nThe manuscript is overall clearly written and easy to read. Some of the missing details are listed in Questions.\n\nThe proposed method for probabilistic multivariate time series forecasting has the potential to contribute to the community.",
+      "waeknesses": "- The manuscript does not successfully highlight its contribution. \nSince both components of TMDM are from the literature, it is necessary to highlight why this is not trivial.\nIn my humble opinion, the 3rd contribution is quite weak, as both metrics are from existing works.\n\n - There are also other works that employs a Transformer and a probabilistic model for time series modelling. \ne.g., Transformer + Probabilistic Circuit is proposed in [1] for time series forecasting, and uncertainty estimation (similar to Fig. 2 in the manuscript) is provided. \nA discussion with such works might help to stress the novelty and contribution of the manuscript.\n\n - The generation of the conditional representation $\\hat{y}_{0:M}$ is not clear to me. Some details are omitted from eq(9) to eq(10).\n\n - The references are not up-to-date, many arXiv versions are already published.\n\n---\n[1] Yu, Zhongjie, et al. \"Predictive Whittle networks for time series.\" Uncertainty in Artificial Intelligence. PMLR, 2022.",
+      "questions": "- can you provide more details on generating  $\\hat{y}_{0:M}$? What is the dimension of $z$? As in eq(10), is $z$ a scalar? How are the NNs for $\\tilde{\\mu}_z$, $\\tilde{\\sigma}_z$ and $\\mu_z$ formulated?\n\n- How $\\mu_z(z)$ differs from $\\mathcal{T}(x_{0:N})$? What happens if the NNs are omitted and $\\mathcal{N}(\\mathcal{T}(x_{0:N}), \\mathbf{I})$ is used instead of $\\mathcal{N}(\\mu_z(z), \\mathbf{I})$?\n\n - $f(x_{0:N})$ is in $\\mathbb{R}^C$ in introduction but $x_t$ and $y_t$ are in  $\\mathbb{R}^d$. Does $C=d$ hold?"
+    }
+  ]
+}

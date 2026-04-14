@@ -1,0 +1,44 @@
+{
+  "title": "Gen-Z: Generative Zero-Shot Text Classification with Contextualized Label Descriptions",
+  "keywords": [
+    "zero-shot classification",
+    "prompting",
+    "generative classification",
+    "label descriptions"
+  ],
+  "pdf_url": "/pdf/2c0276dcc674aef018e1899f39fed7767c226540.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- This paper is well-written and easy to follow.\n- The empirical analysis is comprehensive and solid regarding datasets and backbone models.\n- The proposed method is simple yet effective, providing a solid and lightweight framework to solve zero-shot text classification problems.",
+      "waeknesses": "The proposed method, presentation, and empirical analysis are well self-explained. I don't have much concern about it. \n\nMy main concern is whether the problem of \"zero-shot text classification with some human/ChatGPT labeled data\" is meaningful. If one would like to do some annotation, either with human annotators or ChatGPT, why not directly annotate some labeled samples for few-shot text classification? Thus, in my opinion, to show that this problem setup and the proposed framework are meaningful, the authors need to somehow show that this zero-shot framework is more effective than a few-shot text classification framework given the same amount of annotation effort.",
+      "questions": "Do you think the proposed framework can be used to amplify few-shot classification systems? I think it may make better sense in assisting a few-shot classification system since adding a few more training samples may not be as effective as providing these label descriptions given the same annotation efforts."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The authors successfully derived the final form of the probability for generative text classification (i.e., $\\sum_{z_i} p(\\mathbf{x}|z_i)$), based on a series of reasonable assumptions.\n- The paper outlines a well-considered experimental setup that demonstrates the efficacy of the proposed method in specific applications like domain-aware classification and personalized classification.",
+      "waeknesses": "- The method proposed is conceptually similar to Min et al.'s noisy channel method, with the primary distinction being the use of multiple \"label descriptions\". This similarity raises questions regarding the novelty of the proposed approach.\n- The assumptions outlined in Section 2.3 may be overly simplistic, potentially detracting from the final performance of the proposed method. The paper would gain interest if the authors could suggest reasonable approximations for the omitted probabilities, namely i.e., $p(z|y_i, u,v,\\dots)$ and $p(y_i|u,v,\\dots)$.",
+      "questions": "- What potential impacts could arise from the combination of the proposed method with few-shot learning scenarios? This consideration is crucial, especially given that while generative zero-shot classification yields reasonable results, it does not yet match the performance of few-shot-based methods, like ICL (DC) as depicted in Table 2."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The proposed framework is interesting and seems novel. Utilizing label description in the bayesian form can help to improve the overall classification performance as shown in the experiments in the paper.\n\n2. This work conducts extensive experiments on a variety of datasets, including domain-aware classification and personalized classification. This is very encouraged in NLP research.",
+      "waeknesses": "1. Though this work argues that utilizing label descriptions in a bayesian form benefits the performance, it relies heavily on the quality of the label description, e.g., how clear the context can present the task, domain the label. However, in text classification, sometimes the label is not natural language, but a less literally meaningful symbol. For such labels, it is not likely to encourage the model to generate text $x$ given $y$. Then it requires human beings to provide very good summaries or descriptions for such labels, which is sometimes challenging. Such a problem limits the application of the proposed GEN-Z framework. Instead, conventional in-context learning can provide examples and have the model to learn from simpler label descriptions and demonstrations, which is more flexible.\n\n2. Since label descriptions directly decides how the model generates $x$, the quality of $z_i$ plays an important role on the performance. It is encouraged to explore how the performance is influenced if descriptions of different quality are given. For example, if the label can already express the meaning of the label, then descriptions may not be required. When the label meaning is more abstract, detailed descriptions may be better than abstract descriptions. Such influence is encouraged to be explored.",
+      "questions": "1. For LMs, the context can influence the language model probability significantly. Combining multiple label descriptions may result in changed language model probability. So how is multiple label descriptions utilized in this work?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1) This generative in-context learning is natural due to the LLM being based on a generative model. This paper propose two novel module based on baseline models, including MULTIVARIATE GENERATIVE CLASSIFICATION and CONTEXTUALIZED LABEL DESCRIPTIONS. \n\n2) Compared with other in-context learning methods, this method can improve robustness effectively.\n\n3) The paper is well written, and the figure is helpful for understanding.\n\n4) The analysis of the Baysian equation is novel, simple, and clear.",
+      "waeknesses": "This paper may take incremental work, which adds two new modules based on the generative classifier in [1].\nIn my opinion, the work doesn't show any new insight, maybe not enough for ICLR but more suitable for other conference , such as ACL.\n\n[1] Min, Sewon, et al. \"Noisy channel language model prompting for few-shot text classification.\" arXiv preprint arXiv:2108.04106 (2021).",
+      "questions": "Do you add the label description to other baseline models, which are generated from ChatGPT? If not, the comparison may not be fair because you added more external knowledge. \n\nCan the generative classifier be used to other suan as multimodel, or image data?(CLIP)"
+    }
+  ]
+}
