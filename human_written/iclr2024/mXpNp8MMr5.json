@@ -1,0 +1,35 @@
+{
+  "title": "On the Vulnerability of Adversarially Trained Models Against Two-faced Attacks",
+  "keywords": [
+    "adversarial training",
+    "adversarial robustness",
+    "two-faced attacks"
+  ],
+  "pdf_url": "/pdf/dce5bfafd7712f7b237e0b3e9faad4c743261137.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "This study takes a leading role in exposing the vulnerability of adversarially trained models to 'two-faced attacks', which fraudulently overestimate the robustness of the model during the verification stage. \nNotable features include its comprehensive evaluation across a variety of model architectures, datasets, and training techniques, as well as its introduction of the 'two-faced risk' notion to reconcile theory and empirical results. \n\nAlso, the work represents a challenging problem in adversarial defense, as it reveals a counterintuitive trade-off: models that are more resilient to adversarial examples are also more vulnerable to two-faced attacks. \n\nHowever, the paper's implications for practice are highlighted by a strong need for rigorous validation processes prior to deployment, particularly in safety-critical domains. This call urges a reevaluation of how adversarial robustness is measured and perceived in the field.",
+      "waeknesses": "Although the study identified two-faced attacks against adversarially trained models in a novel way, it might not provide practitioners with sufficient defenses to address these weaknesses. Though interesting, its theoretical investigation of two-faced risk may prove difficult to implement in real-world scenarios and may not provide enough information about mitigation strategies. \n\nAdditionally, there may be an overemphasis on two-faced attacks, which might mask other important security issues that need to be taken seriously. Furthermore, a lack of clarity in the procedures for experiments may make them difficult to repeat and inhibit future studies.\n\nFinally, there can be a gap in comprehensive risk management techniques if the paper does not include a comprehensive explanation of how to balance adversarial risks, such as two-faced risk, against other risks.",
+      "questions": "Just two questions:\n\nIs it possible to include the idea of two-faced risk into current adversarial training frameworks without making major changes?\n\nHow can long-term model validation procedures be affected by the future evolution of two-faced attacks?\n\n\nFinally, two suggestions:\n\nFuture work should focus on developing more comprehensive defense strategies against two-faced attacks that can be easily implemented in real-world systems.\n\nPerform research on how models might eventually be exposed to fraudulent attacks, especially if adversaries and attack techniques advance in sophistication."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. It is important to disclose the existence of such two-faced attacks in the model verification phase, as \ndeploying substandard models (with low adversarial robustness) in reality could cause serious security \nissues.\n\n2. There are some interesting findings that can demonstrate the practical importance of two-faced \nattacks. For example, many types of models suffer from this threat, and models with higher \nadversarial robustness tend to be more vulnerable. \n\n3. This paper mathematically formulates the two-faced attacks and the two-faced risk, and provide a \ntheoretical analysis on its relationship with adversarial risk, and provide a discussion on possible \ncountermeasures to circumvent two-faced attacks.\n\n4. Experimental results are supportive.",
+      "waeknesses": "The two-faced attacks are the key of this paper, but the realistic application domains are still unclear. \n\nFrom Figure 1(a), this paper gives a machine learning workflow that shows the adversarial robustness \ncan be affected by the two-faced attacks in the model verification. However, this paper did not \nprovide a real-world example that the two-faced attacks can be applied into and can cause serious \nsecurity issues. This point can further strengthen the significance of the two-faced attacks.",
+      "questions": "Can the authors provide a real-world example that the two-faced attacks can be applied into?\n\nCan the authors provide more potential countermeasures against two-faced attacks, apart from the \nones mentioned in Section 3.3?\n\nOther problems please see **Weaknesses.**\n\nOverall, I like the idea and analysis in this paper.  I expect the problems could be clarified and addressed in the rebuttal."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "- The paper has a strong formulation and background of hypocritical examples on adversarial examples.\n- The experiment covers several kinds of datasets.\n- The literature review is good and updated.\n- The paper is well-organized and easy to follow.",
+      "waeknesses": "- The background and motivation are not convincing to me. The authors may make it more motivating, and probably, look at the previous work (Tao, 2022b) since it is very convincing.\n- The experiments for the countermeasure (enlarging the budget) are limited. The authors may need to add more experiments for it.\n- The contribution of this paper is limited because the content is very similar to the previous work (Tao, 2022b), but changes from clean test samples to adversarial test samples. The authors may focus more on the countermeasure.",
+      "questions": "- In Appendix A, I do know how you derive from E[1(f(x'') = y) * 1(f(x_{adv} \\neq y)] to E[1(f_{adv} \\neq y)] * E[1(f(x'') = y)]. It is in the lines 7 and 8 if you count the line R_{rhpy}(f,D) as line 1."
+    }
+  ]
+}

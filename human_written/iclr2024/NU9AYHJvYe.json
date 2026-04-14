@@ -1,0 +1,45 @@
+{
+  "title": "Optimal Sample Complexity of Contrastive Learning",
+  "keywords": [
+    "learning theory",
+    "sample complexity",
+    "vc dimension",
+    "contrastive learning",
+    "metric learning"
+  ],
+  "pdf_url": "/pdf/00a6d5623a59e634ef01b7ebdd71bd1b30b22500.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The proof is by _understanding the problem via transforming it_ to another equivalent representation: the decision boundary of contrastive learning under common metrics as a low-degree polynomial, and bounding its number of possible satisfiable sign changes. There is no loss until invoking the algebraic-geometric bounds on number of connected components by Warren, and the sample complexity bounds on Natarajan dimension by Ben David et al. \n\nAnd at a high level, the paper shows that when the learned representation is expressive enough (such as ResNet18), PAC-learning bounds (e.g., by VC/Natarajan dimension) can have predictive powers.\n\nThe theoretical result is also experimentally verified on popular image datasets (CIFAR-10/100 and MNIST/Fashion-MNIST), by learning the representations with a ResNet18 trained from scratch with different contrastive losses (Appendix F).",
+      "waeknesses": "The proof arguments are somewhat non-constructive, due to using a counting argument/pigeonhole principle, and hence while the theory may explain certain observations (e.g., the experimental results in Appendix F), it is unlikely to give effective learning algorithms and the constants in the resulting bounds are unlikely to be sharpened. This may be nitpicking, but are weaknesses nonetheless.",
+      "questions": "While the experimental results (in Appendix F) verify the growth of error rates as predicted by the theory for ResNet18 on certain parameter ranges, there is not much explanations regarding, e.g., what representations (e.g., deep learning architectures) are expressive enough to achieve the sample bounds as predicted by the theory. That is, the representations (given by the theory) are somehow non-explicit/ineffective, is that the case?\n\n### Typos?\n\nStatement of Theorem 1.3 (Page 4):\nThe sample complexity of contrastive learning ~for contrastive learning~ under cosine similarity is..."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The study covers a wide range of distance functions, both in lower bounds and upper bounds.\n- Interesting use of an algebraic geometry result to prove the upper bound.\n- The theory is well-supported by the empirical results.\n- The authors discuss possible directions for future work.",
+      "waeknesses": "Personally, I find it hard to follow the results by chapter. For example, Section 3 should be all about the bounds in $\\ell_p$ norm, and so Theorem 3.1 (Arbitrary distance) should come before this section. And I think it would be easier to follow if Section 3 is only for $k=1$ and Section 4 is only for $k>1$.\n\nI have some comments for Table 1:\n- I would put \"$(1+\\alpha)$-seperable $\\ell_2$\" in the same category as $\\ell_p$.\n- The \"Same\" labels for quadruplet learning and $k$ negatives have different meaning; while the former refer to all distance functions above, the latter only refers to the $\\ell_p$ distances. Could the authors modify the table so that this distinction becomes clearer?",
+      "questions": "See Weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. This paper primarily studies the sample complexity of contrastive learning, and provides tight bounds in some settings, including arbitrary distance functions and $\\ell_p$-distances for even $p$ and almost tight bounds for odd $p$. For constant $d$, this work also provides a matching upper and lower bound. \n2. This paper studies both realizable and agnostic settings, as is standardly considered in PAC learning. The sample complexity bounds in terms of $\\epsilon$ coincide with the standard results in PAC learning in both realizable and agnostic settings. \n3. The proposed proof idea extends to various settings, including the cases where $k >1$ (multiple negative examples in one tuple) and quadruple samples.",
+      "waeknesses": "1. It would be good to provide a thorough comparison with the known sample complexity bounds that appeared in the existing literature. \n2. While I understand the page limit of the main body, there seems to be relatively less than enough content on the main results of this work in the main body. Perhaps consider moving more technical parts from the appendix into the main body. \n3. The structure of the paper could be reorganized a bit: e.g., the paragraph \"Reducing dependence on $n$\" could be part of the discussions after presenting the full main results.",
+      "questions": "1. What do you think is the primary season/insight that the upper bounds for $\\ell_p$-distances are different between odd and even $p$?\n2. Do you think it is possible to characterize the sample complexity bound when the cardinality of $V$ is infinite? \n3. Minor:\n- In the paragraph \"Outline of the techniques\" on Page 4, why \"P is some polynomial of degree $2d$\"?\n- In the paragraph above \"Outline of the techniques\" on Page 4, $(x_1^-, x_2^-)$ ->  $(x_3^-, x_4^-)$?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "* The derivations are interesting, short and non-trivial.\n* The results are relevant because contrastive learning is practical.",
+      "waeknesses": "Nothing significant.",
+      "questions": "Typos/Minor comments:\n* page 4: Outline of techniques: P is a polynomial of degree $2$, not $2d$.\n* Reducing dependence on $n$: It may be good to state bounds with the assumptions mentioned ($k$ latent classes etc.)\n* Theorem 3.3 proof, first line: Should it be $d < n$ here?\n* In Definition 2.1, the symbol $S_3$ seems to be used before definition.\n* Please search for \"Kulis Kulis\" and \"Warren Warren\" in the paper and remove such duplicates.\n* page 8, second line: Should $<$ be replaced by $\\leq$?"
+    }
+  ]
+}

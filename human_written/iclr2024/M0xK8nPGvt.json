@@ -1,0 +1,43 @@
+{
+  "title": "Exploiting Causal Graph Priors with Posterior Sampling for Reinforcement Learning",
+  "keywords": [
+    "Reinforcement learning",
+    "Posterior sampling",
+    "Causality"
+  ],
+  "pdf_url": "/pdf/e1855e2abd067d42d9cd6076af71eb313492a804.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The idea of replacing an uninformative prior with a causal graph is attractive. Additionally, the byproduct of weak causal discovery reveals the possibility of how to utilize reinforcement learning in the causal discovery field.",
+      "waeknesses": "My biggest concern is why not learn directly from the parents of the reward, given that we want to utilize causal prior knowledge? If I understand correctly, this paper focuses more on the parents of actions and states. As we all know, the value of a variable depends only on the values of its causal parents (line 122). If our goal is to learn the policy that maximizes the reward, shouldn't we primarily focus on the parents of the reward for greater efficiency and simplicity?",
+      "questions": "1. Line 92: I'm a little confused about why the DAG is divided into X and Y parts. If X is the state-action space and Y is the state space, where is the reward in the DAG? In common DAGs, each node represents a random variable, but here, each node seems more like a realization of the tuple (s, a) or just state 's', which makes me doubt the interpretability of the DAG.\n2. Figure 1 (right): The set Z includes 9 different DAGs. However, shouldn't the set of factorizations consistent with G_0 contain 2x2x3=12 possible FMDPs? Or did I miss some selection criteria for the set Z?\n3. Algorithm 1: From line 5 to line 6, could you provide more details on how to obtain F_* from F_k?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The manuscript is well-written. As one who is not an expert in PSRL literature, it was not too difficult to follow the paper.\n- The problem setting where only the partial causal graph is given is interesting. Also, the motivation is clear; in many practical scenarios complete true causal graph is often not accessible but only partial causal relationships are known.\n- The paper suggests a neat solution that extends PSRL and provides the Bayesian regret analysis, though I did not check the proofs. Empirical validation demonstrates its effectiveness compared to naive PSRL.",
+      "waeknesses": "- It is unclear what is the implications of the weak causal discovery result. It states that the $Z$-sparse super-graph of the ground-truth causal graph can be recovered, but it does not speak for itself, and difficult to understand what is the takeaway message. For example, is it fundamentally impossible for the C-PSRL to recover the ground-truth causal graph? If this is the case, then is it still possible for the C-PSRL to obtain (converge to) optimal policy? Is the degree of the difference between the true causal graph and super-graph associated with the convergence rate or optimality?\n- The assumption that the (correct) partial causal graph is given as a priori is understandable. However, it is also important to discuss what would happen if this assumption does not hold. For example, how would C-PSRL behave if the initial partial causal graph is wrong (i.e., when some of its edges are non-causal)?",
+      "questions": "- How can the byproduct (i.e., super-graph of the ground-truth causal graph) be utilized? Also, if one is interested in recovering the ground-truth causal graph, do you think there is any way to further prune the super-graph to obtain the true graph?\n- It would be interesting to see the performance of C-PSRL given the low prior knowledge (e.g., $\\eta = 0, 1$). The experiment only shows the case of $\\eta=2$."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- An extension of an interesting frameowork \n- clear statement about what are the new contributions",
+      "waeknesses": "Some issues in clarity of presentation and about what are the interventions here ? The paper is not written in causality notation \n- Not clear how much computational complexity is added wrt to PSRL; eg what is the complexity of step 2 in Algo 1 ? \n- defintions in Sec 2.1 are currently wrong or incomplete: the Markov factorization is not what makes an CBN, since it applies to standard BNs. See definitions of CBN in eg [Pearl, 2009, Definition 1.3.1] , it's about *all* interventional distributions having the Markov fact. and other constraints. \n- I'm not understanding in Alg 1 about step 7, are these posteriors in closed form ? If not, what approximations are used and how do they affect the regret ?",
+      "questions": "- Could you compare with the regret bounds of Lattimore et al (2016) that also use knowledge of the causal structure to improve regret in the context of bandits instead of RL ? Are there connections?  See also the extension with unknown graph in Lu et al (2021)\n\n\n\n- Lattimore, F., Lattimore, T. & Reid, M. D. Causal bandits: learning good interventions via causal inference. In Adv. Neural Information Processing Systems Vol. 29 (2016) \n- Lu, Y., Meisami, A. and Tewari, A., 2021. Causal bandits with unknown graph structure. Advances in Neural Information Processing Systems, 34, pp.24817-24828."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The motivation behind tackling the RL problem using a partial causal graph is compelling and essential for improving the practicality of posterior sampling algorithms in the RL context. The proposed algorithm is intuitive and incorporates Bayesian regret analysis. \n\nAlthough the theoretical analysis is based on the PSRL approach in FMDPs in Osband & Van Roy (2014) and the hierarchical posterior sampling method in Hong et al (2022b), the paper analyzes the connection between the degree of prior knowledge in the partial causal graph and the Bayesian regret, which is interesting. The paper also provides a result on the weak causal discovery.",
+      "waeknesses": "1. The experiment section is quite brief. There may be some missing details.\n\n   a. In particular, the construction of priors is not discussed in detail. Although the priors are discussed in lines 173-178, it is not very clear to me about the distribution of the latent hypothesis space. For example, how do we select the support of this distribution (given the sparseness Z) and assign the prior probability of each factorization? What are the priors of the transition probabilities and rewards? How are the posterior distributions updated (do we need conjugate priors)?\n\n   b. Is the assumption in Lemma D.1 satisfied by the baseline with uninformative priors in the experiments?\n\n   c. Additionally, it might be beneficial to include an experiment involving F-PSRL with the causal graph set to the partial causal graph.\n\n2. Could the author provide justification for the assumption made in Definition 2 that any misspecification in $\\mathcal{G}_{\\mathcal{F}_k}$ negatively affects the value function of $\\pi_k$? \n\nA minor issue: in line 180, line 9 does not exist in Algorithm 1.",
+      "questions": "Please address the above weaknesses."
+    }
+  ]
+}

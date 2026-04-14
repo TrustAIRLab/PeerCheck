@@ -1,0 +1,35 @@
+{
+  "title": "Noise Map Guidance: Inversion with Spatial Context for Real Image Editing",
+  "keywords": [
+    "Generative Models",
+    "Diffusion Models",
+    "Image Editing"
+  ],
+  "pdf_url": "/pdf/fb11ff531234fde98b816c3842cd03693d07c9c5.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The presented concept is intriguing and efficient. It details an uncomplicated yet effective method of using noise map conditioning during real image inversion, which streamlines the reverse process and eradicates path divergence between the reconstruction path and inversion trajectory. This leads to a more precise reconstruction.\n\n- Moreover, the experiments carried out are robust. They demonstrate superior performance in real-image editing both qualitatively and quantitatively. Additionally, the tests focusing on spatial context utilization are crucial, effectively proving enhanced spatial context preservation capabilities.",
+      "waeknesses": "- The visualization results depict many recurring stylization outcomes, such as the \"oil painting style\" and \"Van Gogh style\". It would be beneficial for the paper to exhibit a broader variety of more challenging editing instances.\n\n- The user study could benefit from providing more accurate directives in its questions; if it pertains to local editing, for instance, the question should contemplate including \"evaluate original preservation in unedited areas”.",
+      "questions": "- How about the editing performance of adding or deleting elements in the images?\n\n- While both global and local editing in the ProxNPI paper seem promising, the editing capability in this paper doesn't appear as effective. For instance, in Figure 3, the second row shows an edited result with a clear boundary between two types of backgrounds. In the third row, under \"Van Gogh,\" the overall style seems to have undergone minimal change. Can you provide an explanation for these observations?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The proposed method looks simple but effective;  \nBoth quantitative and qualitative experiments are performed to validate that NMG outperforms baselines;  \nExtensive experiments are performed to validate that NMG is able to achieve different image editing tasks.",
+      "waeknesses": "I have the following comments about the weaknesses:\n\n1) Figure 2 seems confusing to me. Since this paper repeatedly mentioned that NMG address the challenges in Null-text Inversion, I think it would be nice to compare NMG to Null-text Inversion in this Figure, and demonstrate how NMG outperforms Null-text Inversion. In addition, it would be nice to add the corresponding text descriptions in the Figure. *E.g.*, it's unclear whether the caption indicate to change the blue fire hydrant to a red one or it's just some deviations during the reconstruction.\n\n2) Limitations and future work should be discussed. For example, whether NMG can address the relationship change task like SGC-Net [1]? Whether NMG can achieve various non-rigid image editing tasks like Imagic [2]? It seems that NMG can achieve some non-rigid editing tasks such as viewpoint alternation or face expression modification. However, spatial information between the output and input seems consistent in the majority parts, from my view. Thus, it would be great to see experiments exploring whether NMG can perform other operations (with more obvious spatial information change) such as \"from a tiger\" to \"a jumping/running tiger\".\n\n[1] Zhang, Zhongping, et al. Complex Scene Image Editing by Scene Graph Comprehension. BMVC 2023.  \n[2] Kawar, Bahjat, et al. Imagic: Text-based real image editing with diffusion models. CVPR 2023.",
+      "questions": "See Weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "This paper is well-written and provides sufficient background and analysis into the motivations and effectiveness of NMG. the overall framework is very straightforward, there should be no difficulty for other to reproduce. it demonstrates a strong adaptability across various editing techniques, including Prompt-to-Prompt, MasaCtrl, and pix2pix-zero.\n\nThe method is optimization-free, making it computationally efficient while preserving editing quality, it achieve a 20 times acceleration compares to null-text inversion.\n\ncomprehensive quantitative and qualitative comparison of NMG with other inversion methods, showcasing its superior performance in preserving spatial context and editing fidelity.",
+      "waeknesses": "NMG impose a very strong spatial constraint during editing, as in the figure most showcase have almost the same geometry structure as the original picture, for case the modify geometry e.g. the cat in figure 4, the result shows an apparent artifacts in the modified region. There needs a further investigation on how will NMG perform when facing editing that requires modification on the spatial structure, for example removing a target (like \"two man ...\" ->\"one man...\") or change to a totally different object (\"...car\" to \"... bike \" ).    \n\nMoreover, there lack of discussion about possible failure cases of  NMG, the authors should add such discussion about in what circumstance NMG would fail and the reason why it fails to help the community better understand the proposed method.",
+      "questions": "Why there are no quantitive and qualitative comparison with previous works about reconstruction? I think there should be a comparison with other methods in this aspect, or the author should explain why it is omitted.\n\nHow NTI + NMG  performs when dealing with actual editing task? it would be helpful to show the proposed method can combine with previous method to achieve a better result."
+    }
+  ]
+}

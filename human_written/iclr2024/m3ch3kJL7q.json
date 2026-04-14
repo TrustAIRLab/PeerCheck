@@ -1,0 +1,34 @@
+{
+  "title": "Sentence-level Prompts Benefit Composed Image Retrieval",
+  "keywords": [
+    "Composed Image Retrieval",
+    "Vision-Language Pre-trained Models"
+  ],
+  "pdf_url": "/pdf/440012f67fd4222bd4ed875af49d99018d3f2b8c.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The proposed method is technically sound and simple. \n- The paper is easy to follow, experiments are thorough along with ablations (such as prompt length, weight in the loss function etc). \n- Provides SOTA results against 10+ baselines on two public datasets. \n- To be open-sourced.",
+      "waeknesses": "- Limited novelty: A recent paper (https://arxiv.org/pdf/2310.09291.pdf) with quite similar methodology and motivations except for a nuanced difference: training-free vs learned sentence level prompts. There is a need for contextualizing these methods together, ideally under the same evaluation framework so that we understand the value of learned sentence level prompts proposed by this paper. \n- Experimental setup: CIRR dataset experiments uses a random split of the training dataset as the test set for evaluations. The results should be reported in the official (hidden) test set instead. Otherwise reported numbers are not comparable to other papers published in this area.",
+      "questions": "Q1: Could the database image-caption pairs be enriched with the proposed sentence generation method and used for refining the search?\nQ2: How easy to extend the proposed method for addressing other problem domains or modalities?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "1. Comprehensive literature survey and good motivation of the problem.\n2. Sound approach based on innovative loss functions.\n3. Good results that exceed the state of the art.",
+      "waeknesses": "1. The overall innovation could be seen as modest. However, I am open to being convinced otherwise.",
+      "questions": "1. How does your approach do across domains? Is it able to adapt to domain shifts in other words?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. It is reasonable to generate sentence-level prompts depending on both reference image and relative caption to enrich the expressivity. \n2. Moreover, the experiments are solid since the authors conduct a thorough comparison with previous methods. \n3. The paper is well-written and the idea is easy to follow.",
+      "waeknesses": "1.\tin my comprehension, the sentence-level prompts are actually latent vectors output from the MLP layer, so it is hard to make sure the prompts work as expected as demonstrated in Figure 1(c), i.e., decoupling the multiple objects and attributes of query image, and correctly integrating the process of object removal or attribute modification. \n2.\tIt is difficult to understand the pi’ in prompt alignment loss. Whether each reference image has an auxiliary text prompt? As a result, the Figure 2(a) involves two training stages (ITC loss to optimize p and prompt alignment loss to optimize pi’)? Furthermore, during the optimization of pi’, the text encoder is frozen, so the image encoder learns to align with the frozen text encoder; while in optimization of pi, the text encoder is not frozen, so the image encoder learns to align with the updated text encoder. I find it hard to understand how the prompt alignment loss works and it seems very tricky to achieve a good performance.",
+      "questions": "The same as weaknesses."
+    }
+  ]
+}
