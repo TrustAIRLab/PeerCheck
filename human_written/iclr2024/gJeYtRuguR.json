@@ -1,0 +1,42 @@
+{
+  "title": "A Simple Romance Between Multi-Exit Vision Transformer and Token Reduction",
+  "keywords": [
+    "Vision Transformer",
+    "Token Reduction"
+  ],
+  "pdf_url": "/pdf/30327689a80f1c2ff2b92ac2444ecddc2b0299d3.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "### Good Motivation\nThis work has adeptly identified and proposed solutions for a problem in the literature of token pruning method of ViT.\n\n### Novelty and SOTA performance\nTo address the inconsistency between [CLS] attention and token significance at the early blocks, the proposed method that incorporates multi-exit into ViT) is novel and it shows effectiveness clearly by achieving state-of-the-art performance.\n\n### Nice visualization\nThis work shows well-supportive visualization examples.",
+      "waeknesses": "No exists.",
+      "questions": "It would be better to shows the GPU-throughput and compare it with those of SOTA."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "-The manuscript focuses on the very interesting interplay between multi-exit models and token reduction. \n\n-Sec. 3.2, introduces a simple, yet effective solution to the examined problem. The discussion on the use of attention as an importance metric is insightful and many relevant works can benefit from these findings.\n\n-Experiments are extensive in terms of examined models and baselines, and validate the superiority of the proposed approach to the baselines. \n\n-The manuscript is generally well-written and easy to follow.",
+      "waeknesses": "-The use of self-distillation loss for the multi-exit training (Eq.9), in place of traditional multi-exit loss of Eq.8, although effective, is not adequately motivated. Self-distillation is typically used to improve the accuracy of the trained exits, which is not a requirement here as these are discarded at inference time. The manuscript would benefit from a more insightful analysis of what motivated this design choice/ why do the authors believe this works better than the traditional approach.\n\n-Row(2) in Tab.3 seems to be the equivalent of row (4) in Tab.2, where multi-exit and token-reduction fine-tuning are jointly applied (instead of the two-stage ablation in Tab2). If this is the case, it can be deduced that token-aware fine-tuning notably reduces the effectiveness of the proposed approach, leading to significantly smaller gains even when aggressive token reduction takes place. This fact is separate from the commented fading of multi-exit effects after separate fine-tuning and needs to be further investigated/discussed in the manuscript.\n\nNote: An appendix is mentioned in the manuscript (Sec.4), but was not accessible to the reviewer.",
+      "questions": "1. What motivated the use of self-distillation in place of traditional multi-exit training in the proposed setting? What are the authors' insights about the demonstrated effectiveness of this design choice?\n\n2. Is token-reduction aware fine-tuning indeed limiting the effectiveness of the proposed approach? If yes, this should be commented in the manuscript.\n\n3. In Tab.1,2,3 does “reduce ratio” refer to number of tokens or GFLOPs? Both should be reported to get the full picture. \n\nMinor comments/ Presentation:\n-Notation in Sec.3 is quite loose. Consider defining the dimensionality of each introduced symbol (X,x,A,...).\n-Sec3.2: Symbol a^{c-p} is confusing.\n-Sec4.1.1: without incorporate -> without incorporating,  Subsequently, We (...) -> Subsequently, we (...)"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "Overall, METR is a promising method that can help reduce the computational cost of ViTs while maintaining accuracy.\n\n- The paper is clear and well-motivated.\n- The idea is intriguing and demonstrates significant improvement compared to other baselines.\n- The evaluation is well-designed and highlights the core contribution in the design section.",
+      "waeknesses": "- The evaluation demonstrates a notable improvement in accuracy compared to the baseline frameworks. It will be helpful to further demonstrate the reduction in latency with fewer FLOPs compared to other baselines.\n- It would be beneficial if the author could offer more insights in the method section, such as explaining how and why this design can enhance performance.",
+      "questions": "Please see above"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The method is clearly motivated. Token reduction based on the existing attention scores in ViT has been shown to be an effective method in reducing computational costs while maintaining most of the classification accuracy. The authors propose to add the pressure of extracting the classification information in the shallow layers via the multi-exit mechanism, which forces the attention scores in the shallow layers to focus on the important tokens as the scores are directly used as weights to gather the information for classification in the multi-exits. \n- The experiments are extensive and show the effectiveness in improving the classification accuracy over the baselines, especially with a longer training schedule. Experiments also demonstrate the proposed method's effectiveness from different perspectives, including different base models (DeiT/MAE), different model sizes, and different base methods (EViT/DiffRate).\n- The visualization seems to support the claim that adding multi-exit modules to the ViT makes the attention scores in the shallow layers aligned better with human perception (higher scores are allocated to more important tokens on the objects).",
+      "waeknesses": "The weaknesses are mostly minor issues, but it is important to address them to make the paper clearer and easier to understand.\n- The phrase \"Reduce Ratio\" is not a good term to indicate the ratio of how many tokens are kept. Please change to another term like \"keep ratio\" to make it clear.\n- Table 1 is not well explained. It took me a while to understand the setting of the experiment. The term \"Off-the-shelf\" is not immediately understandable. It would improve clarity by explicitly explaining the details of the experiments.\n- It would improve the readability of the paper by changing some words/notations to standard ones, e.g., CSE -> CE for cross-entropy.\n- There seems no appendix, but at the end of Section 4 first paragraph, it says \"See appendix for detailed experiment settings.\"\nPlease carefully proofread the whole paper to address these nuanced issues.",
+      "questions": "- Is the loss $L_{me}$ in Eq (8) also added to the $L_{total}$? It is not clearly mentioned in the paper.\n- Figure 2 can be improved with better illustration and explanation. Specifically, the arrows from the $A^c$ to the [CLS] are somewhat confusing. And why do the patch tokens have fading colors from the bottom up?"
+    }
+  ]
+}

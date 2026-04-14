@@ -1,0 +1,42 @@
+{
+  "title": "FedImpro: Measuring and Improving Client Update in Federated Learning",
+  "keywords": [
+    "Federated Learning",
+    "Deep Learning"
+  ],
+  "pdf_url": "/pdf/3502a07e76dfd7a38a5fe6e9e973d3ffafea761f.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The paper addresses a very relevant issue for the FL community, i.e. limiting the negative effects of the client drift in heterogeneous settings.\n- The paper is well written and easy to follow\n- Very detailed discussion of related works\n- Theoretical claims supported by proofs\n- Extensive empirical analysis. FedImpro is compared with some state-of-the-art approaches in terms of final performance, convergence speed, weight divergence. Interesting ablation study on the depth of gradient decoupling. Results compared under different levels of client participation, local training epochs, data heterogeneity, and settings (cross-device vs cross-silo FL).\n- Limitations regarding communication and privacy concerns are explicitly addressed. It is shown how FedImpro does not lead to privacy leakage in the gradient inversion attack.\n- All details for reproducing the experiments are provided.",
+      "waeknesses": "- My main concern regards the feasibility of deploying FedImpro in real-world contexts. FedImpro notably increases both the number of communications between clients and server, and the message size. The paper points out how the global distribution can be estimated using methods which impact the communication network less, but that does not eliminate the need for additional communication. \n- Some relevant related works are not discussed: ETF [1], SphereFed [2], FedSpeed [3]. \n- FedImpro is compared with relatively old baselines (published 3 years ago). More recent and relevant baselines are for instance FedDyn [4], FedSpeed, ETF. Also, I believe CCVR and SphereFed are highly correlated with FedImpro and it is relevant to understand how they behave w.r.t. FedImpro in terms of client drift reduction, final performance, communication costs, even if they are only applied at the end of training.\n- From Fig. 2, the actual impact of FedImpro on reducing the weight divergence appears very limited.\n\n**Minor weaknesses and typos:**\n- Lack of NLP datasets, e.g. Shakespeare and StackOverflow, or large scale datasets, e.g. Landmarks-User-160k.\n- Typo (?) page 7: I believe the explanation of cross-device or cross-silo setting should be switched, i.e. M=100 for cross-device FL and M=10 for cross-silo FL.\n\n**References**\n[1] Li, Zexi, et al. \"No Fear of Classifier Biases: Neural Collapse Inspired Federated Learning with Synthetic and Fixed Classifier.\" ICCV (2023).\n[2] Dong, Xin, et al. \"Spherefed: Hyperspherical federated learning.\" European Conference on Computer Vision. Cham: Springer Nature Switzerland, 2022.\n[3] Sun, Yan, et al. \"Fedspeed: Larger local interval, less communication round, and higher generalization accuracy.\" ICLR (2023).\n[4] Acar, Durmus Alp Emre, et al. \"Federated learning based on dynamic regularization.\" ICLR (2021).",
+      "questions": "1. How does FedImpro compare with more recent FL methods addressing data heterogeneity? Please refer to Weaknesses for examples on related works.\n2. How much bigger is FedImpro's impact on the communication both in terms of number of communications between clients and server, and message size w.r.t. FedAvg and the other introduced FL baselines?\n3. How does FedImpro compare with CCVR and SphereFed w.r.t. centralized performances?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. This paper has a good level of writing and it is easy to follow. The idea is easy to follow and understand.\n2. This paper combine split training with feature sharing to improve the generalization of the model.",
+      "waeknesses": "1. I notice that the author ignore a very related and state-of-art baesline FedDyn [1], could the author conduct comparion experiments with FedDyn?\n\n2. The timecomsuming for training the model increases for FedImpro. Could the author list the cpu-time cost comparion experiments to reach the target accuracy?\n\n\n[1] Acar, Durmus Alp Emre, et al. \"Federated learning based on dynamic regularization.\" *arXiv preprint arXiv:2111.04263* (2021).",
+      "questions": "See Weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The idea of generalization contribution in FL sounds novel. \n2. Experimental performances of FedImpro look superior.",
+      "waeknesses": "The idea of having a lower-level and a higher-level neural network in FL is not new, i.e. the feature extraction network idea. I don't see many comparisons to these previous work in the experimental section.",
+      "questions": "I don't really follow how \"generalization contribution is bounded by conditional Wasserstein distance\" leads to the proposed FedImpro algorithm. I think the connection and logic flow can be made more clear."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Even though decoupling a neural network into a feature extractor network and a classifier network is not novel, the paper proposed to combine the decoupling method with the features distribution estimation method with privacy protection is quite novel for mitigating client drift. Also, the sampling part with the synthetic features to increase the distribution similarity is quite interesting too.",
+      "waeknesses": "- All the distributions in the theoretical analysis considered conditional distribution conditioned on the label y, and then the paper said that ' it is straightforward to make all client models trained on similar distributions to obtain higher generalization performance'. But, for a dataset such as CIFAR10, when we partition it among clients, the non-IID is introduced by the label imbalanced across clients, which means that the conditional distribution on the label is the same. However, we would still experience client drift in this case. I think more explanation/analysis is required on this aspect. Also, since the analysis is on the conditional distribution, the experiments should reflect that, by using a dataset with the natural partition, such as FEMNIST. \n\n- since the feature distribution depends on the client selected in each round. Unlike the standard FedAvg training, the number of clients per round only impacts the convergence rate. Here for the FedImprov method, it will also impact the distribution estimation. Therefore, an ablation study analyzing the number of clients on the feature distribution estimation is lacking.\n\nMinor:\n- a small typo in Sec 5.1, M=10 should be cross-silo and M=100 should be cross-device.",
+      "questions": "- do you use h_hat to update the low-level model?"
+    }
+  ]
+}

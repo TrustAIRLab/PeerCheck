@@ -1,0 +1,39 @@
+{
+  "title": "Gene Regulatory Network Inference in the Presence of Dropouts: a Causal View",
+  "keywords": [
+    "Gene regulatory network",
+    "Single-cell RNA-sequencing",
+    "Dropout",
+    "Zero-inflated data",
+    "Causal model",
+    "Causal discovery",
+    "Nonparametric"
+  ],
+  "pdf_url": "/pdf/69813094585730931fce711a92e4bb53d955e2dd.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The task of inferring gene regulatory network is of interest especially in the bioinformatic domain.\nThe empirical results seem to indicate that the approach can be integrated into existing causal discovery methods to handle dropouts.\nWriting and presentation skill is well.",
+      "waeknesses": "For network inference, they can use some evaluation metrics such as ROC curve or PR curve to assess how well their predicted network recovers the true network. \nThey should conduct more experiments to show the performance gained by using their causal dropout model.\nSeveral gene network inference methods have been designed to handle missing values in scRNA-seq data. Therefore, as a practical analytical framework, the authors should prioritize the comparison of their model with the most advanced existing network inference methods.",
+      "questions": "For network inference, they can use some evaluation metrics such as ROC curve or PR curve to assess how well their predicted network recovers the true network. \nThey should conduct more experiments to show the performance gained by using their causal dropout model.\nSeveral gene network inference methods have been designed to handle missing values in scRNA-seq data. Therefore, as a practical analytical framework, the authors should prioritize the comparison of their model with the most advanced existing network inference methods."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The method is in my opinion very original and will certainly be of actual use in the field of computational biology.\n- The paper is clearly written and easy to follow. As far as I can judge, the authors demonstrate an excellent grasp of the contemporary literature, both in causal discovery as well as in computational biology.\n- The method outperforms state-of-the-art methods for GRN inference in several benchmarks.\n- The experimental section is convincing, and should be easy to reproduce.",
+      "waeknesses": "I do not have major comments on possible weaknesses.",
+      "questions": "- The authors state \"while a zero entry of $X_2$ may be noisy (i.e., may be technical), a non-zero entry of $X_2$ must be accurate, i.e., biological.\". As far as I can tell, non-zero values might also be technical due to sequencing/mapping/algorithmic errors, correct? \n- Supposing elevated dropout rates of, say 50%, the method relies on the fact that a conditioning variable can be found which \"breaks\" dependencies. Is this correct?\n- Using Fisher's $z$-test assumes multivariate Gaussianity. Wouldn't a kernel-based independence test be better for the log-normal data?\n- Figure 5 is not very readable. I believe a simple table or something similar could improve the presentation.\n- The source code could be improved and properly documented (What libraries are required? Which versions of the libraries did you use for validation? How do I run all experiments? Etc etc.)."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The problem tackled is very important, as gene regulatory networks can provide direct insight into the workings of biological mechanisms, and *scRNA-seq* is increasingly available for this task. The authors present their idea in an almost flawless manner, with sufficient attention being given to describing related work, providing relevant examples, and to framing and testing the assumptions made for the `Causal Dropout Model`. Finally, the authors showcase the performance of their approach in an extensive series of experiments, in which they examine different dropout mechanisms, different causal discovery and GRN inference-specific algorithms, on multiple settings and types of data.",
+      "waeknesses": "My only (minor) gripes are that most of the theoretical analysis is deferred to the appendix, which can sometimes lead to questions due to insufficient detail (see below), and that the references are a bit sloppy. \n\nMiscellaneous comments:\n- page 4, Example 4: I think the Bernoulli distributions should be reversed, since there should be a minus sign in the denominator exponential when computing the logistic function.\n- page 10, reference typo: * after \"Tabula Sapiens Consortium\"\n- page 11, formatting error: \"ALBERTS\" should not be capitalized\n- page 11, there seems to be no reference to Gao et al. (2022) in the paper.\n- page 12, duplicate author: \"Paul R. Rosenbaum\"",
+      "questions": "1. On page 6, when discussing the connection between BIC score and Fisher-Z test statistics, how do you conclude that \"only local consistency is actually needed\"? The reference in Nandy et al. (2018) shows this connection, but does not say anything about the assumptions made in the GES paper. Could you elaborate on this point?\n2. On page 7, what do you mean by \"identifiability upper bound\" for identifying the dropout mechanisms? How is this upper bound characterized?\n3. Perhaps I missed it, but in Theorem 2, what is the \"one particular case\" in which Z_i and Z_j are non-adjacent in the underlying GRN.\n4. In Figure 4(b), how do you explain that testwise deletion performs better than the oracle? Shouldn't that be the best case scenario?\n5. I haven't seen *causal sufficiency* mentioned anywhere, which is an important assumption made when using algorithms like PC and GES. Is it reasonable for this type of data to assume that there are no hidden confounders? In either case, I would say something about this important practical limitation."
+    }
+  ]
+}

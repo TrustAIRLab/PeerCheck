@@ -1,0 +1,48 @@
+{
+  "title": "Improved algorithm and bounds for successive projection",
+  "keywords": [
+    "Simplex",
+    "vertex hunting",
+    "successive projection",
+    "pseudo-points",
+    "pruning",
+    "hyper-spectral unmixing",
+    "archetypal analysis",
+    "network analysis."
+  ],
+  "pdf_url": "/pdf/7ebdcea695b8aa3a70d605879db5781a831c5f96.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "I like the pp-SPA algorithm a lot, and it feels like a very natural idea. It's an added bonus that the authors were able to get tighter theoretical bounds, which while admittedly are too complicated sometimes to compare fairly to classical SPA, are clearly tighter. It's not clear to me at all when the bounds for pp-SPA beat the bounds for classical SPA, simply because of how complicated the bounds are. \n\nI was able to follow most proofs as a non-expert, so the **proofs** are well written (the actual writing is a whole other story, see below). The analysis for the SPA algorithm is a bit gross; I spent several days following the proof, it felt like a nightmare. I don't claim I understand all steps there, but otherwise the proof looked kosher to me. Perhaps spend some time on simplifying it, but that's easier said than done. \n\nOverall, I think that together with the new practical and nice pp-SPA algorithm that clearly does better in practice from the experiments, and the new non trivial theory to back it up, the paper is above acceptance threshold.",
+      "waeknesses": "1) For some reason, the authors do not compare pp-SPA with any robust SPA. I found many results in the literature on robust SPA, so it seems bizare it is not included in the experimental section here. Please try to include at least one robust variant of SPA/similar algorithm in the experimental section. \n\n2) The writing can be dramatically improved. See below minor points, but if this is accepted, please spent a few iterations on improving the writing. It's extremely terse at time. \n\n3) You reprove several \"elementary\" results that I am almost certain must exist in the literature. Please don't do this, and spend some time to search for the result you need and cite appropriately. You don't need to prove everything from first principles! For example, Lemma 1 can be given as a HW question for an honors linear algebra class.... \n\n4) The statements of Theorem 2/3 are an absolute nightmare, and I struggle to see how anyone would cite/use your result without a ton of heavy lifting in understanding your proofs. \n\n----------------------------------------------------------------\nMinor comments: \n\nPage 2 \"and so on and so forth\" Akward, please change. \n\n\"However, since the simplex lies on a\nhyperplane of (K − 1)-dimension, it is inefficient if we directly apply SPA to X1, X2, . . . , Xn\"  This needs more explanation\n\n\"The results suggest that the SPA may be significantly\nbiased outward bound, and there is a large room for improvement\" No! This result suggests that SPA is biased outward bound for this example! Why would this suggest it is a general phenomenon?! Actually, how do you know your own algorithm doesn't display this phenomenon for other examples?\n\n\n\"he triangles in black, green, and cyan are the true simplex (which is a triangle since (K −1) = 2), the simplex estimated by SPA, and the simplex estimated by D-SPA (D- SPA is a special case of pp-SPA where the projection step is skipped and pp-SPA is a new approach to be introduced; see below), respectively.\" Rewrite this sentence! \n\n\nPage 2 \"Roughly say\" --> Informally, ...\n\n\n\"successive projection algorithm (SPA) (Ara´ujo et al., 2001)\" The \"term\" successive projection algorithm might've originated from the Araujo paper from 2001, but I can't believe that this algorithm was first discovered in 2001. To start off, it has similarities to the Frank-Wolfe minimum norm point algorithm, and several polyhedral algorithms. Can you please verify where the original **idea** was derived, to keep historical accuracy? \n\nLemma 1 (Best-fit hyperplane) There is no way this result isn't known. I can literally prove this result without even looking at your Appendix with Lagrangian multipliers and straightforward linear algebra identities. Please search for where this result was first proved, and don't reprove old things unless your proof is starkly different (which is absolutely not the case here)",
+      "questions": "My questions are listed in the Weakness section if any."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The paper gives ample motivating examples for which the problem is relevant. The paper makes attempts to motivate the given bounds. The algorithm itself seems intuitive.",
+      "waeknesses": "The bounds given in the paper, e.g. Theorem 2, are very complex; they contain multiple terms and are subject to many conditions. It is hard to understand whether those conditions are restrictive, or whether the bounds are significant. \nI think the presentation of the problem could be expanded upon.",
+      "questions": "none"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "I believe, the paper brings potentially several strong contributions:\n1) The authors propose algorithm seems to practically make a lot of sense\n2) The theoretical results are novel and non-trivial. The authors exploit the specific Gaussianity of the noise to be able to derive these bounds\n3) The experiments are limited, but they support the statements of the paper",
+      "waeknesses": "There are some considerable difficulties I have with the paper:\n1) The writing and the structure of the text should be improved. For example:\n* It is not clear to me what the illustration in Figure 1 shows? Is it obvious that one of these is better and what does ``idea simplex'' denote?\n* At times a statement is given without citation, e.g. you say in \"Our contributions.\", pg 2  that: \"since the SPA is greedy algorithm, it tends to be biased outward bound.\", but it is not clear where this can be seen.\n* It is very difficult to follow the motivation of Theorem 1, and how it shows that the previous results of (Gillis & Vavasis, 2013) is non-satisfactory. It is very difficult to see the comparison with the bound in (5) for $\\beta_{new}$. \n2) The numerical experiments are done only for very small sizes. I am not sure how big is the effect of denoising using low-dimensional PCA projection in this case.",
+      "questions": "* How does the theory differ in the case of 3-simplex in 2D? Is there a difference in the $K$ vs $K-1$ singular value?\n* How does the algorithm perform for higher dimensional problems?\n* In the second sentence on the first page you state that Gaussian assumption can be relaxed. Can the theory by applied also when the errors are not Gaussian?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "3: reject, not good enough",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "This paper proposes a novel algorithm to reconstruct the k-vertices and analyze its performance. The analysis seems to be solid. Compared with the prior work (Gillis and Vavasis), improvements are obtained under certain scenarios.",
+      "waeknesses": "+ This paper seems to be a incremental work based on Gillis & Vavasis (published in 2013).  \n\n+ There is only limited numerical experiments to validate the peformance of the proposed algorithms. (c.f. Figure 2).",
+      "questions": "1. Will more samples contribute to the reconstruction performance? My intuition is that the reconstruction performance will improve with more observations, that is, the reconstruction error will decrease with an increasing sample $n$. However, the relation between sample number $n$ and the reconstruction error is largely missing. \n\n2. How is the algorithm compared with the matrix completion solution? To be more specific, we can stack the observations and obtain the sensing relation $X = V\\Pi + N$, where observation $X_i$ is the $i$th column of matrix $X$, and $N$ is the sensing noise. Easily, we can verify that $V\\Pi$ is a matrix with rank at most $K$. Hence, we can view matrix $X$ as a linear combination of low-rank matrix and noise matrix. Then, we exploit the research on low-rank matrix reconstruction and solve the problem. \n\n3. In comparing the performance between Theorem 1 over Lemma 4, what if we have $\\gamma(V) \\ll s_{K-1}(V)$? In such case, lemma 4 may be more tight then Theorem 1."
+    }
+  ]
+}

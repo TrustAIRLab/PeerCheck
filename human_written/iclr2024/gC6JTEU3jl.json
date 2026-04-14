@@ -1,0 +1,42 @@
+{
+  "title": "BESA: Pruning Large Language Models with Blockwise Parameter-Efficient Sparsity Allocation",
+  "keywords": [
+    "Large Language Model Compression",
+    "LLM Pruning"
+  ],
+  "pdf_url": "/pdf/64fe7593ab6db7a4b44e531e5eaac58c56898312.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "This paper introduces a novel approach, BESA, for compressing Large Language Models through block-wise pruning with a differentiable sparsity allocation, which maintains the performance of LLMs well and improves computational efficiency compared to existing methods. Besides, this paper is well written, clearly explaining the method of block-wise tuning and parameter-efficient sparsity learning through detailed mathematical and textual expression. Finally, credible experimental design and solid experimental results and increase the credibility of the paper.",
+      "waeknesses": "There may be a few things that need to be modified or clarified clearly. In page 3 BLOCK-WISE PRUNING equation (1), it is better to add the meaning of “W” together with “M, F, X, …”; Since the article mentioned that existing methods require meticulous hyperparameter tuning, adding the sensitivity of some vital hyperparameters of the proposed model and clarify the advantage in the appendix will make this paper more convincing.",
+      "questions": "1)Considering the abstract mentions existing methods require meticulous hyperparameter tuning, it would be better to study the vital hyperparameter’s sensitivity of the proposed method and experiments are needed, which will make this paper more convincing. \n2) Due to the uniqueness of the proposed method BESA, which seeks the optimal pruning rate for each layer, compared to existing methods, will implementing specialized neural network accelerators (ViTCoD in the experiments) consume additional time or make model faster than others?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- BESA is the first differentiable pruning algorithm for LLMs, which allows for efficient optimization of pruning rates across layers.\n- The method is parameter-efficient and easy to optimize, exhibiting high efficiency and effectiveness in pruning various LLMs.\n- BESA achieves state-of-the-art performance in pruning various LLMs, such as LLaMA1 and LLaMA2, with reduced performance degradation after pruning.\n- The proposed method can be jointly optimized with weight-only quantization techniques, further enhancing the compression ratio and efficiency of LLMs.",
+      "waeknesses": "- The paper does not provide a detailed analysis of the trade-offs between different pruning rates and their impact on model performance, which could be useful for understanding the optimal pruning strategy.\n- The paper does not provide a comprehensive comparison of BESA with other pruning techniques, such as structured pruning, which could help in understanding the relative strengths and weaknesses of the proposed method.",
+      "questions": "NA"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The authors demonstrate the practical speedup of the pruned model in a hardware simulator.\n2. The method is parameter-efficient and easy to optimize.\n3. The authors have done extensive experiments on language modeling and few-shot learning benchmark datasets. The authors also explore models with different numbers of parameters from 7b to 70b.",
+      "waeknesses": "1. It would be better to involve the computational cost of attention weight in Table 4.\n2. It would be better to have an ablation study of block-wise pruning. Maybe directly pruning all the models instead of layer by layer.\n3. There has been a lot of research on pruning in CV and NLP. The baselines are far from complete, such as \"The Lottery Ticket Hypothesis\" and its following works. While considering not much work on LLM, I would not penalize too much on it.\n\nOverall, I think the experiments are solid. The novelty is ok, but it would be better to explore more classical pruning methods.",
+      "questions": "The model seems not significantly better than SparseGPT with a smaller number of parameters. Could you have significant test?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The proposed method outperformed recent baselines.\n- The motivation for this research is clear, and the proposed method is helpful for practitioners.",
+      "waeknesses": "Authors claimed BESA has different advantages compared to other baselines. E.g., the fact that BESA differentiably optimizes masks, unlike SparseGPT. However, it is not clear whether other methods could or could not use such specific techniques and what makes BESA better than them. The current ablation study does not answer these questions.",
+      "questions": "Please refer to the weaknesses Section."
+    }
+  ]
+}

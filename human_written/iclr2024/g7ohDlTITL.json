@@ -1,0 +1,35 @@
+{
+  "title": "Flow Matching on General Geometries",
+  "keywords": [
+    "general manifolds",
+    "diffusion models",
+    "continuous normalizing flow"
+  ],
+  "pdf_url": "/pdf/00e980dec1d5ee17094141c71986553014f8a41a.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The problem of learning models with geometric constraints is both difficult and important, and this paper solves several key practical challenges present in prior work in this area (namely, simulation-free and scalable training).\n- The paper is a joy to read -- the paper is atypically clear in its aims, methods, and results.\n- The empirical support for the method is clear and convincing across a diverse set of settings, and the evidence provided by the experiments generally supports the conclusions drawn by the authors.\n- All theoretical claims made in the paper are, to the best of my knowledge, complete and correct.",
+      "waeknesses": "- It would have been interesting to have an experiment exploring the effect of $k$ on the learned model (i.e. the number of terms taken in the spectral distance, Equation 16). \n- In the same vein, additional experiments on the choice of scheduler $\\kappa(t)$ could provide valuable practical insights regarding the design of these models.",
+      "questions": "- The base measure used throughout the paper is the uniform distribution. Is there any benefit to considering non-uniform base distributions? While the theory easily admits arbitrary base distributions, are there practical challenges in using non-uniform distributions?\n- Some more exposition regarding practical choices surrounding premetric choices would improve the paper. For instance, can we say anything about what makes a particular premetric \"good\"? Are there principled reasons someone would choose the diffusion distance over the biharmonic distance? Are spectral distances chosen in Section 3.2 primarily for practical reasons, or are there other aspects that make the corresponding premetrics desirable? Is there a compelling reason spectral distances use the spectrum of Laplace-Beltrami operator, rather than some other operator?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The paper is well-written and easy to follow with sufficient background and related works. \n\n- The proposed framework provides important advantages over previous methods: (1) does not require divergence computation for training and is thereby scalable to higher dimensions and (2) readily adaptable to general manifolds.\n\n- Especially, the construction of the conditional flows using the premetrics is novel which makes the proposed method applicable to general geometries.\n\n- This work presents the application to data on general manifolds such as manifolds with non-trivial curvature (triangular mesh) or manifolds with boundaries (maze), whereas previous diffusion models were limited to simple manifolds (e.g., sphere, torus) and their product manifolds.",
+      "waeknesses": "- The advantage of simulation-free training on simple geometries is not clear. How fast is the training of the proposed approach compared to the training of previous diffusion models? As RSGM (Riemannian Score-based Generative Model) observes that they achieve similar test NLL with only 5 in-training simulation steps (Section O.1), I think that the simulation-free training does not provide significant time efficiency.\n\n- The reason for the outperformance of the proposed framework is not clear. Why does the proposed method outperform the Riemannian Diffusion model? Further, why does CNF Matching show superior performance on Earthquake and Flood datasets over the proposed method?\n\nI would like to raise my score if the above concerns are sufficiently addressed.",
+      "questions": "- Please address the questions in the Weakness.\n\n- Why is the result of the proposed method for Flood dataset in Table 2 highlighted in bold even though CNF Matching shows better result?\n\n- Can the other diffusion models applied to general manifolds such as the triangular mesh? For example, RSGM seems to be applicable when using the denoised score matching with the Varadhan approximation."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- well-written and clearly presented paper\n- I believe the main idea with the conditional flows arising from premetrics is both interesting and efficient\n- the method avoids some of limitations of other approaches including being simulation-free in some cases and avoiding divergence computations",
+      "waeknesses": "I have not identified substantial weaknesses.",
+      "questions": "No questions."
+    }
+  ]
+}
