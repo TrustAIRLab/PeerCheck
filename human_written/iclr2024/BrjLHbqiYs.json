@@ -1,0 +1,37 @@
+{
+  "title": "Multimodal Learning Without Labeled Multimodal Data: Guarantees and Applications",
+  "keywords": [
+    "multimodal learning",
+    "multimodal interactions",
+    "information theory",
+    "self-supervised learning",
+    "multimodal fusion"
+  ],
+  "pdf_url": "/pdf/43740f583263d8f521e3de302419fd3697ec6c17.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper provides a novel contribution to the field of multimodal learning by deriving lower and upper bounds to quantify the amount of multimodal interactions in a semi-supervised setting. This provides a framework for understanding how different modalities combine to provide new task-relevant information.\n\n2. The paper is theoretically rigorous, with the authors providing a detailed information-theoretic analysis of the problem. The authors also propose a practical algorithm to estimate the lower bounds in practice. The authors show that synergy bounds can be used to predict the performance of multimodal models on held-out data, and to identify modalities that are most important for synergy. This information can be used to guide data collection efforts and improve the performance of multimodal models.\n\n3. The theoretical results in this paper could be used to guide data collection or select appropriate multimodal models for a specific task. This has important practical implications for the development of multimodal learning systems in a variety of domains.",
+      "waeknesses": "1. The synergy bounds are only approximate. The authors acknowledge that the synergy bounds are not tight, and that they may underestimate or overestimate the true amount of synergy in a dataset. This is a limitation of any information-theoretic approach to synergy quantification. While the paper provides a theoretical framework for quantifying interactions between modalities, there is limited empirical evaluation of the proposed approach. The authors only provide a proof-of-concept experiment on a small dataset, which may limit the generalizability of the results.\n\n2. The synergy bounds are sensitive to the choice of auxiliary distributions. The authors use a set of auxiliary distributions to compute their lower bound on synergy. The choice of these auxiliary distributions can affect the tightness of the bound. The authors do not provide any guidance on how to choose the auxiliary distributions, which leaves this as a practical challenge for users of the proposed method.\n\n3. The synergy bounds are not applicable to all types of synergy. The authors focus on quantifying synergy that arises from the disagreement between unimodal predictors. However, there are other types of synergy, such as synergy that arises from the complementary strengths of different modalities. The proposed synergy bounds are not applicable to these other types of synergy.\n\n4. The paper does not provide any theoretical guarantees on the performance of multimodal models trained using synergy bounds. The authors show that synergy bounds can be used to predict the performance of multimodal models on held-out data. However, they do not provide any theoretical guarantees on the accuracy of these predictions. This is a limitation of the paper, as it would be useful to know how accurately synergy bounds can predict the performance of multimodal models in practice.",
+      "questions": "1. In section 3, what is D_M? Did you consider number of modalities over 2?\n\n2. In Table 3, can you give more details of multimodal or unimodal, and what are the evaluation metrics to define the best models?\n\n3. In section 4.2 RQ1, what performance to estimate? I think authors could have provided more explanations or examples to make the paper more accessible to a wider audience.\n\n4. The authors mentioned observing only labeled unimodal data and some unlabeled multimodal data, did authors conduct experiments on these kind of data or any ablation studies on incompleteness of unimodal data?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The performances of the lower bounds are tight, which demonstrates the effectiveness.\n2. The proposed bounds can be used for modality or model selection, which are helpful for multimodal learning.",
+      "waeknesses": "1. The performance of the proposed upper bound is not very ideal, more explanations can be provided.\n2. No related work is compared in the experimental results. The superiority of this work is not demonstrated.",
+      "questions": "See the weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Contribution:\n\n- The definitions are set out in accordance with real scenarios and datasets (e.g. MIMIC, MUSTARD,…) and in accordance with previous literatures, which increase the credit and sensibility of the definitions.\n- The line of theorem following and based on those definitions are set out reasonable and come with rigorous proof in Appendix.\n- By extracting 4 information factors given pairwise marginal distributions, the authors derive the bound of accuracy for optimal multimodal model. This can be used to analyse whether to collect more data and choose a different fusion approach\n\nPrepresentation: \n\n- The authors provides trackable notation system and use those notations throughout the manuscript, which increase its consistency and coherence.\n- Clear instructions via reference system and details in Appendix, make it more readable and trackable (e.g. we refer reader to …).",
+      "waeknesses": "- Upon deriving lower bound using uniqueness, the reliance on optimal unimodal classifiers seem not practical in most scenarios.\n- Upon deriving the upper bound, the relaxation using min-entropy coupling problem might not produce a tight upper boundary.\n- While the empirical result support the correct boundary of *Synergy*, there is no investigation on how the bound is closed to *Synergy*, or what is the gap can be determined as close enough.",
+      "questions": "How to determine the closeness of the derived boundary?"
+    }
+  ]
+}

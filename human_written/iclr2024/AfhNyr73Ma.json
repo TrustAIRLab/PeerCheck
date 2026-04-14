@@ -1,0 +1,41 @@
+{
+  "title": "General Stability Analysis for Zeroth-Order Optimization Algorithms",
+  "keywords": [
+    "Stability Analysis; Zeroth-Order Optimization; Black-Box Learning"
+  ],
+  "pdf_url": "/pdf/8b6cf064377b222a40d33ef6d5162772803c9f63.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "This submission is very clear with simple structures and languages. The main idea is natural and understandable. The mathematical and theoretical analysis is strict and the empirical results are consistent with the theoretical analysis.",
+      "waeknesses": "There is no significant weakness for this submission. \n\nOnly one question is that for the ZO-SGD, ZO-GD and ZO-SVRG with one-point and two-point gradient estimation, the authors only presented the results for the none-convex setting. Is there any theoretical results for the general convex and strongly convex settings? Like the results for the coordinate-wise gradient estimation. If the authors could add these theoretical results, it could make the theoretical contributions much more complete.",
+      "questions": "Please check the weakness section."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The paper exhibits a well-organized structure, including a clear motivation, an extensive literature review, and a rigorous theoretical analysis. However, I have not verified the validity of all statements in the Appendix.\n- One intriguing and original contribution of the paper is its theoretical assertion that coordinate estimation can enhance the generalization bounds for zeroth-order optimization algorithms like SGD, GD, and SVRG.",
+      "waeknesses": "- Theoretical contributions, especially those stemming from the primary theoretical lemmas (Lemma 3 and 4), are incremental compared to prior works such as (Hardt et al., 2016) and (Nikolakakis et al., 2022).\n- The paper could benefit from more extensive numerical experiments and a more detailed implementation section. Specifically, it should include a comparison of the performance of various zeroth-order estimators, providing empirical support for the favorable theoretical results associated with coordinate estimation.\n\n(Hardt et al., 2016) Moritz Hardt, Ben Recht, and Yoram Singer. Train faster, generalize better: Stability of stochastic gradient descent. In International conference on machine learning, pp. 1225–1234. PMLR, 2016.\n\n(Nikolakakis et al., 2022) Konstantinos Nikolakakis, Farzin Haddadpour, Dionysis Kalogerias, and Amin Karbasi. Black-box generalization: Stability of zeroth-order learning.",
+      "questions": "Majors:\n\n1. What is the zeroth-order estimator used in the experiments?\n2. How do different zeroth-order estimators affect the optimization performance?\n\nMinors:\n- Please indicate beta and C in Table 1.\n- Figure 2(b):  Generalization error: GD - >  Generalization error: SGD?\n- More implementation details are needed.\n- Utilize parenthetical citations to enhance readability."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "The results provided in this paper, which are obtained by leveraging a simple yet powerful framework and the idea to approximate the gradient of a smooth and Lipschitz function coordinate-wise, are strong and, to the best of my knowledge, novel. The presentation of the results is clear and detailed.",
+      "waeknesses": "One potential weakness of the paper is that the results assume that the objective function is smooth, which, in many important optimization problems (e.g., learning ReLU networks) is not true.",
+      "questions": "Could your results be extended to the case where the objective function is not smooth? Are there any generalization bounds for this setting, even for first order algorithms?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The paper is well-presented and well-organized. The motivation, technique, and results are clearly stated.\n\n2. The framework established is a nice theoretical contribution. Consequently, the generalization bounds of many zero-order methods are developed. Moreover, the differences between these generalization bounds are captured and analyzed, making the whole theory complete and convincing.\n\n3. The technique used in the paper is solid and interesting.",
+      "waeknesses": "It would be better if the author emphasized the new technique and idea used in this paper compared with the existing work by Nikolakakis et al. (2022).",
+      "questions": "In Figure 1 (b), why did the generalization bound of ZO-SVRG decrease at the beginning?"
+    }
+  ]
+}

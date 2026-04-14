@@ -1,0 +1,44 @@
+{
+  "title": "SpeechTokenizer: Unified Speech Tokenizer for Speech Language Models",
+  "keywords": [
+    "speech",
+    "audio",
+    "multi-modal",
+    "large language model"
+  ],
+  "pdf_url": "/pdf/3cb075c0117af3ccbf6e7fc3e510c84700c1d0c0.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Originality: this is the first work trying to inject semantic information to acoustic tokens based on soundstream/encodec which has been successfully applied to speech language modeling, TTS, etc. Though the idea is kind of straight, this paper still deserves originality.\nQuality: Overall the solution is clearly motivated and reasonably implemented, and corresponding evaluations are comprehensive.\nClarity: the paper is easy to read, the results are easy to understand.\nSignificance: A good tokenizer is important for many downstream tasks, especially for speech generation tasks. This study shows it's possible to use a single model as tokenizer and achieve comparable or even better performance than previous studies using combination of different tokenizers encoding different aspects of speech",
+      "waeknesses": "1. It's not quite clearly explained why the authors chose the first RVQ to inject semantic information. Why not the later ones or even for all RVQs\n2. It could be better if the authors can show some experiments using the new tokenizers for speech understanding tasks like recognition/speech translation with relatively large scale training data, and compare to Hubert/soundstream/encodec tokens.",
+      "questions": "1. Is it possible to directly combine the training loss of hubert and soundstream/encodec instead of distillation to achieve unified speech tokenizer?\n2. Since soundstream/encodec is a small model, is it possible the model can learn good representations when the model is large enough?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "3: reject, not good enough",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The motivation of the paper is strong. Speech research area needs speech specific fundamental innovation. Many papers simply borrow ideas from NLP and CV and test their performance on speech data. Exploring how to discretize continuous speech signals is an intriguing concept. The authors propose a simple and logical approach, which serves as a promising initial step for the field.\n\n\n2. SLMTOKBENCH offers valuable insights for evaluating current speech tokenization methods. It has the potential to become a fundamental benchmark for speech tokenization research. However, it still requires some improvements, as mentioned in the weaknesses . section.",
+      "waeknesses": "1. My primary concern lies with the experimental section of the paper. Firstly, the authors trained SpeechTokenizer on the LibriSpeech set, while the EnCodec was trained on a mixed dataset of 10,000 hours. As a result, EnCodec should possess better generalization capabilities for speech reconstruction, particularly in the presence of noise. However, the authors only evaluated the performance on LibriSpeech, which is an in-domain test set for their method but falls outside the domain of EnCodec. This unfair experiment fails to demonstrate whether their method outperforms EnCodec. A fair experiment should involve testing the model on various test sets, especially those unseen during training.\n\nSLMTOKBENCH should encompass a range of speech environments, not limited to LibriSpeech alone. Audiobooks represent just one type of speech data, and we should consider incorporating a more diverse test set for a comprehensive evaluation.\n\n\n2.How did you arrive at the WER number of 7.9 in Table 4? I recall that the VALL-E paper reported a WER of around 3.X on LibriSpeech.\nAdditionally, other studies on LibriSpeech have achieved comparable or even lower WER values.\n\n3. In the context of the speech tokenizer, it is necessary to take into account additional baselines like SoundStream and the multi-band diffusion-based method, rather than solely comparing it with Encode.",
+      "questions": "Why the authors not directly cite the number in VALL-E paper for evaluation? I don't think it is a good idea to re-train VALL-E on a smaller training set."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The motivation of the paper is straightforward and push the boundary of speech language models to more unified representation for different tasks. \n2. Extensive experiments are done to validate the performance comparison.",
+      "waeknesses": "1. The paper misses the comparison with Hierarchical speech language models as listed in the paper. if the comparison could be added, it would be more convincing.\n2. Although the motivation of the paper is a shining point for the paper, the technical contribution of the paper is limited as the framework is borrowed from existing work, e..g, the framework of RVQ-GANs. If authors could propose some modifications on the training strategy or the model architectures based on some observations from experiments, it would add more insightful points.\n\nIf my above concerns are resolved, I would consider increasing my rating.",
+      "questions": "My questions are listed above."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper proposes a novel method to unify the semantic tokens and acoustic tokens. \n\n2. The experiments show that the unified tokenizer, SpeechTokenizer, large improves the acoustic tokens from EnCodec in the zero-shot TTS experiment in VALL-E. The improvements are significant in both objective metrics and subjective metrics. \n\n3. The proposed benchmark, SLMTokBench, is well motivated and reasonable.\n\n4. The paper is well written and easy to follow.",
+      "waeknesses": "1. My first concern is about the necessity for a unified speech tokenizer. In the last several sentence of page 1, the authors argue that \"the multi-stage modeling approach is more complex, leading to several drawbacks such as error accumulation and slower processing speed\". Is there any evidence to support the claim? In addition, I may somewhat disagree with how the paper describe the characteristic of \"Semantic LM and Acoustic LM\" in Table 1. In my view, Semantic LM does not generate Accurate Content but it is speed is much faster. And Acoustic LM does generate Accurate Content. \n\n2. The second concern, which is also my major concern, is about whether the complicated training pipeline really leads to better performance in zero-shot TTS than Hierarchical LM. If using VALL-E with the semantic token for HuBERT and RVQ1:7 from EnCodec (It has the same bit rate as USLM), what is performance?\n\n3.  At last, I am doubtful whether the SpeechTokenizer only works for AR + NAR model like VALL-E. As VALL-E only uses the first speech token in the AR model, putting more information on the first token may be beneficial to its performance so that the improvement of USLM in zero-shot TTS is much larger than the improvements of SpeechTokenzier in speech reconstruction. I am not sure such large improvements will still exist in Hierarchical model like AudioLM. \n\nI understand that weakness 3 is hard to verify during the rebuttal. Therefore, If the authors can resolve my first two concern, I am willing to raise my score.",
+      "questions": "Can the author provide some explainations why the improvement of USLM in zero-shot TTS is much larger than the improvements of SpeechTokenzier in speech reconstruction (Table 4 v.s. Table 2) ?"
+    }
+  ]
+}

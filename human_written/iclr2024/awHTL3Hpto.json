@@ -1,0 +1,37 @@
+{
+  "title": "Expressivity of ReLU-Networks under Convex Relaxations",
+  "keywords": [
+    "Convex Relaxations",
+    "Neural Network Verification",
+    "Certified Robustness",
+    "Adversarial Robustness",
+    "Universal Approximation"
+  ],
+  "pdf_url": "/pdf/b97b6766d2a0d67594150433f93ce916163a0039.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "I will re-evaluate the strengths after a discussion with the authors to understand the paper.",
+      "waeknesses": "Similar to strengths, I will re-evaluate after discussion.",
+      "questions": "As mentioned earlier, I have many basic questions about this work. Perhaps let me start from the basics about the background of this work. \n\n1. Can the authors elaborate on how convex relaxations are helping with formal robustness guarantees? This was quickly glossed over, but I would hope to get a better explanation. \n\n2. Can the authors explain exactly what is being relaxed into a convex function? Section 2.1 reads quite confusingly for me, as all I can discern are inequalities, and I do not see which parts are being relaxed. \n\n3. When the authors write a vector is less than or equal to another vector, is this inequality entrywise? \n\n4. There are a lot of definitions in section 2.2, can the authors provide a simpler explanation of these definitions and what they are trying to capture? In particular, why is it that we care about $D$-analysis in the definition of expressivity? I would have expected expressivity of a network architecture to be about function approximation. \n\n5. At the end, it seems like the authors are investigating whether or not ReLU networks can express certain functions. I thought this was already an answered question with respect to universal approximation, but perhaps I am missing something. Can the authors explain why we need to analyze the expressivity results for these certain class of functions? \n\nPerhaps let's start here. Once we go into discussion and have a better understanding, I can follow up with more questions regarding the actual technical contributions of this work."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Here are some strengths of this paper:\n\n* It provides the first in-depth, systematic study on the expressive power of ReLU networks under a wide range of convex relaxations commonly used in neural network certification.\n* The analysis covers univariate and multivariate functions and simple as well as more complex function classes like (monotone) convex CPWL.\n* It clearly differentiates the capabilities of different relaxations through precise mathematical results and constructive proofs.\n* The paper relates the theoretical results back to certified training, drawing interesting hypotheses about the potential benefits of more advanced relaxations.\n* The paper is clearly structured and provides detailed mathematical proofs for all results.",
+      "waeknesses": "Some potential weaknesses of this paper:\n\n* The focus is exclusively on ReLU networks, not covering other activation functions commonly used like sigmoid or tanh.\n* Only fully-connected feedforward networks are considered, not convolutional or residual architectures widely used in practice.\n* The analysis is limited to deterministic networks, not touching on stochastic networks.\n* Only standardized datasets and perturbation sets are studied; results may not generalize to other domains.\n* While hypotheses are provided for certified training, no experiments are conducted to validate the conjectured benefits.\n* The writing is quite dense and mathematical, which could make it less accessible to a general AI audience.\n* Aside from certified training, implications for other applications of neural network analysis are not discussed much.",
+      "questions": "Here are my questions:\n\n* There is recent literature on the convex optimization of ReLU network, e.g., [1] and several other follow-up papers by the same authors extending this work to various neural network architectures. Can authors comment on their contributions over this work and explain how their paper supports/refutes the claim there? For example, the very first question to comment on would be: What is the point of having convex relaxations if the ReLU networks can already be trained using convex optimization?\n\n* Can authors also briefly comment on the issues raised in the weaknesses part?\n\n[1] Pilanci and Ergen, Neural Networks are Convex Regularizers: Exact Polynomial-time Convex Optimization Formulations for Two-layer Networks, ICML 2020"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "**Novel direction:** the expressive power of neural networks is an interesting and important topic. This work is the first to consider such expressive power in the precise representation setting.\n\n**Wide coverage:** in the univariate setting, this work discusses a broad range of convex relaxation methods, which covers most popular ones in practice.",
+      "waeknesses": "**Univariate is restricted:** the main weakness I found is the restricted univariate assumption. All the positive results for the expressive power of convex relaxation methods hold for univariate functions, which is restricted in two ways: (1) in practice, almost all functions of interest are multivariate (2) in theory, the case of univariate functions is too special, which often times avoids the general difficulty in high dimensions and thereby hard to generalize.\n\nOn the other hand, the negative multivariate result only holds for $\\triangle$, and the precision gap can be arbitrarily small. It's not clear whether multivariate methods can express multivariate CPWL functions precisely.",
+      "questions": "**Motivation for precise analysis:** it's mentioned in this work if we allow approximate analysis, for any approximation error $\\epsilon>0$ and general multivariate continuous function on $\\mathbb{R}^n$, IBP can express the function up to $\\epsilon$ error (Baader et al 20). This seems a strong enough guarantee. What's the significance of considering precise analysis beyond pure theoretical interest?"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Soft Mixture Denoising: Beyond the Expressive Bottleneck of Diffusion Models",
+  "keywords": [
+    "Diffusion Models",
+    "Expressive Bottleneck",
+    "Soft Mixture Denoising (SMD)"
+  ],
+  "pdf_url": "/pdf/977b2b3b62bde985647cbdb32894111785e0f7a0.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper is articulate and presents a clear logical progression.\n\n2. Both theoretical exposition and experimental verification are provided to substantiate the authors’ arguments.",
+      "waeknesses": "1. The critique leveled against existing diffusion models seems to be somewhat overstated. These models have achieved considerable success across various applications and can represent complex distributions effectively. The alleged expressive bottleneck is contingent upon the noise scheduling strategy deployed. For instance, in typical diffusion models, a small value of $\\beta_t$, such as 0.0001, is assumed to be used as the initial. As indicated in Equation (25), the transition probability $q(x_{t-1} | x_t)$ approaches a Gaussian distribution as $\\beta_t$ tends toward zero, which contradicts the claim of an inherent expressive limitation.\n\n2. The selection of datasets for experimentation—LSUN and CelebA—seems narrow given the criticism of diffusion models' multimodality capacity. For a robust evaluation, a more complex and varied dataset like ImageNet, encompassing 1k categories, would be more appropriate.\n\n3. There appears to be a flaw in the derivation of local denoising error $M_t$. The associated loss term in $L_{t-1}$ is predicated on the KL divergence $KL[q(x_{t-1} | x_t, x_0) || p_\\theta(x_{t-1} | x_t)]$. Here, $q(x_{t-1} | x_t, x_0)$, which is a known Gaussian distribution, should not be conflated with $q(x_{t-1} | x_t)$, which represents an unknown distribution. The validity of Theorems 3.1 and 3.2 is reliant on the accurate definition of $M_t$.\n\n4. The paper does not reference the FID (Fréchet Inception Distance) results from the Latent Diffusion Model (LDM) study. In the LDM research, the reported FID scores were 4.02 for LSUN-Church and 5.11 for CelebA-HQ, which are superior to the performance metrics achieved by SMD as presented in this paper. This omission is significant as it pertains to the comparative effectiveness of the proposed model.",
+      "questions": "1. There seems to be a typographical error involving a comma in the superscript at the end of Equation (3).\n2. Could you detail the noise schedule utilized in your algorithm? The experiments section suggests that the original DDPM scheduling is retained while only the model component is modified. Considering that your paper emphasizes the importance of shorter chains and the expressiveness issue within them, it would be beneficial to see experimentation with significantly fewer steps to underscore the advantages of your proposed Soft Mixture Denoising (SMD).\n3. The SMD approach bears resemblance to a Variational Autoencoder (VAE) in its structure. Could you confirm if this observation is accurate or elaborate on the distinctions between SMD and VAE?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Improving the design of diffusion models and make them more efficient is a timely problem\n\nIdentifying the expressiveness bottleneck of single gaussian approximation, and the unbounded denoising errors is novel for denoising diffusion models\n\nThe experiments are extensive",
+      "waeknesses": "The performance gains for the new soft mixture models are not significant. One would expect a significant reduction in number of steps if soft mixture is a better approximation for p(xt-1|xt), but that is not the case in the experiments. \n\nThe architectural changes for the new denoising networks are not discussed well. It’s a bit confusing how the",
+      "questions": "The mean parameterization in eq. 11 needs to be clarified? What is the hyper network representation? what is \\theta \\cup f_{\\phi}?\n\nWhile the theory supports that soft gaussian mixture to be a universal approximator. However, the performance gains compared with single Gaussian are not significant. What are the limitations and approximations that led to that? Could it be the identity assumption for the covariance matrix?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The idea is new and reasonable.\n\n2. The authors provided theoretical foundations for their proposed method.\n\n3. The effectiveness of the proposed method has been empirically verified.",
+      "waeknesses": "To me, there is no significant weakness of this work.",
+      "questions": "To my knowledge, there are studies considers better parameterizing the distribution in the reverse process, such as:\n\n1. Zhisheng Xiao, Karsten Kreis, and Arash Vahdat. Tackling the Generative Learning Trilemma with Denoising Diffusion GANs. ICLR, 2022.\n2. Yanwu Xu, Mingming Gong, Shaoan Xie, Wei Wei, Matthias Grundmann, Kayhan Batmanghelich, and Tingbo Hou. Semi-Implicit Denoising Diffusion Models (SIDDMs). arXiv:2306.12511, 2023.\n\nThe authors should discuss these studies, and better to empirically compare with them."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- This paper proposes a novel approach to improving the sampling efficiency of diffusion models.\n- SMD is well-motivated through rigorous theoretical analysis.\n- This paper well-written and I had no trouble following the logic.\n- There are non-trivial performance improvements after applying SMD.",
+      "waeknesses": "- SMD requires training of additional $g_\\xi$ and $f_\\phi$ networks, so I would expect training SMD requires more VRAM and time compared to training standard diffusion models. A comparison of VRAM / training time / inference time of SMD vs. standard diffusion would be insightful.",
+      "questions": "- Is SMD compatible with fast samplers such as EDM [1]? If it is, can the authors provide results? If not, can the authors suggest how SMD could be modified to be compatible with such fast samplers?\n- How does the performance of SMD vary as we change the size of $g_\\xi$ and $f_\\phi$ networks? Does SMD work better if we use larger networks or is it sufficient to use small networks?\n\n[1] Elucidating the Design Space of Diffusion-Based Generative Models, Karras et al., NeurIPS, 2022."
+    }
+  ]
+}

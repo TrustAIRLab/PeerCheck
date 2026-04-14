@@ -1,0 +1,33 @@
+{
+  "title": "Inducing High Energy-Latency of Large Vision-Language Models with Verbose Images",
+  "keywords": [
+    "energy-latency manipulation; large vision-language model; verbose images"
+  ],
+  "pdf_url": "/pdf/803c585a3244829aa3083b6aa8aef4fb0f49d3e7.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The problem is well-formulated. The solutions and results are delivered clearly. I appreciate the writing and presentation.\n2. Simple yet effective methods to induce longer generated sequences. Adding imperceptible perturbation is a reasonable way to induce longer sequences. Optimizing the verbose images via the sequence losses is also quite straightforward.\n3. The experimental results are quite convincing. The models, when faced with verbose images, perform much worse than original results. The ablations and qualitative explorations show intriguing results.",
+      "waeknesses": "Despite the simplicity and effectiveness, I think this paper lacks novelty.",
+      "questions": "The verbose images reveal some susceptible aspects of current LVLMs. I am interested to see how such findings can further shed light on the learning of LVLMs. By the way, I suspect whether such a phenomenon always exists in the data-driven deep-learning approach? So, is there any insight on optimizing LVLMs?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The proposed method demonstrates the attack power on VLM and make the model generate very long output.\n\n2. The paper proposed new loss ($L_3$) and temporal weighting to train the model better.",
+      "waeknesses": "1. A simple defense of the service provider could be set the limit of token based on the statistics of the clean data. As shown in Fig. 5 and 6, the original distribution focus certain length. In such case, it seems that this attack won't be too sever anymore?\n\n2. I am not sure is this a real problem or not, as pointed by 1, a simple approach can resolve it (but with some tradeoff); on the other hand, as the attacked results do not make sense anymore (e.g. Fig.8), it seems the attacks can be easy identified. I think the problem definition should be constrained on the results are still make sense and good. That is, the evaluation should consider the performance of those tasks.",
+      "questions": "1. Why the quality output won't be a metric? Does it mean that this attack are designed to be easily spotted? As one of current practice is using another LLM to inspect the output of current LLM.\n\n2. In Fig. 3, 5 and 6, why the attack distribution results in like two-mode distribution?\n\n3. What is the image embedding distance between the original image and the attacked image? \n\n4. What is the energy consumption for generating one attack image?\n\n5. When showing the results of length in the Table, the standard deviation should be added."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "* The paper investigates an important and interesting problem, which attacks the inference efficiency of VLMs. The proposed solution is simple and does not cost much.\n* The paper is well-written and easy to follow. The figures are presented well.\n* Experiments have been done on a variety of models with two tasks. Improvements in sequence length and latency are obvious. Also, the paper gives a detailed ablation study.",
+      "waeknesses": "* The motivation or the reason for the effectiveness of the second loss is weak. I think the second loss, which increases the uncertainty of tokens is more like destroying the accurate outputs. While the paper claims that the second loss can help with longer sequences, I do not see a strong correlation. Can the authors give some description to build the relationship between sequence length and token uncertainty, which usually indicates less favorable accuracy performance? \n\n* In the third loss part, the paper claims that “for a matrix, the calculation of the matrix rank is an NP-hard non-convex problem”, and thus proposes the third loss. Unfortunately, this is not true. For the 2-way matrix that corresponds to [token, hidden_states] in this example, the rank calculation is available by Gaussian elimination and is not NP-hard. Therefore, I keep doubting the motivation and design of the third loss, which also shows the least performance improvement in the ablation study.\n\n* The paper seems to target the problem in VLMs and claims that VLMs have special things like vulnerabilities from the manipulation of visual inputs. While it says that other methods for LLMs, can not be directly applied to VLMs, I do not see the special design or consideration in this method for challenges in VLMs.",
+      "questions": "Please check the weakness part."
+    }
+  ]
+}
