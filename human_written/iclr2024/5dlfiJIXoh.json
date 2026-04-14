@@ -1,0 +1,42 @@
+{
+  "title": "Structured Video-Language Modeling with Temporal Grouping and Spatial Grounding",
+  "keywords": [
+    "multi-modal learning",
+    "video and language"
+  ],
+  "pdf_url": "/pdf/614ef089f0433f5ee67eeda2476978dcc525fb45.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "S1. The proposed additional pre-training tasks (inter-clip spatial grounding and intra-clip temporal grouping) are reasonable. The supervision can be generated automatically using random cut & paste and pre-processing the captions for extracting the nouns. \n\nS2. I liked that the authors provide Table 5 that shows the effects on different choices of pre-training datasets. This allows comparing the proposed method and VCC trained on the same dataset (HowTo100M and VideoCC). It is good to know that the proposed method is on par with VCC when trained on HowTo100M, but significantly outperforms VCC when trained on VideoCC on MSRVTT-ZS. \n\nS3. The authors provide an ablation study on combinations of their proposed losses.\n\nS4. The paper presents visualizations of the affinity scores of learned features, alongside the attention map of S-ViLM in Figure 2. These visualizations are interesting and further validate that the model was trained as intended.",
+      "waeknesses": "W1. The authors state that most video-language pre-training methods neglect scene/action changes along the time in a video. However, there are works like LaViLa [a] that takes temporal and patch-level information into account. \n[a] Learning Video Representations from Large Language Models, Zhao et al., CVPR 2023\n\nW2. Some design choices are not obvious but no ablation study was presented in the paper.\n(1) Instead of Eq 1-2, I am curious if the authors tried BCE loss on z_i clip using the mask m_i. If so, how did the performance differ?\n(2) Instead of using grouping blocks, one can opt for existing region proposal networks or segmentation networks to obtain semantically similar regions, and then aggregate visual features within those regions to compute relevance against the nouns. \n\nW3. The writing could be further improved for enhanced clarity\n\n- It would be nice if \"interaction\" is clarified in “c) modality fusion and interaction” in the second paragraph of Section 1. \n- The term \"region-object groundingness\" is ambiguous in “Specifically, group tokens aggregate semantically similar video tokens via grouping blocks to promote region-object groundingness and video tokens are utilized in temporal grouping to improve temporal awareness.”\n- I suggest using “semantically similar regions” in “Thus, we adopt M learnable group tokens to cluster semantic similar regions in a self-supervised manner.”",
+      "questions": "Q1. See W2 (1). \nQ2. In Eq 1, were z_i’s L2 normalized?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "- The proposed methods are well-motivated and bring something new to video-text modeling. The intra-clip temporal grouping with cut-and-paste is an effective way of better capturing scene changes and the inter-clip spatial grounding with grouping blocks and tokens is an interesting way to enhance object (noun) understanding.\n \n- The comparison with previous state-of-the-arts on four different downstream tasks suggest the effectiveness of the proposed method on learning more representative features.\n\n- Ablation studies in Fig. 2 show that intra-clip temporal grouping helps the model better distinguish different scenes and inter-clip spatial grounding  leads to features that are sensitive to objects, both contributing to performance improvement as in Tab. 6. \n\n- Good details are provided, which can make reproduction easier",
+      "waeknesses": "- Extra knowledge about determining noun chunks from spaCy is introduced during pretraining, which may lead to some level of unfair comparison with other methods\n\n- The concern regarding benefits from pretraining set are not fully addressed. Although Tab. 5 shows that S-ViLM obtains better results than VCC when both pretrained on VideoCC, it is still unclear how much benefits are brought when comparing with other methods in those downstream tasks. This may also result in unfair comparison to some extent.\n\n- The authors claim that Eq. 3 \"encourages each noun to be grounded to one or a few regions and avoids penalizing regions\nthat cannot find any relevant nouns.\" I want to hear more explanations and discussions on this. In particular, how it can prevent n_k being similar to many regions, or even all regions uniformly.\n\n- I suggest not listing all baseline names in the main text but just citing them in the Table to save space for more important discussions and details.",
+      "questions": "Please address my concerns according to the Weaknesses part.\n\nBesides what are listed there, I also have some other questions:\n\n- For video action recognition, I wonder if the authors have results on the Something-Something / Something-Else dataset. UCF101 and HMDB51 are both quite biased towards objects presented in the videos and therefore may benefit a lot from the inter-clip spatial grounding. I'm very curious on S-ViLM's performance on a more different action recognition dataset.\n\n- How are start and end clip indices s, e sampled?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The design of pre-training tasks sounds technically works. And the details of it are comprehensive.\n2. The comparison and ablation study are comprehensive. The visualizations clearly present the actual contribution of inter-clip spatial grounding and intra-clip temporal grouping.\n3. The overall presentation is clear and easily understandable.",
+      "waeknesses": "1. The novelty may be somewhat weak.",
+      "questions": "Please see the above weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "- The manuscript effectively conveys the concept of aligning fine-grained video and text features.\n- The use of group tokens in the video encoder to align with the concepts in the text is a noteworthy approach.\n- The proposed loss function significantly enhances zero-shot retrieval performance on the MSRVTT dataset.",
+      "waeknesses": "- The representation of spatial concept features by the group tokens is unclear.\n- The compared methods are outdated and do not compare to state-of-the-art methods.\n- The claimed cut-and-paste operation has been widely used in previous studies.\n- The performance of the current methods on several tasks is inferior to many recent works.",
+      "questions": "- The methods being compared are outdated. It is recommended to compare them with state-of-the-art (SOTA) methods, particularly in the MSRVTT and TAL tasks. The authors can refer to https://paperswithcode.com/sota for comparing with more recent methods.\n- The text may involve multiple concepts. How can we extract k noun tokens from all sentences?\n- The number of group tokens remains constant during training. How do the group tokens align with different nouns in different sentences?\n- The visualization results for group tokens and noun tokens should be included.\n- It may be beneficial to include a grounding task since spatial alignment is claimed to be achieved."
+    }
+  ]
+}
