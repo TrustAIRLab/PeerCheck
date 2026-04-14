@@ -1,0 +1,47 @@
+{
+  "title": "Advancing the Lower Bounds: an Accelerated, Stochastic, Second-order Method with Optimal Adaptation to Inexactness",
+  "keywords": [
+    "Second-order methods",
+    "convex optimization",
+    "stochastic optimization",
+    "Cubic Newton Method",
+    "high-order methods",
+    "tensor methods",
+    "lower bounds"
+  ],
+  "pdf_url": "/pdf/9f4ad3fe664bc9130bb6d56d4552f098072fc713.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The author of this article considers several interesting questions that naturally arise for the inexactness in practice, and are therefore valuable, especially the proposed algorithm and its tight convergence rate, and the lower bounds for inexact second-order methods. \n2. The article follows a natural logic in exploring the questions,  progressing in a layered manner.\n3. The proof techniques the authors used seem solid and sound.",
+      "waeknesses": "1. While I grasp the overarching concept of the algorithm and the principal steps in the proof, the exposition doesn't offer much in the way of intuitive understanding. Could the authors elucidate the rationale behind the algorithm's design and the parameter choices? Enhancing the exposition with additional intuitive insights into the algorithm would be highly beneficial.\n2. The assumptions (2.2 and 2.3) of stochacity and inexactness differ but seem highly related, as they lead to two quite similar convergence rates and proof for your algorithm. In this paper the way of discussing the stochasticity and inexactness settings seems a bit nesting.  Maybe it could be better if their highlevel relations  are set forth in a proper manner. \n3. Clarification: O(1/T^2) ->\\Omega(1/T^2) in P2 line 2; bounded variance stochastic Hessian ->stochastic Hessian with bounded variance; formatting issues such as sequence numbers in the algorithm list.",
+      "questions": "1. In section 3, the subproblem you defined is $\\omega_{x}^{M,\\bar{\\delta}}=f\\left(x\\right)+\\left\\langle g\\left(x\\right),y-x\\right\\rangle +\\frac{1}{2}\\left\\langle y-x,H\\left(x\\right)\\left(y-x\\right)\\right\\rangle +\\frac{\\bar{\\delta}}{2}\\left\\Vert x-y\\right\\Vert ^{2}+\\frac{M}{6}\\left\\Vert x-y\\right\\Vert ^{3}$. Compared to the original cubic regularized subproblem, in addition to the modification of the inexactness and stochasticity, your formulation has an additional quadratic term $\\frac{\\bar{\\delta}}{2}\\left\\Vert x-y\\right\\Vert ^{2}$. Are there any reason or intuition for this term?\n\n2. Could you bring more insights for the aggregation of stochastic linear models above algorithm 1?\n\n3. The gloabal convergent (accelerated, cubic newton type) second-order methods, while they have accelerated global convergence, they usually can be proven to have superlinear local convergence rate. Is the parallel local characteristic worth to be mentioned and investigated in your stochastic/inexact setting?\n\n4. The open question mentioned, \"what's the optimal trade-off between inexactness in gradients and the Hessian?\", where in the article is intuitively investigated? \n\n5. Regarding Algorithm 3, you mentioned the 'Restarted Accelerated Stochastic Tensor Method'. Could you further elaborate on the specific mechanism and necessity of this 'restarting'? Under what circumstances should a restart be performed?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "1: strong reject",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "None",
+      "waeknesses": "The algorithm of step 4 also includes another optimization problem.",
+      "questions": "How does the algorithm work in step 4 of the proposed algorithm?  Does it work in practice?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The paper proposes an accelerated stochastic second-order algorithm using inexact gradients and Hessians, demonstrating nearly optimal convergence rates.",
+      "waeknesses": "see questions.",
+      "questions": "1) The paper lacks an intuitive explanation of the proposed algorithm. It is suggested to explain the motivation and impact of parameters such as $\\alpha_t$, the choice of the model $\\omega_x^{M,\\bar{\\delta}}$, and the technique of estimating sequence on the algorithm's performance and convergence. \n2) When comparing computational time, is the proposed algorithm better than existing methods?\n3) The figures in the paper are too small, making it difficult for readers to interpret the results."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1- Good flow in introduction and problem setup.\n\n2- With additional assumption on the unbiasedness of the gradient, they show the lower bound on convergence rate of inexact Hessian & gradient plus proposing a method which achieves the lower bound exept for the last term.\n\n3- They did a relatively thorough analysis by extending their analysis to tensor methods and special cases like strongly convex cases.",
+      "waeknesses": "1- Though the text has a good flow in terms of the context, there is still room for improvements: e.g. \n\n(a) In page 2 there are two loose sentences in the middle of the page. They can be integrated with the previous paragraph or just in a new independent paragraph. \n\n(b) Below assumption 1.2: $E[g(x,\\xi)]$ or $E[F(x,\\xi)]$?\n\n(c) **\\citet** was used wrongly in many places. Please consider replacing the wrong ones with **\\citep**.\n\n(d) function $\\psi_t(x)$ above algorithm 1 is not defined (I think it is in the algorithm so you should refer to that or simply introduce it)\n\n(e) The definition of $f$ in section 7 page 8 is an abuse of notation: $f(x)=E[f(x,\\xi)]$\n\n(f) I suggest larger font size on Figures 1,2\n\n(g) Large gap in the appendix after (26)\n\n2- I think contributions 3 & 1 should be integrated.\n\n3- Table 1 might lead to misunderstanding. Your result is based on the asssumption of unbiased gradients. The rate by Agafonov does not have this assumption. Thus, it seems like an unfair comparison.\n\n4- The title of the section “Lower Bound” is very generic and also the description is vague. For example, the first sentence of this section is vague.",
+      "questions": "1- Is the $\\boldsymbol \\Phi_x$ defined at the beginning of Section 2 used? Same question holds for $\\boldsymbol\\Phi_x$ defined under Assumption 5.1.\n\n2- Lemma 2.1 seems like a special case of a similar lemma in Agafonov et al 2020. Is there a reason you did not cite their work when you present the Lemma? Same question holds for Lemma 5.2. \n\n3- How did you find the dynamic strategy for the precision level $(\\tau_t=c/(t^{3/2}))$\n\n4- According to your investigation and results, does it make sense to analyze inexactness in Hessian (or higher order information of the objective function) when gradients are inexact? This question mainly concerns the $O(1/\\sqrt{T})$ convergence rate related to the inexactness of the gradients which dominates the convergence rate as $T\\rightarrow \\infty$."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "title": "Doubly Robust Instance-Reweighted Adversarial Training",
+  "keywords": [
+    "adversarial training",
+    "distributionally robust optimization",
+    "bilevel optimization",
+    "instance reweighting"
+  ],
+  "pdf_url": "/pdf/c8cb1e0f5f66335caae7b2b8cebef4a72602b4ad.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "1. The paper is well-written and easy to follow. \n2. The motivation is clear and the equivalent compositional optimization problem is reasonable. \n3. The proposed CID method has convergence guarantee.",
+      "waeknesses": "1. The empirical studies is not sufficient. Only small-scale datasets is adopted in the experiment. \n2. The computational analysis is missing. \n3. The justifiability of the assumptions is not discussed.",
+      "questions": "1. In Eq. (7)，is the constraint $\\delta\\in\\mathcal{C}_i$ correct? The author claim that \"Note that now the constraint $\\{\\delta\\in\\mathcal{C}_i\\}$ is never binding in Equation (7), because the log-barrier penalty forces the minimizer of $\\ell^{bar}_{i}$ to be strictly inside the constraint set.\" Moreover, in Algorithm 1 Line 5-7, why need the projected operator to keep $\\delta_{i,t}^{k}$ in $\\mathcal{C}$?\n\n2. It is better to discuss the justifiability  of Assumption 1-3 for AT problem. \n\n3. The SA performance is a weaknness of the proposed method. It is better to explain this limitation. \n\n4. It is better to add some statistical analyses like  P-values, CIs, effect sizes, and so on."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "Strength:\n\n1. The mathematical formulation of instance-reweighted bilevel optimization is solved in an elegant manner.\n\n2. The evaluation on imbalanced dataset suggest the worst case adversarial robustness can be improved.",
+      "waeknesses": "Weakenss:\n\n1. The improvements on PGD and AutoAttack seem to be less significant. The more significant improvements are observed from RA-Tail-30. Therefore, it is necessary to provide more details of the evaluation protocol for RA-Tail-30.\n\n2. Since the advantage is mainly demonstrated at the imbalanced dataset, the current evaluations on Imbalanced datasets (CIFAR10 and SVHN imbalanced) are not enough for analyzing the performance breakpoint.\n\n3. Comparisons with more recent adversarial training methods are missing.",
+      "questions": "It is encouraged to make comparisons with more recent adversarial training methods.\n\nExperiments on more diverse imbalance degrees are necessary for more comprehensive evaluation."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "1. The proposed framework addresses the issues of heuristics and non-uniform robust performance in adversarial training. The authors use a doubly robust optimization (DRO) approach that is theoretically grounded. It provides a principled way to reweight the training examples based on their vulnerability to adversarial attacks. \n\n2. Even the algorithm falls under the category of iteratively-reweighted adversarial attack, this paper has a more principled optimization formulation than previous works because its DRO approach combines two different models to estimate the importance weights of each training example, and to estimate the importance weights, which is more robust to model misspecification and can handle a wider range of distributional shifts compared to traditional optimization methods. The obtained weights are optimal for the DRO optimization problem defined in Eq. 5 (with the closed-form exact solution for the weights), rather than being ad-hoc picked. This is the most important difference form previous instance-wise or iterative attacks.\n\n3. The bilevel optimization formulation of AT gives one the flexibility to separately design the inner and outer level objectives. This enables the authors to independently construct a new outer level objective that also solves for the instance weights w, and an inner level objective for regularized attack. This flexibility allows for a more generic and powerful framework than the traditional AT formulation, which is limited to a single objective function.\n\n4. The proposed method outperforms several state-of-the-art baselines on standard classification datasets, in terms of robustness against multiple adversarial attacks. They also show that their method can improve the robustness of the weakest (worst-case) data points, which is an important property for real-world applications.",
+      "waeknesses": "Since the algorithm requires computing Jacobian inner products to perform parameter updates in the bi-level optimization, could the authors comment on the incurred time complexity? I am wondering if the algorithm runs much slower than vanilla AT (but only improves the robust accuracy moderately).\n\nIn their experiments, the authors have compared with AutoAttack which is good, but not with other SOTA methods such as TRADES or Diffusion-based Defense (ICML 2023). Adding some more comparison method would be good.",
+      "questions": "See the above."
+    }
+  ]
+}

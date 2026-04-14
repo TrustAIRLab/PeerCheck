@@ -1,0 +1,35 @@
+{
+  "title": "The Truth is in There: Improving Reasoning in Language Models with Layer-Selective Rank Reduction",
+  "keywords": [
+    "Large Language models",
+    "Transformers",
+    "Low-rank approximation"
+  ],
+  "pdf_url": "/pdf/bf2b33245275412d68f50b0e7000ba5adb1ed43f.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "10: strong accept, should be highlighted at the conference",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- This paper is well-written and easy to read.\n- The experiments are designed thoughtfully, and nicely supports the hypothesis.\n- The findings are important for both the understanding and the developments of better models in the future.",
+      "waeknesses": "I do not see obvious weaknesses in this paper. There is a typo: Table 3 needs a horizontal line at the bottom.",
+      "questions": "Seems like the MLP layers are the key components in storing the noise vs storing the “useful inductive biases”. I wonder if some structural choices (e.g., different position embedding methods, different activation functions, number of heads, etc.) can affect Transformer’s low-rank vs high-rank component behavior as well."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "3: reject, not good enough",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "-The use of low-rank approximation should be an effective and general way to allow the models to obtain more robust generalization abilities, while being more computationally efficient in the inference.\n-The authors tried very hard to demonstrate the major observation by showing the results across different transformer models, which are actually not even for language modeling tasks.",
+      "waeknesses": "Albeit the strengths above, I would like to say the major weakness of this work is that it draws its conclusion not very rigorously:\n-Current LLMs are often evaluated from multiple aspects including their reasoning abilities such as commonsense reasoning, world knowledge, reading comprehension etc, as well as their language generation abilities such as multilingual ability etc. And each aspect contains well-known benchmark datasets for the evaluation, such as MNLU, AGIEval and BBH. However, this work uses none of them. Therefore, I am not convinced that this robust performance can be achieved across all the above-mentioned aspects.\n-The authors do not provide the final search results of rank reduction, i.e. the layers selected for compressing and the reduced rank, in the final performance in Table1, 2 & 3. It is very important to provide these results to show that the selected model is indeed in a reduced rank.",
+      "questions": "I find that the dimension of GPTJ is 4096, which should be $d$ in your notation. So in Fig2, what is the rank of Reduction 99.5%/99.75% and others with .5%? (4096*0.0025=10.24, not an integer?)\n\nThe used CounterFact is very similar to the table-to-text generation task (but for a qa task), which is not a frequently used dataset to test even the QA and factual/world-knowledge reasoning performance of LLM. Any reason for choosing the dataset?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The authors conduct extensive experiments with respect to layer number, parameter type, and rate reduction to identify setups that lead to performance improvement.\n- The authors provide interesting observations such as a correlation between rank reduction and question answering accuracy.\n- The authors demonstrate that the proposed method can also be applied to various domains such as image classification.",
+      "waeknesses": "- Analysis on other text domain tasks such as reading comprehension could provide further insights.",
+      "questions": "- In Figure 3(c), what is the number of originally correct and answer-corrected datapoints?\n- It appears that there is a significant improvement in overall performance with GPT-J compared to LLama2 or Roberta. What could be the underlying cause of the result?"
+    }
+  ]
+}
