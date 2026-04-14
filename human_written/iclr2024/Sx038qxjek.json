@@ -1,0 +1,47 @@
+{
+  "title": "CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing",
+  "keywords": [
+    "Large Language Models",
+    "In-context Learning",
+    "Self-Verification",
+    "Self-Correction",
+    "Truthfulness",
+    "Tool-use",
+    "Interaction"
+  ],
+  "pdf_url": "/pdf/bb79a2ff78c834576bab1b2de8b606f7e87b2547.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The experiments demonstrate the effectiveness of the proposed approach across a diverse set of tasks, indicating its potential to significantly improve the performance of large language models (LLMs).\n\n- Utilizing external feedback as a means of improving LLM outputs is practical. The simplicity of the approach is a plus, as it facilitates widespread application.",
+      "waeknesses": "- The primary concern with this work is its novelty. Several studies have previously demonstrated that external feedback can be instrumental in correcting LLM outputs. In fact, there is existing work within each domain addressed in this paper, such as Self-Correct ([1], using external APIs), Self-Ask ([2], employing a search engine), and Self-Debug ([3], via a Python interpreter). Notably, Self-Debug and Self-Ask have a striking resemblance to CRITIC but are not referenced.\n\n\n- The settings that rely on an oracle are somewhat idealistic, and detract from the core message of the paper. It may be more appropriate to move these results to an appendix (as done by other works) to facilitate a clearer understanding.\n\n\n\n[1] Welleck, Sean, Ximing Lu, Peter West, Faeze Brahman, Tianxiao Shen, Daniel Khashabi, and Yejin Choi. \"Generating Sequences by Learning to Self-Correct.\" In The Eleventh International Conference on Learning Representations. 2022.\n\n[2] Press, Ofir, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah A. Smith, and Mike Lewis. \"Measuring and narrowing the compositionality gap in language models.\" arXiv preprint arXiv:2210.03350 (2022).\n\n\n[3] Chen, Xinyun, Maxwell Lin, Nathanael Schärli, and Denny Zhou. \"Teaching large language models to self-debug.\" arXiv preprint arXiv:2304.05128 (2023).",
+      "questions": "- The emphasis in Table 1 seems inconsistent. For instance, the AmbigNQ EM score of 50.0 is highlighted for Text-Davinci-003, but it is not the highest. Is this a bug or am I missing something?\n\n- Regarding the GSM task in a non-oracle setting, it appears that feedback from the interpreter is limited to syntactic correctness. Given the improvements, it suggests that many of the programs were initially syntactically wrong. Is this the case?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1) The paper introduces a novel framework, CRITIC, which addresses the limitations of LLMs by allowing them to verify and correct their outputs through interaction with external tools.\n\n2) The authors provide comprehensive evaluations of CRITIC on different tasks and datasets, demonstrating its consistent performance improvement over baseline methods.\n\n3) The paper highlights the crucial role of external feedback in the self-improvement of LLMs and emphasizes the unreliability of LLMs in self-verification.",
+      "waeknesses": "1) I think this is a good paper. The motivation is strong: utilizing external feedback to enhance the model's ability. However, some recent studies [1] reported that large language models cannot self-correct themselves.  I acknowledge that [1] did not involve external tools, which is different from CRITIC's setting and it is a paper after CRITIC which is not necessarily be included, but it would be more comprehensive to include a discussion with these new studies in such a fast-moving field.\n\n2) How much of the additional costs? Since calling external tools costs money. The authors should report the cost for each experiment.\n\n3) In Appendix C.2, an important work active-prompt [2] should be included, which applies uncertainty estimation to chain-of-thought prompting.\n\n[1] Large Language Models Cannot Self-Correct Reasoning Yet\n[2] Active Prompting with Chain-of-Thought for Large Language Models",
+      "questions": "How much of the additional costs? Since calling external tools costs money. The authors should report the cost for each experiment."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "8: accept, good paper",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "1. LLM Tool Use is a very timely research topic, and it is an important research area to use external feedback for the self-improvement of LLMs. This paper covers a wider range of tools compared to many prior works which typically employ one single type of tools.\n2. The results are rather strong with universal improvements across most tasks evaluated with several different model families and sizes.\n3. The ablation against CRITIC w/o Tool shows the importance of external feedback from Tools, which is an important learning for the community.\n4. The paper is very well written and is easy to understand with comprehensive comparisons to strong baselines.",
+      "waeknesses": "Error analysis is missing on what are the failure modes after using Tools for feedback.",
+      "questions": "1. It is unclear how important each Tool is to each task. Such analysis will provide further insight into where the improvements come from.\n2. The authors used different sampling config for the experiments for different tasks: e.g. p=0.9 was used for section 4.3 which is different from p=0.5 in 4.1 and 4.2."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "1. The paper is written clearly and easy to follow.\n2. I found the comparison with ReAct interesting, i.e. the role of parameter knowledge vs language feedback.",
+      "waeknesses": "1. I'm not convinced the CRITIC framework is novel enough to count as a contribution. The idea idea of using natural language feedback [1, 2, 3, 4] that guides LMs in revising their responses is pretty old as is the idea of using tools [5,6]. I agree the authors provide a nice unifying framework and some new downstream tasks (e.g. toxicity with PerspectiveAPI), but these don't seem to be pass the bar for ICLR. \n\n2. The authors don't compare with other frameworks endowing LMs with self-correction and tool use, like the ones listed above.\n\n3. I think the claim that tool use \"mimic[s] human thinking and behavior\" is overblown. Humans use think and work with tools very differently, typically not through a text-only interface. \n\n[1] https://arxiv.org/abs/2204.14146\n\n[2] https://arxiv.org/abs/2303.11366\n\n[3] https://arxiv.org/abs/2212.08073\n\n[4] https://arxiv.org/abs/2303.16749\n\n[5] https://arxiv.org/abs/2207.14502\n\n[6] https://arxiv.org/abs/2302.04761\n\n[7] https://openai.com/blog/function-calling-and-other-api-updates",
+      "questions": "How does the paper compare with other frameworks endowing LMs with self-correction and tool use?"
+    }
+  ]
+}

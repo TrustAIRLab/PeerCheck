@@ -1,0 +1,45 @@
+{
+  "title": "Adapting to Distribution Shift by Visual Domain Prompt Generation",
+  "keywords": [
+    "Distribution shfts",
+    "Domain generalization",
+    "Visual prompt",
+    "Foundation model",
+    "Test-time adaptation"
+  ],
+  "pdf_url": "/pdf/207fec35761d86a18b58976f946fa4e9945496ca.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- VDPG not only outperforms other methods on the WILDS benchmark, but it specifically showcases superior results on individual datasets like iWildCam, Camelyon17, and FMoW.\n- VDPG's ability to generate high-quality domain-specific prompts tailored to each target domain is not just a novel approach, but one that proves effective\n- When compared to methods like FYLP and DoPrompt, VDPG is designed for quicker adaptation and inference, making it a more feasible choice for real-world applications where computational resources and time are essential factors.",
+      "waeknesses": "- The results show that ERM training alone cannot drive performance. Specific configurations, such as episodic learning, are necessary to boost performance. This indicates a complexity in training dynamics that might be challenging to replicate or optimize in varied settings.\n- The method adapts with few-shot data before making inferences on all target data. While this is computationally efficient, there's a potential risk of overfitting or being overly reliant on a limited subset of data.",
+      "questions": "."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. Well-written and easy to follow\n2. Interesting approach to leverage CLIP knowledge for performing few-shot TTA. The different novel components are combined together in a non-trivial manner to attain the SoTA performance. \n3. Extensive ablations on knowledge bank, prompt generation, losses and evaluation on the standard benchmarks are provided.",
+      "waeknesses": "1. How low can KB size be? or how much sensitivity to Z value we can have?",
+      "questions": "I have my minor comment in the weakness section."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The studied task, Few-Shot Test-Time Domain Adaptation, is important yet challenging. Although there are many works focusing on parameter efficient learning with few-shot data, how to extract useful domain knowledge is an interesting perspect that deserves more research.\n-  The authors design several modules including transferable knowledge bank, conditional domain prompt generator and domain-aware contrastive loss and domain guidance module. Overall, the motivation of each module is clear. In addition, a meta-learning based training scheme is proposed for domain episodic training.\n- For the experiments, improvements of VPG over comparison methods look siginificant from Tables 1-2. Abalation studies are extensive.\n- The writing of paper and figure illustration are good.",
+      "waeknesses": "- The method is a bit complex. The loss term in Eq. (5) consists of three terms that need to be properly balanced. As those correlation loss and contrastive loss are at different scales, the model sensitivity against such hyper-parameters especially considering the few-shot data is unclear.\n- Since the VDPG is built upon prompt learning of CLIP, comparison with CNNs backbones is less informative. Methods like ERM, CORAL, MTL can be applied with CLIP.\n- Fig. 2(a,b) uses a black background, which leads to a poor visual contrast.",
+      "questions": "- Since the method learns a conditional domain prompt generator from source domains, I wonder how different numbers of source domains affect the learned generator. In particular, if there is only one source domain, would the method still work?\n- In the Bi-direction cross-attention module, what is the benefit using two 'Image attend to tokens' layers?\n- In the Algorithm1, how to judge the stopping criterion of convergence?\n- In Conditional domain prompt generator E(x), what is 'l is the number of embeddings'? Why not using the image embedding after average pooling for each image to calculate K,V in Attention?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "${\\bf Strengths:}$\n\n[$\\textbf{Well-illustrated Figures}$] The figures can clearly convey the idea of the proposed method.\n\n[$\\textbf{Comprehensive Experiments}$] This paper offers the experimental results comparing many baseline methods, ablation study of various losses and hyper-parameter analysis.",
+      "waeknesses": "${\\bf Weaknesses:}$\n\n[$\\textbf{Confusing Expression}$] The expression is sometimes hard to follow and understand. For example, (i) I am not sure how the method works from “The domain prompt then directs the visual features towards a particular domain via a guidance module.”; (ii) they first mention “propose an approach on top of the pre-computed features of the foundation model.”, but then say, “we build a knowledge bank to learn the transferable knowledge from source domains.”. It cannot see the connection between these two sentences. (iii) For “In FSTT-DA, extracting domain-specific knowledge from few-shot data remains a major obstacle.\nHence, leveraging generalized semantic knowledge from pre-trained backbone and transferable domain knowledge from source domain datasets is vital.”, these two sentences have no logic relation. Considering the problems above, it needs a careful refinement before publication.\n\n[$\\textbf{The Selection of CLIP Image Encoder}$] The paper uses two different image encoders for DomainNet and WILDS. Could the authors explain the reason? It would be nice to see the performance of two encoders on two datasets.\n\n[$\\textbf{Missed Experiments}$] (i) One SOTA work is not compared, e.g., “CLIPood: Generalizing CLIP to Out-of-Distributions, ICML 2023”. (ii) It would be nice to see the computational cost of MIRO.\n\n[$\\textbf{Some Suggestions}$] The subfigures in Figure 2 do not show the obvious differences between baseline and the proposed method. It would be nice to change style or type of figures to make it clearer.",
+      "questions": "Can the ensemble be used for the proposed method as shown in Table 3?"
+    }
+  ]
+}

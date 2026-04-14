@@ -1,0 +1,42 @@
+{
+  "title": "Towards Eliminating Hard Label Constraints in Gradient Inversion Attacks",
+  "keywords": [
+    "label recovery",
+    "gradient inversion attacks"
+  ],
+  "pdf_url": "/pdf/3be3cfdc746ff3ca0589782f352ae91a32d3b9ca.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "the method is simple.\n\nEq.2 is a key equation. It can be checked with some algebra to be correct. from this equation, other things follow.",
+      "waeknesses": "Eq.(3), there is a term (g_i/x^*), since g_i is a vector and x* is a vector this makes no sense.\n\nthe same goes for the term g_i/g_r which is 'vector divide by vector'.\n\nEq.(5) the authors said \"top two entries\" but does not precisely define what it means. could it be the two items in y_i with highest values?\n\ntable 1, table 2, table 3, table 4 and other results, error bars will be needed. otherwise it makes no sense to say one number has higher values than another.  repeated experiments e.g. using differently trained networks.\n\nsection 4.3 line 5, there is a typo.",
+      "questions": "I am not very sure if this work would be of practical value if all the gradients and parameters needed to be known. for white box attack, parameters are known. however gradients should be known for this work to be valid. in practise, do we usually know gradients for each instance?"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper is well-organized and easy to follow.\n2. The problem of soft label recovery can be challenging and interesting.\n3. The proposed variance loss seems simple and natural.\n4. The image reconstruction results of FCN regardless of the bias term seem promising.",
+      "waeknesses": "1. The reason why the proposed variance loss can lead to the global minimum is not well-explained.\n2. The authors should include more comparison with other baselines besides iDLG in label recovery evaluations, such as Table 1.\n3. Lack details of the metrics to measure the correctness of soft label recovery.\n4. The designing of searching procedure needs more explantation, such as the starting point of $\\pm 1$.",
+      "questions": "1. Please provide more discussion of variance loss.\n2. Please provide more comparisons in label recovery evaluation.\n3. Please explain the metrics in soft label recovery.\n4. Please provide more discussion of the searching procedure in Section 3.3."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "Seems that the performance is good compared with previous methods.",
+      "waeknesses": "The introductory background and algorithm derivation may lack clarity, potentially causing individuals unfamiliar with this field to become confused.",
+      "questions": "Why the label vector can be viewed as a function of the gradient in equation (3)?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. This paper identifies an interesting gap for gradient inversion attack, i.e., the hard label constraints, and proposes a soft label recovery method that is closer to realistic scenarios.\n\n2. Although the proposed method is simple, it is intuitive and effective. Its simplicity also adds value to its applicability.\n\n3. Effectiveness is shown by the experimental results quantitatively and qualitatively.\n\n4. Code is provided in the supplementary.",
+      "waeknesses": "My major question is about the assumption made regarding the label format. Does the proposed method assume the label format is known in advance or not?\n\n- First, does the method assume it is known whether a hard label or soft label is used? \n- Second, does the method assume it is known whether label smoothing or mixup is used as the format for the soft label? \n\nIf they are all known, I am curious about other versions of the results in Table 3 when the label format is unknown, corresponding to the above two settings. One setting is that we don't know whether the label is hard or soft. The other setting is that we don't know the specific format of the soft label. I think these two settings are closer to the real-world cases.\n\nMinors:\n- In Figure 2, it is better to also zoom in and visualize the global minimum similarly.\n- In Table 2 caption, experiences > experiments.",
+      "questions": "Please refer to the Weaknesses. I would appreciate comments on the assumption of the label formats and additional results if applicable."
+    }
+  ]
+}
