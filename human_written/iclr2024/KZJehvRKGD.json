@@ -1,0 +1,44 @@
+{
+  "title": "Depthwise Hyperparameter Transfer in Residual Networks: Dynamics and Scaling Limit",
+  "keywords": [
+    "Deep Learning Theory",
+    "Hyperparameter Transfer",
+    "Training Dynamics",
+    "Residual Networks"
+  ],
+  "pdf_url": "/pdf/6a279524f30552b560cf46d419f2f40dac0f4ef8.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- The method tackles an important practical problem: the efficient tuning of hyperparameters.\n- Good presentation",
+      "waeknesses": "- The experimental section is quite limited: only a single task and a very simple dataset are considered.",
+      "questions": "N/A"
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "+ Rounded, well written and easy to follow timely paper presenting valuable empirical evidence put into NTK theory context.\n+ Future directions section proposes the method as suitable to study depth-width trade-offs while scaling neural networks since hyperparameter dependencies are consistent across widths/depths. In my opinion this can be very valuable addition to community even if the method does not turn out practically useful and adds positively to my overall rating.\n+ Convincing experiments (with a caveat, that I hope will be addressed in the rebuttal, see Weaknesses, ad 1)) cover well selected range of settings and architectures",
+      "waeknesses": "1. Fig. 1 Loss levels reached seem to be higher in case of proposed parameterization compared to alternatives. Could authors add some comments on the topic? Especially, is a proposed parameterization capable of reaching an optimal value of hyper parameters in scope, e.g., learning rate in practical settings? I rate paper 'accepted' conditioned on this issue will be alleviated in the camera-ready version.\n\n2. Limited applicability(?) - Could authors argue otherwise? How could it be improved in the paper? Could authors elaborate on computational costs of proposed method vs. alternatives?\n\n3. Paper heavily depends on $\\mu P$ parameterisation properties derived in Yang & Hu (2021). In my view a short primer on $\\mu P$ parameterisation (even in Appendix) would improve self-consistency and readability of the paper.\n\n4. Proposition 2, Assumption $\\gamma_0 \\rightarrow 0$ renders ODE from Proposition 1 solvable due to time invariant kernels (and thus given by Gaussian initialization) and the same goes for the second example where linearity of network makes time invariance explicit. To what extend are conclusion transferable to any realistic non-linear scenario?",
+      "questions": "See section Weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "This paper demonstrates that a straightforward adaptation of the $\\mu P$  parameterization enables the transfer of learning rates across both depth and width in residual networks, incorporating $1/\\sqrt{depth}$ scaling on the residual branches. The authors conduct extensive experiments. The theory is also nice.\n\nI think these findings have the potential to significantly reduce the computational expenses associated with hyperparameter tuning, thereby enabling practitioners to train large, deep, and wide models just once while achieving near-optimal hyperparameters.",
+      "waeknesses": "1. Since that the $\\mu P$ parameterization is not a commonly used method, the authors should provide a more comprehensive introduction.\n\n2. The $1/\\sqrt{depth}$ trick has been extensively investigated in previous works [1-3]. The novelty of the proposed method appears to be limited. Please clarify the differences. Moreover, many recent works propose initializing ResNet using \"rezero\"-like methods, which achieve similar performance to the $1/\\sqrt{depth}$ trick. The authors should provide some comparisons. In particular, I would like to see some discussions on the scaling parameter. Why use $1/\\sqrt{depth}$? What would happen if the scaling parameter is set as $1/depth$ or 0?\n\n3. As the authors admitted in the \"Limitation\" paragraph, most of the experiments are confined to 10-20 epochs. This limitation makes the empirical evidence less convincing. In fact, I don't understand the difficulty in training a ResNet with more epochs if one can train it with 10-20 epochs.\n\n[1] Tarnowski W, Warchoł P, Jastrzȩbski S, et al. Dynamical isometry is achieved in residual networks in a universal way for any activation function. The 22nd International Conference on Artificial Intelligence and Statistics. PMLR, 2019: 2221-2230.\n\n[2] Yang G, Schoenholz S. Mean field residual networks: On the edge of chaos. Advances in neural information processing systems, 2017, 30.\n\n[3] Zhang H, Dauphin Y N, Ma T. Fixup initialization: Residual learning without normalization. arXiv preprint arXiv:1901.09321, 2019.",
+      "questions": "Please see  weaknesses."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "The work offers a good combination of theory and experiment.  \n\nIt expands a useful and timely avenue of research, hyperparameter transfer, where theory can actually aid practitioners.\n\nIt studies relevant complex architecture acting on realistic datasets as opposed to linear or shallow networks.",
+      "waeknesses": "Several gaps exist between the stated goal of the theory and its practical implementation. One such gap, which the authors themselves cite, is that the theory predicts stable results following a scale-up. Naturally, however, spending more compute and getting equal performance, is of little practical value. In practice, one expects to get better results which seems to be the case at least for the larger datasets they consider. This means that in examples where HP-transfer is worthwhile, one is by definition well away from the scaling limit. \n\nAnother gap, of a similar kind, is that, as far as I could tell, their DMFT framework is based on gradient flow but it is then used to transfer the learning rate. While gradient flow may be a good approximation for SGD in the asymptotically low learning rate regime, typically the optimal learning rates lay far away from this regime. \n\nFor CIFAR-10, the 1/\\sqrt{depth} scaling leads to poorer performance compared to muP scaling. \n\nReference to current literature could be broadened and sharpened. For instance, muP parameterization is also a unique parameterization having maximal updates, not just a stable limit (This fuller characterization also partially escapes the first gap described above). Citing further alternatives to muP scaling and adaptive kernel approaches to feature learning is also desirable.",
+      "questions": "1. Can the authors rationalize why the above two gaps could be excused? \n\n2. Can the authors explain why for CIFAR-10 their parameterization seems non-optimal?"
+    }
+  ]
+}

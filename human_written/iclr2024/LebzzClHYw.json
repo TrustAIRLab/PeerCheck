@@ -1,0 +1,43 @@
+{
+  "title": "Instructive Decoding: Instruction-Tuned Large Language Models are Self-Refiner from Noisy Instructions",
+  "keywords": [
+    "Instruction Following",
+    "Language Model",
+    "Decoding"
+  ],
+  "pdf_url": "/pdf/41130f3ca565e158b2e1217fa3f5da2ba15efd6e.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "S1) The approach is simple but well-motivated: it doesn't require access to additional models (as Contrastive Decoding does) or access to model internals beyond token probabilities. \n\nS2) The experimentation was comprehensive, and I appreciated the analysis and ablation experiments, especially the \"degradation to enhancement\" part, the generalization experiments, and the analysis of sensitivity to the \\epsilon parameter.\n\nS3) The results were convincing to me: the approach produces consistent improvements, with substantial benefits in cross-dataset generalization.\n\nS4) The paper was overall very-well written.",
+      "waeknesses": "W1) While I appreciated the analysis of sensitivity to the \\epsilon parameter, given that there is only a relatively small region of \\epsilon where the approach outperforms the baseline, I'd appreciate more discussion of how \\epsilon was chosen and whether it was the same across all tasks in each experiment.\n\nW2) There's a bit of room to improve the analysis and discussion of it, see questions and comments below. \n\nW3) This is a minor weakness, but I didn't really understand the connection to \"anchoring\". Anchoring seems to be about sensitivity to the first thing appearing in the text, while this method doesn't privilege any particular positions in the text but contrasts against the negative prompt at all positions.\n\nW4) While the related work was generally good, there is room to mention a few other related papers (below) on contrastive methods for generation. But I also don't think this is a major weakness, as the application to instruction following is new.\n\n- Li et al. A Diversity-Prompting Objective Function for Neural Conversational Models. NAACL 2016\n- Shen et al. Pragmatically Informative Text Generation. NAACL 2019\n- Ho and Salimans. Classifier-Free Diffusion Guidance. 2021",
+      "questions": "Q1) How was the \\epsilon value chosen for the important experiments in the paper (e.g. Table 1 - Table 3)?\n\nQ2) I was confused by the discussion of the smoothing coefficient in 3.3. It says that the typical choice was 0.3, but performance tends to decline with positive \\epsilon values. And the equation for decoding is z - \\epsilon \\tilde z, which makes it seem like \\epsilon should be positive in order to get a contrast.\n\nQ3) Can any intuition be given for why the approach seems to work best in the generalization setting (3.3 \"Generalization Capabiltiies\")?\n\nQ4) What method is used to choose the random words from NLTK (i.e. what word list is used? something involving antonyms?)\n\nOther comments:\n- The discussion in the \"ID with Opposite\" section hints that some of the baseline models might be mode-splitting, and that (at least on these classification tasks), approaches might benefit from a decoding approach that uses min-Bayes risk or consensus decoding: group together words based on their similarities and choose to generate a word from a large group.\n- I wasn't really clear on the support for the conclusions in \"Visualization of Embeddings\", that as models get better at understanding instructions (e.g. are larger), performance of ID increases\n- \"aims to steer the models toward particular\" in Section 1. Should \"toward\" be \"away from\"?\n- \"pragmatics\" in the motivation for Label Adherence and Label Coherence is a bit misleading; this is much closer to \"semantics\".\n- it would help to make some of the table/figure captions more self-contained, e.g. defining * in Table 3 caption."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "8: accept, good paper",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "- the method is simple and effective.\n- extensive experiments and analysis",
+      "waeknesses": "-it’s still unclear (for a practitioner or researcher) to what extent the noisy instruction would be helpful for a new task. Maybe some qualitative analysis in those no-improvement tasks would provide some intuition on why the noisy instruction is harmful in the proposed instructive decoding.",
+      "questions": "- is it possible to further fine-tune the model via the new logits (i.e.,  $z_t - \\tilde z_t$ in Algorithm1)\n- I wonder if the improvement from ID correlates with the response length required for a task. E.g., is ID more useful in tasks that require long response generation?"
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1) The Instructive Decoding (ID) approach is interesting. It offers an alternative to enhancing LLMs using a broader set of instructions and doesn't necessitate further fine-tuning.\n\n2) The methodology is straightforward and the evaluation metrics, especially those in the table, offer a comprehensive view of the results.",
+      "waeknesses": "The results, although promising, are mixed. From table 1, only about half of the tasks demonstrated improvements, while the rest experienced a decline in performance.\n\nThe paper's rationale needs clarity, especially from a machine learning perspective. It seems there's an assumption that noise-based responses will always produce contrasting predictions at every word level. For instance, if the base prediction is 'xxxx', and the noisy prediction is 'xxxx is wrong', the 'xxxx' part remains consistent, which can be misleading.\n\nThe paper references the \"anchoring effect\" but doesn't provide a clear link between it and the proposed method. The model doesn't directly witness the output from the noisy instruction. Instead, this output is indirectly factored into the next-word prediction logits computation. This differs from the anchoring effect, where individuals receive specific information before arriving at a final judgment.",
+      "questions": "Can the authors shed light on the underlying rationale behind the proposed method, especially concerning the prediction of logits? How can it be ensured that the noisy responses will always lead to contrasting predictions at every word level?\n\nHow is the \"anchoring effect\" relevant to the proposed method? The paper seems to lack a detailed explanation connecting the two."
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "8: accept, good paper",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "- The presented idea is intuitive and interesting.\n- Extensive experiments and ablations show that the idea works.\n- The paper is generally well-written.",
+      "waeknesses": "- The empirical gain in Table 1 seems incremental (e.g. only 1-2 points of overall improvement) \n- The idea is not particularly groundbreaking",
+      "questions": "- Would there a better way to present the results in Table 1? Currently it feels incremental since the improvement is only 1-2 points, but I could see other arguments against this (e.g., increasing from 3b to 11B also only does not improve much). Would there be a better way to help the readers better contextualize the improvement (or find datasets that are more discriminative between weaker and stronger systems)?"
+    }
+  ]
+}

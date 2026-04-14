@@ -1,0 +1,43 @@
+{
+  "title": "Multi-Scale Representations by Varying Window Attention for Semantic Segmentation",
+  "keywords": [
+    "Semantic Segmentation",
+    "Multi-Scale Representations Learning",
+    "Attention"
+  ],
+  "pdf_url": "/pdf/5759da5cdff163afbc7e96513ae3bb41d52ce451.pdf",
+  "reviews": [
+    {
+      "reviewer": "Official Reviewer 1",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "+ Introduction of Varying Window Attention (VWA) to dynamically adjust receptive fields, addressing scale inadequacy and field inactivation.\n+ Development of new principles such as pre-scaling, densely overlapping patch embedding (DOPE), and copy-shift padding mode (CSP) to enhance efficiency in receptive field variation.\n+ Empirical improvements in mean Intersection over Union (mIoU) and reductions in computational cost (FLOPs).",
+      "waeknesses": "- The paper may not sufficiently differentiate VWA from existing local window attention mechanisms.\n- Potential concerns about the scalability and generalizability of the proposed method to different architectures or datasets.",
+      "questions": "1. How does VWA fundamentally differ from existing attention mechanisms in handling multi-scale representations?\n2. Include a breakdown of performance gains across different classes or segments within the datasets used."
+    },
+    {
+      "reviewer": "Official Reviewer 2",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+      "strengeths": "1. The paper starts from the visual observations, then goes into detailed computation analysis, and further proposes modifications to enhance. The logic between the whole paper is very smooth and easy to follow.\n\n2. The detailed complexity analysis substance the efficiency of the proposed method. Besides, the experimental results further verify computation efficiency compared to existing methods.\n\n3. Quantitative analysis verifies the effectiveness of the proposed methods, highlighting the significance of varying window sizes.",
+      "waeknesses": "1. The proposed copy-shift padding is a bit weird. It mimics the rolling operation in numpy and torch. I wonder why adopting this instead of symmetric or constant padding.\n\n2. Fig 2b and Sec 3.2 are not well-aligned. In Fig 2b there's a PE operation, which doesn't occur in Sec 3.2, which can confuse the readers.",
+      "questions": "1. Are there any ablation studies indicating the effectiveness of copy-shift padding?\n\n2. From Table 7 in Supp, it seems avg_pool can be a substitution of PE, then I wonder what the performance will be like if the rescaling method \"DOPE --> avg_pool --> 1x1 conv\" is taken."
+    },
+    {
+      "reviewer": "Official Reviewer 3",
+      "rating": "5: marginally below the acceptance threshold",
+      "confidence": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+      "strengeths": "+ This paper makes full use of multi-scale features for fusion and proposes VMA to obtain multi-scale representation.\n+ The experiments and visual results show the problems that existed in the previous work, namely, scale inadequacy and field inactivation, which is insight.\n+ The VMFormer frame is more clearly drawn and is easy to follow.",
+      "waeknesses": "- Too much space is spent to explain the memory usage problem, resulting in some experimental results, such as Table 9 and some ablation experiments, which can only be placed in the appendix.\n- Lack of ablation experiments on the copy-shift padding mode. It is mentioned in the paper that filling with zero will cause attention collapse, but there are no experimental results to explain it.\n- There is no comparison between VWA and LWA.\n- The pre-scaling principle is to reduce memory usage, and the impact of pre-scaling on performance is not reflected.\n- The method part is not abundant, such as the short path branch. Overall, it seems that the original is not high, mainly VWA.\n- Inference time is not reflected in the experiments.",
+      "questions": "(1) For copy-shift padding mode(CSP), why not take the adjacent part to padding?\n(2) What is the short path branch?\n(3) What does pre. or post. in Table 7 refer to?  PE refers to padding with zero or CSP?"
+    },
+    {
+      "reviewer": "Official Reviewer 4",
+      "rating": "6: marginally above the acceptance threshold",
+      "confidence": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+      "strengeths": "Extensive experiments are conducted on Cityscapes, ADE20K, and COCOStuff-164K datasets. Despite reducing computational demands and the number of parameters, the proposed method demonstrates relative improvements compared to other approaches. \n\nThis work provides a thorough mathematical derivation of its method and showcases how to address the challenges of scale inadequacy and field inactivation.\n\nThis work presents a lot of ablation experiments to verify that the proposed methods outperform existing mechanisms.\n\nThe visualization results are interesting and provide many insights into multi-scale feature representations for semantic segmentation.",
+      "waeknesses": "1. The manuscript requires structural refinement. Although the paper proposes a new methodology, the empirical validation predominantly resides in the appendix. The core content appears to be overly enmeshed in granular theoretical derivations, leading to a somewhat convoluted narrative structure.\n2. The delineation between the figures, tables, and the main text is ambiguous. It is advisable to render the captions in a font slightly smaller than the primary text to enhance clarity. The layout of the illustrations also warrants improvement. For instance, in Figure 2, it would be beneficial to incorporate descriptions of specific letters either within the caption or designated sections of the image. The term \"PE\" is presented here, yet a precise elucidation is deferred until Section 3.3.\n3. The visualization results do not substantiate the issues you've raised. The quantified outcomes displayed in Figure 5 merely illustrate the discriminative results of the proposed network in comparison to Segformer for a specific image region. If the method you presented exhibits a substantial improvement over Segformer, I believe it would be acceptable. However, given that the data only indicates approximately a 1% enhancement relative to Segformer. There is a lack of targeted visualization results addressing the issues of scale inadequacy and field inactivation.\n4. The author introduced \"varying window attention,\" but neglected a comparative analysis with other similar methods, such as the 'Shifted Window' in the Swin-Transformer.\n5. Some state-of-the-art segmentation methods like HRViT, SegViT-v2, ViT-adapter, Lawin Transformer, etc. could be compared in the experiments to better verify the superiority of your proposed architecture.\n\nSincerely,",
+      "questions": "1. Why not experiment with the same Encoder paired with different decoders (more than three)? This can help better show the consistent effectiveness of your approach. \n2. The computational load shown in Equation (2) appears highly reminiscent of the Swin Transformer. Could you possibly incorporate a comparison with the Swin Transformer?\n3. In Figure (3), you've employed an operation akin to that of Swin. However, after image concatenation in Swin, a mask is applied. As you concatenate features from different regions, how do you prevent interference or cross-effects between these diverse area features?\n4. SegFormer utilizes an MLP Decoder, which doesn't encompass an attention mechanism. Yet, in your VWA mechanism, you've incorporated an attention mechanism. How does this lead to a reduction in parameter count? This can be better analyzed.\n5. In the experimental section, could the results be organized based on the size of the modules in a systematic order?\n\nSincerely,"
+    }
+  ]
+}
